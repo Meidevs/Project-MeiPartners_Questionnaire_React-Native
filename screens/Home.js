@@ -7,19 +7,19 @@ import {
   StyleSheet,
   Image,
   Button,
+  ImageBackground,
 } from 'react-native';
 
 export default class Home extends React.Component {
+
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.top_container}>
           <View style={styles.top_info}>
-            <Text style={styles.info_1_font}>
+            <Text>
               강서현님,안녕하세요
             </Text>
-          </View>
-          <View style={styles.top_image}>
           </View>
         </View>
 
@@ -28,32 +28,16 @@ export default class Home extends React.Component {
             <View style={styles.smart}>
               <TouchableOpacity
                 onPress={() =>
-                  this.props.navigation.navigate('Questionnaire')
+                  this.props.navigation.navigate('Question')
                 }
                 style={styles.buttonContainer}>
-                  <Image source={require('../public/images/button1.png')} />
+                <Image source={require('../public/images/button1.png')} style={styles.button1}/>
               </TouchableOpacity>
             </View>
           </View>
 
           <View style={styles.bottom_bottom}>
-            <View style={styles.token}>
-              <TouchableOpacity
-                onPress={() =>
-                  this.props.navigation.navigate('Token')
-                }
-                style={styles.buttonContainer}>
-                  
-              </TouchableOpacity>
-            </View>
-            <View style={styles.history}>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('OrderList')
-                }
-                style={styles.buttonContainer}>
-              </TouchableOpacity>
-            </View>
+            <Text>Hi</Text>
           </View>
         </View>
       </View>
@@ -71,72 +55,22 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   top_container: {
-    backgroundColor: 'red',
-    flex: 1,
-    flexDirection: 'row',
-  },
-  top_info: {
+    backgroundColor: '#FFFFFF',
     flex: 2,
-    paddingHorizontal: 15,
-    paddingVertical: 30,
-  },
-  info_1_font: {
-    fontSize: 15,
-    fontWeight: 'normal',
-    fontStyle: 'normal',
-    letterSpacing: 0,
-    color: '#444444',
-  },
-  info_2_font: {
-    fontSize: 17,
-    fontWeight: '600',
-    fontStyle: 'normal',
-    letterSpacing: 0,
-    color: '#5ab9cd',
-  },
-  info_3_font: {
-    fontSize: 13,
-    fontWeight: 'normal',
-    fontStyle: 'normal',
-    letterSpacing: 0,
-    color: '#444444',
-  },
-  top_image: {
-    flex: 1,
-    paddingVertical: 50,
-    paddingHorizontal: 40,
-    alignItems: 'center',
+    flexDirection: 'row',
   },
   bottom_container: {
-    backgroundColor : 'black',
+    backgroundColor: '#BDBDBD',
     flex: 4,
-    paddingVertical: 30,
   },
   bottom_top: {
-    backgroundColor : 'blue',
+    backgroundColor: 'blue',
     flex: 1,
     flexDirection: 'row',
-  },
-  itemlist: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  smart: {
-    flex: 1,
-    alignItems: 'center',
   },
   bottom_bottom: {
-    backgroundColor : 'white',
+    backgroundColor: 'white',
     flex: 1,
     flexDirection: 'row',
-    paddingBottom: 50,
-  },
-  token: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  history: {
-    flex: 1,
-    alignItems: 'center',
   },
 });

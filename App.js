@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -10,55 +10,59 @@ import QuestionScreen from './screens/Question.js';
 import LoginScreen from './screens/Login.js';
 import RegisterScreen from './screens/Register.js';
 
-const TabNavigator = createMaterialBottomTabNavigator(
+const defaultNavigationOptions = ({navigation}) => {
+  console.log(navigation)
+  return {
+    headerTitle: (
+      <View style={{alignContent: 'center'}}>
+        <Text>
+          <Text style={{color: '#000000'}}>
+            {navigation.state.routeName}
+          </Text>
+        </Text>
+      </View>
+    ),
+    headerTitleStyle: {
+      flexGrow: 1,
+      textAlign: 'center',
+    },
+    headerStyle: {
+      paddingHorizontal: 8,
+      backgroundColor: '#ffffff',
+    },
+    headerRight: <View>
+      <Text>Hi</Text>
+    </View>,
+  };
+};
+const MainStack = createStackNavigator (
   {
-    Home: {
-      screen: HomeScreen,
-      navigationOptions: {
-        tabBarLabel: 'Home',
-        tabBarIcon: ({ tintColor }) => (
-          <View>
-            <Icon style={[{ color: tintColor }]} size={25} name={'ios-home'} />
-          </View>),
-      }
+    Home : {
+      screen : HomeScreen,
     },
-    Question: {
-      screen: QuestionScreen,
-      navigationOptions: {
-        tabBarLabel: 'Question',
-        tabBarIcon: ({ tintColor }) => (
-          <View>
-            <Icon style={[{ color: tintColor }]} size={25} name={'ios-profile'} />
-          </View>),
-        activeColor: '#f60c0d',
-        inactiveColor: '#f65a22',
-        barStyle: { backgroundColor: '#f69b31' },
-      }
-    },
+    Question : {
+      screen : QuestionScreen,
+    }
   },
   {
-    initialRouteName: "Home",
-    activeColor: '#f0edf6',
-    inactiveColor: '#226557',
-    barStyle: { backgroundColor: '#3BAD87' },
-  },
-
-);
+    defaultNavigationOptions,
+  }
+)
 
 const RootStack = createStackNavigator(
   {
-  Login: {
-    screen: LoginScreen,
+    Login: {
+      screen: LoginScreen,
+    },
+    Register: {
+      screen: RegisterScreen,
+    },
+    Main: {
+      screen: MainStack
+    },
   },
-  Register: {
-    screen: RegisterScreen,
-  },
-  Main: {
-    screen: TabNavigator
-  },
-},
   {
-    headerMode: 'none'
+    headerMode: 'none',
   }
 );
 
