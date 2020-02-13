@@ -11,7 +11,6 @@ import LoginScreen from './screens/Login.js';
 import RegisterScreen from './screens/Register.js';
 
 const defaultNavigationOptions = ({navigation}) => {
-  console.log(navigation)
   return {
     headerTitle: (
       <View style={{alignContent: 'center'}}>

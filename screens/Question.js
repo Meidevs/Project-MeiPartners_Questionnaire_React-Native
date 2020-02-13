@@ -11,7 +11,11 @@ import {
 } from 'react-native';
 import Constants from 'expo-constants';
 
-export default class Quesion extends React.Component {
+import PickerYear from '../components/PickerYear.js';
+import PickerMonth from '../components/PickerMonth.js';
+import PickerDay from '../components/PickerDay.js';
+
+export default class Question extends React.Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -83,13 +87,13 @@ export default class Quesion extends React.Component {
             </View>
             <View style={styles.categoryBirth}>
               <View style={styles.categoryItem}>
-                <Image source={require('../public/images/topback.png')} style={{ width: 66, height: 58 }} />
+                <PickerYear />
               </View>
               <View style={styles.categoryItem}>
-                <Image source={require('../public/images/topback.png')} style={{ width: 66, height: 58 }} />
+                <PickerMonth />
               </View>
               <View style={styles.categoryItem}>
-                <Image source={require('../public/images/topback.png')} style={{ width: 66, height: 58 }} />
+                <PickerDay />
               </View>
             </View>
             <View style={styles.subCategory}>
@@ -100,6 +104,9 @@ export default class Quesion extends React.Component {
                 <Image source={require('../public/images/topback.png')} style={{ width: 66, height: 58 }} />
               </View>
             </View>
+            <TouchableOpacity>
+              <Text>다음</Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -163,7 +170,13 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     paddingLeft: 20,
   },
-  categoryName : {
-    padding : 15,
+  categoryName: {
+    padding: 15,
+  },
+  pickerStyle: {
+    height: 150,
+    width: 100,
+    // color: '#344953',
+    justifyContent: 'center',
   }
 });
