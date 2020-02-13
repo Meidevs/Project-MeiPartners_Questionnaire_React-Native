@@ -9,7 +9,7 @@ import {
   Button,
 } from 'react-native';
 
-export default class Register extends React.Component {
+export default class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -28,9 +28,10 @@ export default class Register extends React.Component {
             <View style={styles.smart}>
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate('CargoSmart')
+                  this.props.navigation.navigate('Questionnaire')
                 }
                 style={styles.buttonContainer}>
+                  <Image source={require('../public/images/button1.png')} />
               </TouchableOpacity>
             </View>
           </View>
@@ -42,6 +43,7 @@ export default class Register extends React.Component {
                   this.props.navigation.navigate('Token')
                 }
                 style={styles.buttonContainer}>
+                  
               </TouchableOpacity>
             </View>
             <View style={styles.history}>
@@ -69,6 +71,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   top_container: {
+    backgroundColor: 'red',
     flex: 1,
     flexDirection: 'row',
   },
@@ -78,7 +81,6 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
   },
   info_1_font: {
-    fontFamily: 'AppleSDGothicNeo',
     fontSize: 15,
     fontWeight: 'normal',
     fontStyle: 'normal',
@@ -86,7 +88,6 @@ const styles = StyleSheet.create({
     color: '#444444',
   },
   info_2_font: {
-    fontFamily: 'AppleSDGothicNeo',
     fontSize: 17,
     fontWeight: '600',
     fontStyle: 'normal',
@@ -94,7 +95,6 @@ const styles = StyleSheet.create({
     color: '#5ab9cd',
   },
   info_3_font: {
-    fontFamily: 'AppleSDGothicNeo',
     fontSize: 13,
     fontWeight: 'normal',
     fontStyle: 'normal',
@@ -108,10 +108,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bottom_container: {
+    backgroundColor : 'black',
     flex: 4,
     paddingVertical: 30,
   },
   bottom_top: {
+    backgroundColor : 'blue',
     flex: 1,
     flexDirection: 'row',
   },
@@ -124,6 +126,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bottom_bottom: {
+    backgroundColor : 'white',
     flex: 1,
     flexDirection: 'row',
     paddingBottom: 50,
