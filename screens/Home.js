@@ -2,36 +2,12 @@ import React from 'react';
 import {
   View,
   Text,
-  PermissionsAndroid,
   TouchableOpacity,
   StyleSheet,
   Image,
-  Button,
-  ImageBackground,
 } from 'react-native';
 
-import { LogoTitle } from "../components/LogoTitle.js";
-
 export default class Home extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-        headerTitle: <LogoTitle />,
-        headerRight: (
-            <Button
-                onPress={navigation.getParam('increaseCount')}
-                title="+1"
-                color="#2054E4"
-            />
-        ),
-        headerLeft: (
-            <Button
-                onPress={() => navigation.navigate('MyModal')}
-                title="Modal"
-                color="#2054E4"
-            />
-        )
-    }
-}
   render() {
     return (
       <View style={styles.container}>
@@ -51,7 +27,7 @@ export default class Home extends React.Component {
                   this.props.navigation.navigate('Question')
                 }
                 style={styles.buttonContainer}>
-                <Image source={require('../public/images/button1.png')} style={styles.button1}/>
+                <Image source={require('../public/images/button1.png')} style={styles.button1} />
               </TouchableOpacity>
             </View>
           </View>

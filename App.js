@@ -11,42 +11,41 @@ import LoginScreen from './screens/Login.js';
 import RegisterScreen from './screens/Register.js';
 import QuestionContentScreen from './screens/QuestionContent.js';
 
-const defaultNavigationOptions = ({navigation}) => {
-  return {
-    headerTitle: (
-      <View style={{alignContent: 'center'}}>
-        <Text>
-          <Text style={{color: '#000000'}}>
-            {navigation.state.routeName}
-          </Text>
-        </Text>
-      </View>
-    ),
-    headerTitleStyle: {
-      flexGrow: 1,
-      textAlign: 'center',
-    },
-    headerStyle: {
-      paddingHorizontal: 8,
-      backgroundColor: '#ffffff',
-    },
-    headerRight: <View>
-      <Text>Hi</Text>
-    </View>,
-  };
-};
-const MainStack = createStackNavigator (
+const QuestionStack = createStackNavigator(
   {
-    Home : {
-      screen : HomeScreen,
+    Question: {
+      screen: QuestionScreen,
+      navigationOptions: {
+        title: '설문지',
+        headerStyle: {
+          backgroundColor: '#ffffff',
+        },
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          textAlign: 'center',
+          flexGrow: 1,
+          alignSelf: 'center',
+        }
+      }
     },
-    Question : {
-      screen : QuestionScreen,
-    },
-    QuestionContent : {
-      screen : QuestionContentScreen,
+    QuestionContent: {
+      screen: QuestionContentScreen,
     }
   },
+)
+
+const MainStack = createStackNavigator(
+  {
+    Home: {
+      screen: HomeScreen,
+    },
+    Questions: {
+      screen: QuestionStack,
+    },
+  },
+  {
+    headerMode: 'none',
+  }
 )
 
 const RootStack = createStackNavigator(

@@ -19,10 +19,7 @@ import PickerLocation from '../components/PickerLocation.js';
 export default class Question extends React.Component {
 
   onPress = () => {
-    this.props.navigation.navigate('QuestionContent', {
-      itemId: 86,
-      otherParam: '파라미터 전달',
-    });
+    this.props.navigation.navigate('QuestionContent');
   }
   render() {
     return (
@@ -39,7 +36,9 @@ export default class Question extends React.Component {
             </View>
             <View style={styles.categoryImage}>
               <View style={styles.categoryItem}>
+                <View>
                 <Image source={require('../public/images/antiaging_basic.png')} style={{ width: 66, height: 58 }} />
+                </View>
                 <Text style={styles.categoryItemTxt}>
                   안티에이징
                 </Text>
