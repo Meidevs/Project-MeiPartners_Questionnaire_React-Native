@@ -9,13 +9,21 @@ import {
   SafeAreaView,
   ScrollView,
 } from 'react-native';
-import Constants from 'expo-constants';
 
 import PickerYear from '../components/PickerYear.js';
 import PickerMonth from '../components/PickerMonth.js';
 import PickerDay from '../components/PickerDay.js';
+import PickerLocation from '../components/PickerLocation.js';
+
 
 export default class Question extends React.Component {
+
+  onPress = () => {
+    this.props.navigation.navigate('QuestionContent', {
+      itemId: 86,
+      otherParam: '파라미터 전달',
+    });
+  }
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -66,11 +74,11 @@ export default class Question extends React.Component {
               <Text style={{ color: 'red', fontSize: 12 }}>*<Text style={{ color: 'black' }}>성별</Text></Text>
             </View>
             <View style={styles.categorySex}>
-              <View style={styles.categoryItem}>
-                <Image source={require('../public/images/topback.png')} style={{ width: 66, height: 58 }} />
+              <View style={styles.categoryBox}>
+                <Text style={{ textAlign: 'center', color: '#C0C0C0' }}>여성</Text>
               </View>
-              <View style={styles.categoryItem}>
-                <Image source={require('../public/images/topback.png')} style={{ width: 66, height: 58 }} />
+              <View style={styles.categoryBox}>
+                <Text style={{ textAlign: 'center', color: '#C0C0C0' }}>남성</Text>
               </View>
             </View>
             <View style={styles.subCategory}>
@@ -101,21 +109,17 @@ export default class Question extends React.Component {
             </View>
             <View style={styles.categoryBirth}>
               <View style={styles.categoryItem}>
-                <Image source={require('../public/images/topback.png')} style={{ width: 66, height: 58 }} />
+                <PickerLocation />
               </View>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity style={styles.button}
+              onPress={this.onPress}>
               <Text>다음</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
       </SafeAreaView>
     );
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = { phonenumber: '', password: '' };
   }
 }
 
@@ -178,5 +182,17 @@ const styles = StyleSheet.create({
     width: 100,
     // color: '#344953',
     justifyContent: 'center',
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#C0C0C0',
+    padding: 10
+  },
+  categoryBox: {
+    padding: 10,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#C0C0C0',
+    width: 100,
   }
 });

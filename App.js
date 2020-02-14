@@ -9,6 +9,7 @@ import HomeScreen from './screens/Home.js';
 import QuestionScreen from './screens/Question.js';
 import LoginScreen from './screens/Login.js';
 import RegisterScreen from './screens/Register.js';
+import QuestionContentScreen from './screens/QuestionContent.js';
 
 const defaultNavigationOptions = ({navigation}) => {
   return {
@@ -41,11 +42,11 @@ const MainStack = createStackNavigator (
     },
     Question : {
       screen : QuestionScreen,
+    },
+    QuestionContent : {
+      screen : QuestionContentScreen,
     }
   },
-  {
-    defaultNavigationOptions,
-  }
 )
 
 const RootStack = createStackNavigator(

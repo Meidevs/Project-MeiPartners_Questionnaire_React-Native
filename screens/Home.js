@@ -10,8 +10,28 @@ import {
   ImageBackground,
 } from 'react-native';
 
-export default class Home extends React.Component {
+import { LogoTitle } from "../components/LogoTitle.js";
 
+export default class Home extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+        headerTitle: <LogoTitle />,
+        headerRight: (
+            <Button
+                onPress={navigation.getParam('increaseCount')}
+                title="+1"
+                color="#2054E4"
+            />
+        ),
+        headerLeft: (
+            <Button
+                onPress={() => navigation.navigate('MyModal')}
+                title="Modal"
+                color="#2054E4"
+            />
+        )
+    }
+}
   render() {
     return (
       <View style={styles.container}>

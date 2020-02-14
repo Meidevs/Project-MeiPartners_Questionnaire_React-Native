@@ -1,7 +1,7 @@
 import React from 'react';
 import { Picker, View, StyleSheet } from 'react-native';
 
-export default class PickerComponent extends React.Component {
+export default class PickerDay extends React.Component {
     constructor (props) {
         super(props);
         var days = [];
@@ -22,7 +22,7 @@ export default class PickerComponent extends React.Component {
                         this.setState({ days: itemValue })}
                 >
                     {
-                        this.state.itemList.map((member, key) => 
+                        this.state.itemList.map((member) => 
                         <Picker.Item label={member.value} value={member.value} />
                         )
                     }
@@ -44,9 +44,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     pickerStyle: {
-        height: 150,
+        height: 50,
         width: 100,
         color: '#344953',
         justifyContent: 'center',
+
     }
 });
