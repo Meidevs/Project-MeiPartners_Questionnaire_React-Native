@@ -39,25 +39,25 @@ export default class Question extends React.Component {
             </View>
             <View style={styles.categoryImage}>
               <View style={styles.categoryItem}>
-                <Image source={require('../public/images/topback.png')} style={{ width: 66, height: 58 }} />
+                <Image source={require('../public/images/antiaging_basic.png')} style={{ width: 66, height: 58 }} />
                 <Text style={styles.categoryItemTxt}>
                   안티에이징
                 </Text>
               </View>
               <View style={styles.categoryItem}>
-                <Image source={require('../public/images/topback.png')} style={{ width: 66, height: 58 }} />
+                <Image source={require('../public/images/whitening_basic_2.png')} style={{ width: 66, height: 58 }} />
                 <Text style={styles.categoryItemTxt}>
                   화이트닝
                 </Text>
               </View>
               <View style={styles.categoryItem}>
-                <Image source={require('../public/images/topback.png')} style={{ width: 66, height: 58 }} />
+                <Image source={require('../public/images/Troublecareing_basic.png')} style={{ width: 66, height: 58 }} />
                 <Text style={styles.categoryItemTxt}>
                   트러블
                 </Text>
               </View>
               <View style={styles.categoryItem}>
-                <Image source={require('../public/images/topback.png')} style={{ width: 66, height: 58 }} />
+                <Image source={require('../public/images/lifting_basic.png')} style={{ width: 66, height: 58 }} />
                 <Text style={styles.categoryItemTxt}>
                   리프팅
                 </Text>
