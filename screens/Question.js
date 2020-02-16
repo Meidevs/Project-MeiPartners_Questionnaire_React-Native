@@ -17,6 +17,14 @@ import PickerLocation from '../components/PickerLocation.js';
 
 
 export default class Question extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      categoryItems : [
+
+      ]
+    }
+  }
 
   onPress = () => {
     this.props.navigation.navigate('QuestionContent');
@@ -35,32 +43,30 @@ export default class Question extends React.Component {
               <Text style={{ color: 'red', fontSize: 12 }}>*<Text style={{ color: 'black' }}>집중 관리하고 싶은 피부케어를 선택해주세요.</Text></Text>
             </View>
             <View style={styles.categoryImage}>
-              <View style={styles.categoryItem}>
-                <View>
-                <Image source={require('../public/images/antiaging_basic.png')} style={{ width: 66, height: 58 }} />
-                </View>
+              <TouchableOpacity style={styles.categoryItem}>
+                <Image source={require('../public/images/antiaging_basic.png')} style={{ width: 66, height: 80 }} />
                 <Text style={styles.categoryItemTxt}>
                   안티에이징
                 </Text>
-              </View>
-              <View style={styles.categoryItem}>
-                <Image source={require('../public/images/whitening_basic_2.png')} style={{ width: 66, height: 58 }} />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.categoryItem}>
+                <Image source={require('../public/images/whitening_basic_2.png')} style={{ width: 66, height: 80 }} />
                 <Text style={styles.categoryItemTxt}>
                   화이트닝
                 </Text>
-              </View>
-              <View style={styles.categoryItem}>
-                <Image source={require('../public/images/Troublecareing_basic.png')} style={{ width: 66, height: 58 }} />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.categoryItem}>
+                <Image source={require('../public/images/Troublecareing_basic.png')} style={{ width: 66, height: 80 }} />
                 <Text style={styles.categoryItemTxt}>
                   트러블
                 </Text>
-              </View>
-              <View style={styles.categoryItem}>
-                <Image source={require('../public/images/lifting_basic.png')} style={{ width: 66, height: 58 }} />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.categoryItem}>
+                <Image source={require('../public/images/lifting_basic.png')} style={{ width: 66, height: 80 }} />
                 <Text style={styles.categoryItemTxt}>
                   리프팅
                 </Text>
-              </View>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={styles.bottom_container}>
