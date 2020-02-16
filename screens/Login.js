@@ -1,154 +1,170 @@
 import React from 'react';
 import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  Dimensions,
-  Image,
-  ImageBackground,
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    StyleSheet,
+    Dimensions,
+    Image,
+    ImageBackground,
 } from 'react-native';
 
 export default class Login extends React.Component {
-  render() {
-    return (
 
-      <View style={styles.container}>
-        <View style={styles.containerTop}>
-          <View>
-            <Text style={styles.invalidName}>기사님 오늘도 힘내세요!</Text>
-            <Text style={styles.invalidName}>
-              <Text style={{ fontSize: 20 }}>트러커</Text>가 응원합니다.
-            </Text>
-          </View>
-          <Image
-            style={{ left: 78 }}
-          />
-        </View>
-        <View style={styles.containerBottom}>
-          <Image
-            style={styles.logo}
-          />
-          <View>
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={{ color: '#ffffff' }}
-                onChangeText={phonenumber => this.setState({ phonenumber })}
-                value={this.state.phonenumber}
-                placeholderTextColor="#ffffff"
-                placeholder="phonenumber"
-              />
-            </View>
-            <View style={styles.inputContainer}>
-              <TextInput
-                secureTextEntry={true}
-                onChangeText={password => this.setState({ password })}
-                value={this.state.password}
-                style={{ color: '#ffffff' }}
-                placeholderTextColor="#ffffff"
-                placeholder="password"
-              />
-            </View>
-          </View>
-          <View style={styles.content}>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('Main')}
-              style={styles.buttonContainerLogin}>
-              <Text style={styles.buttonTextLogin}>핸들 잡기</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('Main')}
-              style={styles.buttonContainerRegister}>
-              <Text style={styles.buttonTextRegister}>차주 등록</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-    );
-  }
+    onPress = () => {
+        this.props.navigation.navigate('Main')
+    }
 
-  constructor(props) {
-    super(props);
-    this.state = { phonenumber: '', password: '' };
-  }
+    render() {
+        return (
+            <ImageBackground source={require('../public/images/loginbackimage.jpg')} style={styles.imageBackground} resizeMode='stretch'>
+                <View style={styles.container}>
+                    <View style={styles.top_container}>
+                        <View style={styles.logo}>
+                            <Image source={require('../public/images/MEI_Symbol.png')} style={styles.logoStyle} />
+                            {/* <Image source={require('../public/images/MEI_String_tr.png')} style={styles.logoTxtStyle} /> */}
+                        </View>
+                    </View>
+                    <View style={styles.bottom_container}>
+                        <View style={styles.bottomContent}>
+                            <View style={styles.phonenumber}>
+                                <Text style={styles.phonenumberTxt}>
+                                    PHONENUMBER
+                                    </Text>
+                                <TextInput style={styles.phonenumberTxtInput} />
+
+                            </View>
+                            <View style={styles.password}>
+                                <Text style={styles.passwordTxt}>
+                                    PASSWORD
+                                    </Text>
+                                <TextInput style={styles.passwordTxtInput} />
+                            </View>
+                            <View style={styles.forgot}>
+                                <TouchableOpacity>
+                                    <Text style={styles.fotgotTxt}>
+                                        Forgot Password?
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.touchableStyle}>
+                                <TouchableOpacity style={styles.loginButton} onPress={this.onPress}>
+                                    <Text style={styles.loginTxt}>LOGIN</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                        </View>
+                    </View>
+                </View>
+            </ImageBackground >
+        );
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = { phonenumber: '', password: '' };
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-    containerTop: {
-      paddingTop: 60,
-      flex: 0.356,
-      justifyContent: 'space-between',
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: 'rgba(212, 191, 201, 0.9)',
     },
-    containerBottom: {
-      alignItems: 'center',
-      paddingTop: 28,
-      backgroundColor: '#5ab9cd',
-      flex: 0.644,
+    imageBackground: {
+        flex: 1,
+        width: null,
+        height: null,
     },
-    invalidName: {
-      fontSize: 15,
-      fontWeight: 'normal',
-      fontStyle: 'normal',
-      letterSpacing: 0,
-      textAlign: 'center',
-      color: '#808080',
+    top_container: {
+        width: '80%',
+        padding: 10,
+        flex: 3,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    inputContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      borderBottomWidth: 2,
-      borderColor: '#ffffff',
-      width: 250,
+    logo: {
+        alignItems: 'center',
     },
-    content: {
-      alignItems: 'center',
+    logoStyle: {
+        margin: 10,
+        width: 80,
+        height: 80,
     },
-    buttonContainerLogin: {
-      marginTop: 40,
-      width: 180,
-      height: 44,
-      borderRadius: 20,
-      backgroundColor: '#ffffff',
-      borderWidth: 1,
-      borderColor: '#5ab9cd',
-      justifyContent: 'center',
-      alignItems: 'center',
+    logoTxt: {
+        margin: 15,
     },
-    buttonContainerRegister: {
-      marginTop: 40,
-      width: 136,
-      height: 44,
-      borderRadius: 20,
-      backgroundColor: '#ffffff',
-      borderStyle: 'solid',
-      borderWidth: 1,
-      borderColor: '#ffffff',
-      // flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
+    logoTxtStyle: {
+        width: 185,
+        height: 19,
     },
-    buttonTextLogin: {
-      // width: 26,
-      height: 19,
-      fontSize: 15,
-      fontWeight: 'normal',
-      fontStyle: 'normal',
-      letterSpacing: 0,
-      color: '#5ab9cd',
-      // alignSelf: 'center',
+    bottom_container: {
+        width: '80%',
+        flex: 5,
+        flexDirection: 'row',
+        justifyContent: 'center',
     },
-    buttonTextRegister: {
-      // width: 26,
-      height: 19,
-      fontSize: 15,
-      fontWeight: 'normal',
-      fontStyle: 'normal',
-      letterSpacing: 0,
-      color: '#444444',
-      // alignSelf: 'center',
-  },
+    bottomContent: {
+        top: 80,
+        width: '90%',
+        alignItems: 'center'
+    },
+    loginButton: {
+        borderWidth: 1,
+        borderColor: '#ffffff',
+        borderRadius: 30,
+        width: 200,
+        height: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#ffffff'
+    },
+    loginTxt: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        color: '#E581B0',
+    },
+    phonenumber: {
+        width: '100%',
+    },
+    phonenumberTxt: {
+        color: '#C52F76',
+        fontSize: 10,
+        fontWeight: 'bold',
+        margin: 5,
+    },
+    phonenumberTxtInput: {
+        borderBottomWidth: 1,
+        borderColor: '#C52F76',
+        marginBottom: 10,
+    },
+    password: {
+        width: '100%',
+    },
+    passwordTxt: {
+        color: '#C52F76',
+        fontSize: 10,
+        fontWeight: 'bold',
+        margin: 5,
+    },
+    passwordTxtInput: {
+        borderBottomWidth: 1,
+        borderColor: '#C52F76',
+        marginBottom: 10,
+    },
+    forgot: {
+        flexDirection: 'row',
+        alignSelf: 'flex-end'
+    },
+    fotgotTxt: {
+        fontSize: 10,
+        fontWeight: 'bold',
+        color: '#ffffff',
+    },
+    touchableStyle: {
+        top: 40,
+    }
 });

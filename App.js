@@ -5,8 +5,9 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import Icon from 'react-native-vector-icons/Ionicons';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import HomeScreen from './screens/Home.js';
+import ProfileScreen from './screens/Home.js';
 import QuestionScreen from './screens/Question.js';
+import ReadyScreen from './screens/Ready.js';
 import LoginScreen from './screens/Login.js';
 import RegisterScreen from './screens/Register.js';
 import QuestionContentScreen from './screens/QuestionContent.js';
@@ -34,27 +35,33 @@ const QuestionStack = createStackNavigator(
   },
 )
 
-const MainStack = createStackNavigator(
+const MainStack = createMaterialBottomTabNavigator(
   {
-    Home: {
-      screen: HomeScreen,
+    Profile: {
+      screen: ProfileScreen,
     },
-    Questions: {
+    Questionnaire: {
       screen: QuestionStack,
     },
   },
   {
-    headerMode: 'none',
+    initialRouteName: 'Profile',
+    activeColor: '#E43D7A',
+    inactiveColor: '#E43D7A',
+    barStyle: { backgroundColor: '#ffffff' },
   }
 )
 
 const RootStack = createStackNavigator(
   {
-    Login: {
-      screen: LoginScreen,
+    Ready: {
+      screen: ReadyScreen,
     },
     Register: {
       screen: RegisterScreen,
+    },
+    Login: {
+      screen: LoginScreen,
     },
     Main: {
       screen: MainStack

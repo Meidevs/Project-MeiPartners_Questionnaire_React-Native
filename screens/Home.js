@@ -11,30 +11,26 @@ export default class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.top_container}>
-          <View style={styles.top_info}>
-            <Text>
-              강서현님,안녕하세요
+        <View style={styles.topContainer}>
+          <View style={styles.topUpperContent}>
+            <Text style={styles.topUpperContentTxt}>
+              LovU
             </Text>
           </View>
-        </View>
-
-        <View style={styles.bottom_container}>
-          <View style={styles.bottom_top}>
-            <View style={styles.smart}>
-              <TouchableOpacity
-                onPress={() =>
-                  this.props.navigation.navigate('Question')
-                }
-                style={styles.buttonContainer}>
-                <Image source={require('../public/images/button1.png')} style={styles.button1} />
-              </TouchableOpacity>
+          <View style={styles.topDownerContent}>
+            <View style={styles.topDownerContent_1}>
+              <Text style={styles.topDownerContentTxt_1}>모바일 | 010 - 66** - ****</Text>
             </View>
           </View>
 
-          <View style={styles.bottom_bottom}>
+        </View>
+        <View style={styles.rectangle}>
+          <View style={styles.rectagleContent}>
             <Text>Hi</Text>
           </View>
+        </View>
+        <View style={styles.bottomContainer}>
+
         </View>
       </View>
     );
@@ -50,23 +46,52 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  top_container: {
-    backgroundColor: '#FFFFFF',
+  topContainer: {
+    backgroundColor: '#E78DB8',
+    flex: 1,
+    
+  },
+  topUpperContent: {
     flex: 2,
     flexDirection: 'row',
+    alignItems: 'flex-end'
   },
-  bottom_container: {
-    backgroundColor: '#BDBDBD',
-    flex: 4,
+  topUpperContentTxt: {
+    padding: 10,
+    fontSize: 23,
+    fontWeight: 'bold',
+    color: '#ffffff',
   },
-  bottom_top: {
-    backgroundColor: 'blue',
-    flex: 1,
+  topDownerContent: {
+    flex: 5,
+  },
+  topDownerContent_1: {
+    paddingLeft: 5,
+  },
+  topDownerContentTxt_1: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#ffffff',
+  },
+  bottomContainer: {
+    backgroundColor: '#ffffff',
+    flex: 2,
+  },
+  rectangle: {
+    position: 'absolute',
+    top: 150,
+    width: '100%',
     flexDirection: 'row',
+    justifyContent: 'center',
   },
-  bottom_bottom: {
-    backgroundColor: 'white',
-    flex: 1,
-    flexDirection: 'row',
-  },
+  rectagleContent: {
+    width: '80%',
+    height: 450,
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+    borderColor: '#707070',
+    borderWidth: 1,
+    borderRadius: 10,
+},
+
 });
