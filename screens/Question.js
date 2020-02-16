@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
   categoryItemTxtPress: {
     textAlign: 'center',
     fontSize: 10,
-    color: 'blue'
+    color: 'pink'
   },
   categoryGender: {
     flexDirection: 'row',

@@ -12,33 +12,47 @@ export default class Home extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.topContainer}>
-          <View style={styles.topUpperContent}>
-            <Text style={styles.topUpperContentTxt}>
+          <View style={styles.topContainerContent}>
+            <Text style={styles.titleStyle}>
               LovU
             </Text>
           </View>
-          <View style={styles.topDownerContent}>
-            <View style={styles.topDownerContent_1}>
-              <Text style={styles.topDownerContentTxt_1}>모바일 | 010 - 66** - ****</Text>
-            </View>
-          </View>
-
-        </View>
-        <View style={styles.rectangle}>
-          <View style={styles.rectagleContent}>
-            <Text>Hi</Text>
+          <View style={styles.topDownerContainer}>
+            <Text style={styles.topTxt}>
+              모바일 | 010 - 66** - 07**
+            </Text>
           </View>
         </View>
         <View style={styles.bottomContainer}>
-
+          <View style={styles.bottomUpperContent}>
+            <Image source={require('../public/images/MEI_Symbol.png')} style={styles.symbolStyle} />
+            <Image source={require('../public/images/MEI_String.png')} style={styles.logoStyle} />
+          </View>
+          <View style={styles.bottomDownerContent}>
+            <View style={styles.downerContent_1}>
+              <View style={styles.content_1}>
+                <View style={styles.interLeftBox}>
+                  <Text style={styles.inter_left}></Text>
+                </View>
+                <View style={styles.interRightBox}>
+                  <Text style={styles.inter_right}></Text>
+                </View>
+              </View>
+            </View>
+            <View style={styles.downerContent_2}>
+              <View style={styles.content_2}>
+                <View style={styles.interLeftBox}>
+                  <Text style={styles.inter_left}></Text>
+                </View>
+                <View style={styles.interRightBox}>
+                  <Text style={styles.inter_right}></Text>
+                </View>
+              </View>
+            </View>
+          </View>
         </View>
       </View>
     );
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {};
   }
 }
 
@@ -49,49 +63,83 @@ const styles = StyleSheet.create({
   topContainer: {
     backgroundColor: '#E78DB8',
     flex: 1,
-    
   },
-  topUpperContent: {
-    flex: 2,
+  topContainerContent: {
+    flex: 1,
     flexDirection: 'row',
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
-  topUpperContentTxt: {
-    padding: 10,
-    fontSize: 23,
+  titleStyle: {
     fontWeight: 'bold',
+    fontSize: 20,
     color: '#ffffff',
+    padding: 5,
   },
-  topDownerContent: {
-    flex: 5,
-  },
-  topDownerContent_1: {
-    paddingLeft: 5,
-  },
-  topDownerContentTxt_1: {
+  topTxt: {
+    fontWeight: 'bold',
     fontSize: 12,
-    fontWeight: 'bold',
     color: '#ffffff',
+    paddingLeft: 5,
+    paddingBottom: 5,
   },
   bottomContainer: {
     backgroundColor: '#ffffff',
-    flex: 2,
+    flex: 6,
   },
-  rectangle: {
-    position: 'absolute',
-    top: 150,
+  bottomUpperContent: {
     width: '100%',
-    flexDirection: 'row',
+    flex: 3,
+    alignItems: 'center',
     justifyContent: 'center',
   },
-  rectagleContent: {
+  bottomDownerContent: {
+    flex: 3,
+  },
+  symbolStyle: {
+    width: '30%',
+    height: '30%',
+    margin: 15,
+  },
+  logoStyle: {
     width: '80%',
-    height: 450,
-    alignItems: 'center',
-    backgroundColor: '#ffffff',
-    borderColor: '#707070',
+    height: '25%',
+  },
+  downerContent_1: {
+    flex: 1,
+  },
+  downerContent_2: {
+    flex: 1,
+  },
+  content_1: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  content_2: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  interLeftBox: {
+    marginLeft: 50,
+    marginTop: 10,
+    marginBottom: 10,
+    padding: 10,
     borderWidth: 1,
+    borderColor: '#C0C0C0',
     borderRadius: 10,
-},
-
+    width: 120,
+    height: 120,
+  },
+  interRightBox: {
+    marginRight: 50,
+    marginTop: 10,
+    marginBottom: 10,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#C0C0C0',
+    borderRadius: 10,
+    width: 120,
+    height: 120,
+  },
 });
