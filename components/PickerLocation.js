@@ -5,24 +5,24 @@ export default class PickerLocation extends React.Component {
     constructor (props) {
         super(props);
         this.state ={
-            itemList : [{
-                location : '서울특별시',
-                location : '인천광역시',
-                location : '대전광역시',
-                location : '세종특별시',
-                location : '광주광역시',
-                location : '대구광역시',
-                location : '울산광역시',
-                location : '부산광역시',
-                location : '경기도',
-                location : '충청북도',
-                location : '충청남도',
-                location : '전라북도',
-                location : '전라남도',
-                location : '강원도',
-                location : '경상북도',
-                location : '경상남도',
-            }]
+            itemList : [
+                {location : '서울특별시'},
+                {location : '인천광역시'},
+                {location : '대전광역시'},
+                {location : '세종특별시'},
+                {location : '광주광역시'},
+                {location : '대구광역시'},
+                {location : '울산광역시'},
+                {location : '부산광역시'},
+                {location : '경기도'},
+                {location : '강원도'},
+                {location : '충청북도'},
+                {location : '충청남도'},
+                {location : '전라북도'},
+                {location : '전라남도'},
+                {location : '경상북도'},
+                {location : '경상남도'},
+        ]
         };
     }
     render() {

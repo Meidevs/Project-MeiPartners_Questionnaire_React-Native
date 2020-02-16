@@ -23,7 +23,6 @@ export default class PickerYear extends React.Component {
                     onValueChange={(itemValue) =>
                         this.setState({ years: itemValue })}
                 >
-                    <Picker.Item label='1969' value='1969' />
                     {
                         this.state.itemList.map((member) => 
                         <Picker.Item label={member.value} value={member.value} />
