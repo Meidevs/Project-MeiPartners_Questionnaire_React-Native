@@ -12,6 +12,11 @@ export default class PickerMonth extends React.Component {
             itemList : month
         }
     }
+
+    sendMonth = (data) => {
+        this.props.monthData(data);
+        this.setState({month : data.month});
+    }
     render() {
         return (
             <View>
@@ -19,7 +24,7 @@ export default class PickerMonth extends React.Component {
                     mode="dropdown"
                     selectedValue={this.state.month}
                     onValueChange={(itemValue) =>
-                        this.setState({ month: itemValue })}
+                        this.sendMonth({ month: itemValue })}
                 >
                     {
                         this.state.itemList.map((member) => 

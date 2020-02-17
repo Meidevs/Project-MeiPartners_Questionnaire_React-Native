@@ -13,16 +13,18 @@ export default class PickerYear extends React.Component {
         this.state ={
             itemList : years
         }
+        console.log('hi')
     }
+
+    sendYears = (data) => {
+        this.props.yearData(data);
+        this.setState({years : data.years});
+    }
+    
     render() {
         return (
             <View>
-                <Picker style={styles.pickerStyle}
-                    mode="dropdown"
-                    selectedValue={this.state.years}
-                    onValueChange={(itemValue) =>
-                        this.setState({ years: itemValue })}
-                >
+                <Picker style={styles.pickerStyle} mode="dropdown" selectedValue={this.state.years} onValueChange={(itemValue) =>this.sendYears({ years: itemValue })}>
                     {
                         this.state.itemList.map((member) => 
                         <Picker.Item label={member.value} value={member.value} />

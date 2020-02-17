@@ -29,7 +29,7 @@ export default class Question extends React.Component {
       gender: [
         {id : '여성', name : '여성', selection : styles.categoryBox, txtSelection : styles.categoryBoxTxt},
         {id : '남성', name : '남성', selection : styles.categoryBox, txtSelection : styles.categoryBoxTxt}
-      ]
+      ],
     }
   }
 
@@ -65,11 +65,43 @@ export default class Question extends React.Component {
     this.setState({
       gender : this.state.gender,
     });
-    console.log(this.state.gender)
   }
 
   onPress = () => {
-    this.props.navigation.navigate('QuestionContent');
+    for(let i; i<this.state.gender.length;i++) {
+      if(this.state.gender[i].isSelected == true) {
+        this.setState({genderd : this.state.gender[i].name})
+      }
+    }
+    for(let i; i<this.state.categoryItems.length;i++) {
+      if(this.state.categoryItems[i].isSelected == true) {
+        this.setState({categoryItemsd : this.state.categoryItems[i].name})
+      }
+    }
+    var transD = {
+      day : this.state.day,
+      month : this.state.month,
+      year : this.state.year,
+      locaton : this.state.location,
+      gender : this.state.genderd,
+      category : this.state.categoryItemsd
+    }
+    this.props.navigation.navigate('QuestionContent', {
+      transD
+    });
+  }
+
+  getYears = (data) => {
+    this.setState({year : data.years});
+  }
+  getMonth = (data) => {
+    this.setState({month : data.month});
+  }
+  getDays = (data) => {
+    this.setState({day : data.days});
+  }
+  getLocations = (data) => {
+    this.setState({location : data.location});
   }
 
   render() {
@@ -143,13 +175,13 @@ export default class Question extends React.Component {
             </View>
             <View style={styles.categoryBirth}>
               <View style={styles.categoryDate}>
-                <PickerYear />
+                <PickerYear yearData={this.getYears.bind(this)}/>
               </View>
               <View style={styles.categoryDate}>
-                <PickerMonth />
+                <PickerMonth monthData={this.getMonth.bind(this)} />
               </View>
               <View style={styles.categoryDate}>
-                <PickerDay />
+                <PickerDay dayData={this.getDays.bind(this)}/>
               </View>
             </View>
             <View style={styles.subCategory}>
@@ -157,11 +189,11 @@ export default class Question extends React.Component {
             </View>
             <View style={styles.categoryBirth}>
               <View style={styles.categoryLocation}>
-                <PickerLocation />
+                <PickerLocation locationData={this.getLocations.bind(this)} />
               </View>
             </View>
             <TouchableOpacity style={styles.button}
-              onPress={this.onPress}>
+              onPress={() => this.onPress(this.state.parameters)}>
               <Text>다음</Text>
             </TouchableOpacity>
           </View>
@@ -169,6 +201,8 @@ export default class Question extends React.Component {
       </SafeAreaView>
     );
   }
+
+
 }
 
 const styles = StyleSheet.create({
@@ -271,5 +305,6 @@ const styles = StyleSheet.create({
   },
   categoryLocation: {
     padding: 10,
+    width : 100,
   }
 });

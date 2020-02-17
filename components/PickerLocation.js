@@ -25,6 +25,12 @@ export default class PickerLocation extends React.Component {
         ]
         };
     }
+    
+    sendLocation = (data) => {
+        this.props.locationData(data);
+        this.setState({location : data.location});
+    }
+
     render() {
         return (
             <View>
@@ -32,7 +38,7 @@ export default class PickerLocation extends React.Component {
                     mode="dropdown"
                     selectedValue={this.state.location}
                     onValueChange={(itemValue) =>
-                        this.setState({ location: itemValue })}
+                        this.sendLocation({ location: itemValue })}
                 >
                     {
                         this.state.itemList.map((member) => 
@@ -58,7 +64,7 @@ const styles = StyleSheet.create({
     },
     pickerStyle: {
         height: 50,
-        width: 100,
+        width: 150,
         color: '#344953',
         justifyContent: 'center',
     }

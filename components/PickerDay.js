@@ -12,6 +12,11 @@ export default class PickerDay extends React.Component {
             itemList : days
         }
     }
+
+    sendDays = (data) => {
+        this.props.dayData(data);
+        this.setState({days : data.days});
+    }
     render() {
         return (
             <View>
@@ -19,7 +24,7 @@ export default class PickerDay extends React.Component {
                     mode="dropdown"
                     selectedValue={this.state.days}
                     onValueChange={(itemValue) =>
-                        this.setState({ days: itemValue })}
+                        this.sendDays({ days: itemValue })}
                 >
                     {
                         this.state.itemList.map((member) => 
