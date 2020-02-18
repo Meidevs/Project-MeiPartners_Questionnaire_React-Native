@@ -8,6 +8,8 @@ import {
   Image,
   ImageBackground,
 } from 'react-native';
+import { ProgressBar } from 'react-native-paper';
+import { ThemeColors } from 'react-navigation';
 
 export default class Login extends React.Component {
 
@@ -36,34 +38,30 @@ export default class Login extends React.Component {
                   PHONENUMBER
                 </Text>
                 <View style={styles.txtInputStyle}>
-                  <TextInput>
-
-                  </TextInput>
+                  <TextInput onChangeText={phonenumber => this.setState({ phonenumber })}
+                    value={this.state.phonenumber} />
                 </View>
 
                 <Text style={styles.inputTxt}>
                   NAME
                 </Text>
                 <View style={styles.txtInputStyle}>
-                  <TextInput>
-
-                  </TextInput>
+                  <TextInput onChangeText={name => this.setState({ name })}
+                    value={this.state.name} />
                 </View>
                 <Text style={styles.inputTxt}>
                   PASSWORD
                 </Text>
                 <View style={styles.txtInputStyle}>
-                  <TextInput>
-
-                  </TextInput>
+                  <TextInput onChangeText={password1 => this.setState({ password1 })}
+                    value={this.state.password1} />
                 </View>
                 <Text style={styles.inputTxt}>
-                  PHONENUMBER
+                  PASSWORD CONFIRM
                 </Text>
                 <View style={styles.txtInputStyle}>
-                  <TextInput>
-
-                  </TextInput>
+                  <TextInput onChangeText={password2 => this.setState({ password2 })}
+                    value={this.state.password2} />
                 </View>
               </View>
               <View style={styles.inputButton}>
@@ -81,7 +79,31 @@ export default class Login extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { phonenumber: '', password: '' };
+    this.state = { phonenumber: '', name : '', password1: '', password2 : '' };
+  }
+
+  register = async () => {
+    try {
+      if (this.state.password1 != this.state.password2) {
+        alert('비밀 번호를 확인해주세요.');
+        return null;
+      }
+      let response  = await fetch ('http://localhost:19000/api/auth', {
+        method : 'POST', 
+        headers : {
+          Accpet: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        credentials : 'include',
+        body : JSON.stringify ({user : this.state.phonenumber, name : this.state.name, password : this.state.password1}),
+      });
+      if (response.ok) {
+        console.log('aa')
+        this.props.navigation.navigate('Main');
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 
@@ -162,7 +184,7 @@ const styles = StyleSheet.create({
     color: '#E581B0',
   },
   inputContent: {
-    top : 100,
+    top: 100,
     width: '100%',
     flex: 2,
     flexDirection: 'column',
@@ -172,15 +194,15 @@ const styles = StyleSheet.create({
     flex: 1,
 
   },
-  inputTxt : {
-    marginTop : 3,
-    color : '#ffffff',
-    fontSize : 12,
-    fontWeight : 'bold',
+  inputTxt: {
+    marginTop: 3,
+    color: '#ffffff',
+    fontSize: 12,
+    fontWeight: 'bold',
   },
-  txtInputStyle : {
-    borderBottomWidth : 1,
-    borderColor : '#ffffff',
+  txtInputStyle: {
+    borderBottomWidth: 1,
+    borderColor: '#ffffff',
   }
 
 });

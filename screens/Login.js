@@ -63,8 +63,9 @@ export default class Login extends React.Component {
     }
 
     login = async () => {
+        this.props.navigation.navigate('Main')
         try {
-            let response = await fetch('http://localhost:19000/api/auth', {
+            let response = await fetch('http://localhost:19000/api/login', {
                 method : 'POST',
                 headers: {
                     Accpet: 'application/json',
@@ -73,9 +74,10 @@ export default class Login extends React.Component {
                 credentials : 'include',
                 body : JSON.stringify({ user : this.state.phonenumber, password : this.state.password }),
             });
-
+            
             if (response.ok) {
-                this.props.navigation.navigate('Main')
+                console.log('?')
+                
             }
         } catch (err) {
             console.log(err)
