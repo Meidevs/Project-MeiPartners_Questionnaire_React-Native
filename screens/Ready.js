@@ -12,8 +12,12 @@ import {
 
 export default class Login extends React.Component {
 
-  onPress = () => {
+  login = () => {
     this.props.navigation.navigate('Login');
+  }
+
+  register = () => {
+    this.props.navigation.navigate('Register')
   }
 
   render() {
@@ -28,11 +32,11 @@ export default class Login extends React.Component {
           </View>
           <View style={styles.bottom_container}>
             <View style={styles.bottomContent}>
-                <TouchableOpacity style={styles.register}>
-                  <Text style={styles.registerTxt}>Register</Text>
+                <TouchableOpacity style={styles.register} onPress={this.register}>
+                  <Text style={styles.registerTxt}>REGISTER</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.login} onPress={this.onPress}>
-                  <Text style={styles.loginTxt}>Login</Text>
+                <TouchableOpacity style={styles.login} onPress={this.login}>
+                  <Text style={styles.loginTxt}>LOGIN</Text>
                 </TouchableOpacity>
             </View>
           </View>
