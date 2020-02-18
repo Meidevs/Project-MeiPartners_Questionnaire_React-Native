@@ -13,56 +13,17 @@ export default class QuestionContent extends React.Component {
 
     constructor(props) {
         super(props)
-        console.log('get Data', props.navigation.state)
         this.props.navigation.setParams({ increaseCount: 1 });
         this.state = {
             count: 1,
         }
     }
-    // componentDidMount() {
-    //     this.setState({
-    //         subTxt: '해당하는 선택지를 모두 선택해주세요',
-    //         mainTxt: '1. 최근 3개월 이내에 구입하신 스킨 케어 제품을 선택해주세요',
-    //         dataSource: [
-    //             { id: '안티 에이징 크림', selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-    //             { id: '페이셜 리프팅 폼', selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-    //             { id: '피부 진정 크림', selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-    //             { id: '화이트닝 크림', selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-    //         ]
-    //     })
-    //     console.log(this.state)
-    // }
 
     onPress = () => {
-        console.log(this.state)
-        // let nextData = this.props.navigation.getParam('increaseCount') + 1;
-        // this.props.navigation.setParams({ increaseCount: nextData });
-        // this.setState({ count: this.props.navigation.getParam('increaseCount') + 1 });
-        // if (nextData == 2) {
-        //     this.setState({
-        //         subTxt: '해당하는 선택지를 하나만 선택해주세요',
-        //         mainTxt: '2. 본인에게 해당하는 피부 타입을 선택해주세요.',
-        //         dataSource: [
-        //             { id: '지성 피부', selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-        //             { id: '민감성 피부', selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-        //             { id: '건성 피부', selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-
-        //         ]
-        //     })
-        // } else if (nextData == 3) {
-        //     this.setState({
-        //         subTxt: '해당하는 선택지를 하나만 선택해주세요',
-        //         mainTxt: '3. 하루 수분 섭취량과 운동량을 선택해주세요.',
-        //         dataSource: [
-        //             { id: '1L이하, 1 - 2시간', selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-        //             { id: '1L, 1 - 2시간', selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-        //             { id: '1L, 2 - 4시간', selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-        //             { id: '2L, 1 - 2시간', selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-        //             { id: '2L, 2 - 4시간', selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-        //             { id: '2L이상, 1 - 2시간', selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-        //         ]
-        //     })
-        // }
+        let nextData = this.props.navigation.getParam('increaseCount') + 1;
+        this.props.navigation.setParams({ increaseCount: nextData });
+        this.setState({ count: this.props.navigation.getParam('increaseCount') + 1 });
+        this.getPostQuestionnaire(nextData);
     }
 
     FlatListItemSeparator = () => <View style={styles.line} />;
@@ -107,7 +68,6 @@ export default class QuestionContent extends React.Component {
     }
 
     componentDidMount() {
-        console.log('hi')
         this.getQuestionnaire();
     }
 
@@ -154,16 +114,52 @@ export default class QuestionContent extends React.Component {
                     Accpet: 'application/json',
                     'Content-Type': 'application/json',
                 },
-                credentials : 'include',
+                credentials: 'include',
             });
-
             const json = await response.json();
             if (response.ok) {
-                this.setState({json});
-                console.log(this.state)
+                this.setState({
+                    subTxt: json.questions[0].subtxt,
+                    mainTxt: json.questions[0].maintxt,
+                    dataSource: [
+                        { id: json.questions[0].question1, selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
+                        { id: json.questions[0].question2, selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
+                        { id: json.questions[0].question3, selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
+                        { id: json.questions[0].question4, selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
+                    ]
+                })
             }
         } catch (err) {
             console.log(err)
+        }
+    }
+    getPostQuestionnaire = async (nextData) => {
+        try {
+            let response = await fetch(`http://localhost:19000/api/question/${nextData}`, {
+                method: 'POST',
+                headers: {
+                    Accpet: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            });
+            const json = await response.json();
+            console.log('json!', json);
+            if (response.ok) {
+                let datas = [];
+                for (let i = 1; i < Object.keys(json).length; i++) {
+                    let data = { id: Object.values(json)[i], selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem };
+                    datas.push(data);
+                }
+                console.log('datas', datas);
+                this.setState({
+                    subTxt: json.subtxt,
+                    mainTxt: json.maintxt,
+                    dataSource: datas,
+                })
+            }
+        } catch (err) {
+            console.log(err);
         }
     }
 

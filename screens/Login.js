@@ -12,10 +12,6 @@ import {
 
 export default class Login extends React.Component {
 
-    onPress = () => {
-        this.props.navigation.navigate('Main')
-    }
-
     render() {
         return (
             <ImageBackground source={require('../public/images/loginbackimage.jpg')} style={styles.imageBackground} resizeMode='stretch'>
@@ -32,14 +28,14 @@ export default class Login extends React.Component {
                                 <Text style={styles.phonenumberTxt}>
                                     PHONENUMBER
                                     </Text>
-                                <TextInput style={styles.phonenumberTxtInput} />
+                                <TextInput style={styles.phonenumberTxtInput} placeholderTextColor="#C0C0C0"  placeholder='010 - 0000 - 0000' onChangeText={(phonenumber) => this.setState({phonenumber})} value={this.state.phonenumber} />
 
                             </View>
                             <View style={styles.password}>
                                 <Text style={styles.passwordTxt}>
                                     PASSWORD
                                     </Text>
-                                <TextInput style={styles.passwordTxtInput} />
+                                <TextInput style={styles.passwordTxtInput} placeholderTextColor="#C0C0C0"  placeholder='******' onChangeText={(password) => this.setState({password})} value={this.state.password}/>
                             </View>
                             <View style={styles.forgot}>
                                 <TouchableOpacity>
@@ -49,7 +45,7 @@ export default class Login extends React.Component {
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.touchableStyle}>
-                                <TouchableOpacity style={styles.loginButton} onPress={this.onPress}>
+                                <TouchableOpacity style={styles.loginButton} onPress={this.login}>
                                     <Text style={styles.loginTxt}>LOGIN</Text>
                                 </TouchableOpacity>
                             </View>
@@ -64,6 +60,26 @@ export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = { phonenumber: '', password: '' };
+    }
+
+    login = async () => {
+        try {
+            let response = await fetch('http://localhost:19000/api/auth', {
+                method : 'POST',
+                headers: {
+                    Accpet: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                credentials : 'include',
+                body : JSON.stringify({ user : this.state.phonenumber, password : this.state.password }),
+            });
+
+            if (response.ok) {
+                this.props.navigation.navigate('Main')
+            }
+        } catch (err) {
+            console.log(err)
+        }
     }
 }
 
@@ -153,7 +169,7 @@ const styles = StyleSheet.create({
     passwordTxtInput: {
         borderBottomWidth: 1,
         borderColor: '#C52F76',
-        marginBottom: 10,
+        marginBottom: 10, 
     },
     forgot: {
         flexDirection: 'row',
