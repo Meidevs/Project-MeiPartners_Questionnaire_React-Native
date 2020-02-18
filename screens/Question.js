@@ -27,64 +27,69 @@ export default class Question extends React.Component {
         { id: '4', name: '리프팅', selection: styles.categoryItemTxt },
       ],
       gender: [
-        {id : '여성', name : '여성', selection : styles.categoryBox, txtSelection : styles.categoryBoxTxt},
-        {id : '남성', name : '남성', selection : styles.categoryBox, txtSelection : styles.categoryBoxTxt}
+        { id: '여성', name: '여성', selection: styles.categoryBox, txtSelection: styles.categoryBoxTxt },
+        { id: '남성', name: '남성', selection: styles.categoryBox, txtSelection: styles.categoryBoxTxt }
       ],
     }
   }
 
-  categoryItemPress = data => {
-    if (data == '1') {
-      this.state.categoryItems[0].isSelected = !this.state.categoryItems[0].isSelected;
-      this.state.categoryItems[0].selection = this.state.categoryItems[0].isSelected ? styles.categoryItemTxtPress : styles.categoryItemTxt;
-    } else if (data == '2') {
-      this.state.categoryItems[1].isSelected = !this.state.categoryItems[1].isSelected;
-      this.state.categoryItems[1].selection = this.state.categoryItems[1].isSelected ? styles.categoryItemTxtPress : styles.categoryItemTxt;
-    } else if (data == '3') {
-      this.state.categoryItems[2].isSelected = !this.state.categoryItems[2].isSelected;
-      this.state.categoryItems[2].selection = this.state.categoryItems[2].isSelected ? styles.categoryItemTxtPress : styles.categoryItemTxt;
-    } else if (data == '4') {
-      this.state.categoryItems[3].isSelected = !this.state.categoryItems[3].isSelected;
-      this.state.categoryItems[3].selection = this.state.categoryItems[3].isSelected ? styles.categoryItemTxtPress : styles.categoryItemTxt;
+  categoryItemPress = index => {
+    var i;
+    var data = this.state.categoryItems;
+    data[index].isSelected = !data[index].isSelected;
+    data[index].selection = data[index].isSelected ? styles.categoryItemTxtPress : styles.categoryItemTxt;
+    this.setState({ categoryItemsd: data[index].name });
+    for (i = 0; i < index; i++) {
+      if (data[i].isSelected == true) {
+        data[i].isSelected = !data[i].isSelected;
+        data[i].selection = data[i].isSelected ? styles.categoryItemTxtPress : styles.categoryItemTxt;
+      }
+    }
+    for (i = index + 1; i < data.length; i++) {
+      if (data[i].isSelected == true) {
+        data[i].isSelected = !data[i].isSelected;
+        data[i].selection = data[i].isSelected ? styles.categoryItemTxtPress : styles.categoryItemTxt;
+      }
     }
     this.setState({
-      categoryItems : this.state.categoryItems,
+      categoryItems: data,
     });
   }
 
-  genderPress = data => {
-    if (data == '여성') {
-      this.state.gender[0].isSelected = !this.state.gender[0].isSelected;
-      this.state.gender[0].selection = this.state.gender[0].isSelected ? styles.categoryBoxPress : styles.categoryBox;
-      this.state.gender[0].txtSelection = this.state.gender[0].isSelected ? styles.categoryBoxTxtPress : styles.categoryBoxTxt;
-    } else {
-      this.state.gender[1].isSelected = !this.state.gender[1].isSelected;
-      this.state.gender[1].selection = this.state.gender[1].isSelected ? styles.categoryBoxPress : styles.categoryBox;
-      this.state.gender[1].txtSelection = this.state.gender[1].isSelected ? styles.categoryBoxTxtPress : styles.categoryBoxTxt;
+  genderPress = index => {
+    var data = this.state.gender;
+    var i;
+    data[index].isSelected = !data[index].isSelected;
+    data[index].selection = data[index].isSelected ? styles.categoryBoxPress : styles.categoryBox;
+    data[index].txtSelection = data[index].isSelected ? styles.categoryBoxTxtPress : styles.categoryBoxTxt;
+    this.setState({ genderd: data[index].name });
+    for (i = 0; i < index; i++) {
+      if (data[i].isSelected == true) {
+        data[i].isSelected = !data[i].isSelected;
+        data[i].selection = data[i].isSelected ? styles.categoryBoxPress : styles.categoryBox;
+        data[i].txtSelection = data[i].isSelected ? styles.categoryBoxTxtPress : styles.categoryBoxTxt;
+      }
+    }
+    for (i = index + 1; i < data.length; i++) {
+      if (data[i].isSelected == true) {
+        data[i].isSelected = !data[i].isSelected;
+        data[i].selection = data[i].isSelected ? styles.categoryBoxPress : styles.categoryBox;
+        data[i].txtSelection = data[i].isSelected ? styles.categoryBoxTxtPress : styles.categoryBoxTxt;
+      }
     }
     this.setState({
-      gender : this.state.gender,
+      gender: this.state.gender,
     });
   }
 
   onPress = () => {
-    for(let i; i<this.state.gender.length;i++) {
-      if(this.state.gender[i].isSelected == true) {
-        this.setState({genderd : this.state.gender[i].name})
-      }
-    }
-    for(let i; i<this.state.categoryItems.length;i++) {
-      if(this.state.categoryItems[i].isSelected == true) {
-        this.setState({categoryItemsd : this.state.categoryItems[i].name})
-      }
-    }
     var transD = {
-      day : this.state.day,
-      month : this.state.month,
-      year : this.state.year,
-      locaton : this.state.location,
-      gender : this.state.genderd,
-      category : this.state.categoryItemsd
+      day: this.state.day,
+      month: this.state.month,
+      year: this.state.year,
+      locaton: this.state.location,
+      gender: this.state.genderd,
+      category: this.state.categoryItemsd
     }
     this.props.navigation.navigate('QuestionContent', {
       transD
@@ -92,16 +97,16 @@ export default class Question extends React.Component {
   }
 
   getYears = (data) => {
-    this.setState({year : data.years});
+    this.setState({ year: data.years });
   }
   getMonth = (data) => {
-    this.setState({month : data.month});
+    this.setState({ month: data.month });
   }
   getDays = (data) => {
-    this.setState({day : data.days});
+    this.setState({ day: data.days });
   }
   getLocations = (data) => {
-    this.setState({location : data.location});
+    this.setState({ location: data.location });
   }
 
   render() {
@@ -118,25 +123,25 @@ export default class Question extends React.Component {
               <Text style={{ color: 'red', fontSize: 12 }}>*<Text style={{ color: 'black' }}>집중 관리하고 싶은 피부케어를 선택해주세요.</Text></Text>
             </View>
             <View style={styles.categoryImage}>
-              <TouchableOpacity style={styles.categoryItem} onPress={() => this.categoryItemPress('1')}>
+              <TouchableOpacity style={styles.categoryItem} onPress={() => this.categoryItemPress(0)}>
                 <Image source={require('../public/images/antiaging_basic.png')} style={{ width: 66, height: 80 }} />
                 <Text style={this.state.categoryItems[0].selection}>
                   {this.state.categoryItems[0].name}
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.categoryItem} onPress={() => this.categoryItemPress('2')}>
+              <TouchableOpacity style={styles.categoryItem} onPress={() => this.categoryItemPress(1)}>
                 <Image source={require('../public/images/whitening_basic_2.png')} style={{ width: 66, height: 80 }} />
                 <Text style={this.state.categoryItems[1].selection}>
                   {this.state.categoryItems[1].name}
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.categoryItem} onPress={() => this.categoryItemPress('3')}>
+              <TouchableOpacity style={styles.categoryItem} onPress={() => this.categoryItemPress(2)}>
                 <Image source={require('../public/images/Troublecareing_basic.png')} style={{ width: 66, height: 80 }} />
                 <Text style={this.state.categoryItems[2].selection}>
                   {this.state.categoryItems[2].name}
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.categoryItem} onPress={() => this.categoryItemPress('4')}>
+              <TouchableOpacity style={styles.categoryItem} onPress={() => this.categoryItemPress(3)}>
                 <Image source={require('../public/images/lifting_basic.png')} style={{ width: 66, height: 80 }} />
                 <Text style={this.state.categoryItems[3].selection}>
                   {this.state.categoryItems[3].name}
@@ -154,10 +159,10 @@ export default class Question extends React.Component {
               <Text style={{ color: 'red', fontSize: 12 }}>*<Text style={{ color: 'black' }}>성별</Text></Text>
             </View>
             <View style={styles.categoryGender}>
-              <TouchableOpacity style={this.state.gender[0].selection} onPress={() => this.genderPress('여성')}>
+              <TouchableOpacity style={this.state.gender[0].selection} onPress={() => this.genderPress(0)}>
                 <Text style={this.state.gender[0].txtSelection}>여성</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={this.state.gender[1].selection} onPress={() => this.genderPress('남성')}>
+              <TouchableOpacity style={this.state.gender[1].selection} onPress={() => this.genderPress(1)}>
                 <Text style={this.state.gender[1].txtSelection}>남성</Text>
               </TouchableOpacity>
             </View>
@@ -175,13 +180,13 @@ export default class Question extends React.Component {
             </View>
             <View style={styles.categoryBirth}>
               <View style={styles.categoryDate}>
-                <PickerYear yearData={this.getYears.bind(this)}/>
+                <PickerYear yearData={this.getYears.bind(this)} />
               </View>
               <View style={styles.categoryDate}>
                 <PickerMonth monthData={this.getMonth.bind(this)} />
               </View>
               <View style={styles.categoryDate}>
-                <PickerDay dayData={this.getDays.bind(this)}/>
+                <PickerDay dayData={this.getDays.bind(this)} />
               </View>
             </View>
             <View style={styles.subCategory}>
@@ -201,8 +206,6 @@ export default class Question extends React.Component {
       </SafeAreaView>
     );
   }
-
-
 }
 
 const styles = StyleSheet.create({
@@ -244,7 +247,7 @@ const styles = StyleSheet.create({
   categoryItemTxt: {
     textAlign: 'center',
     fontSize: 10,
-    color : 'black'
+    color: 'black'
   },
   categoryItemTxtPress: {
     textAlign: 'center',
@@ -285,19 +288,19 @@ const styles = StyleSheet.create({
     borderColor: '#C0C0C0',
     width: 100,
   },
-  categoryBoxPress : {
+  categoryBoxPress: {
     padding: 10,
     borderRadius: 10,
     borderWidth: 1,
     borderColor: 'pink',
     width: 100,
   },
-  categoryBoxTxt : {
-    textAlign: 'center', 
+  categoryBoxTxt: {
+    textAlign: 'center',
     color: '#C0C0C0'
   },
-  categoryBoxTxtPress : {
-    textAlign: 'center', 
+  categoryBoxTxtPress: {
+    textAlign: 'center',
     color: 'pink'
   },
   categoryDate: {
@@ -305,6 +308,6 @@ const styles = StyleSheet.create({
   },
   categoryLocation: {
     padding: 10,
-    width : 100,
+    width: 100,
   }
 });

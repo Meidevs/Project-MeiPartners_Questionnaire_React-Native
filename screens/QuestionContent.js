@@ -68,6 +68,7 @@ export default class QuestionContent extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.props.navigation.state);
         this.getQuestionnaire();
     }
 
