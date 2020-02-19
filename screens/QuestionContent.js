@@ -14,6 +14,7 @@ export default class QuestionContent extends React.Component {
     constructor(props) {
         super(props)
         this.props.navigation.setParams({ increaseCount: 1 });
+        console.log(props.navigation.state.transD);
         this.state = {
             count: 1,
         }
@@ -68,7 +69,6 @@ export default class QuestionContent extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.navigation.state);
         this.getQuestionnaire();
     }
 
@@ -108,14 +108,16 @@ export default class QuestionContent extends React.Component {
     }
 
     getQuestionnaire = async () => {
+        let data = this.props.navigation.state.params.transD;
         try {
             let response = await fetch('http://localhost:19000/api/question', {
-                method: 'GET',
+                method: 'post',
                 headers: {
                     Accpet: 'application/json',
                     'Content-Type': 'application/json',
                 },
                 credentials: 'include',
+                body : JSON.stringify({data : data}),
             });
             const json = await response.json();
             if (response.ok) {

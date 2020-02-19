@@ -8,6 +8,13 @@ import {
 } from 'react-native';
 
 export default class Home extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      user: props.navigation.state.params.json.user
+    }
+
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -19,7 +26,7 @@ export default class Home extends React.Component {
           </View>
           <View style={styles.topDownerContainer}>
             <Text style={styles.topTxt}>
-              모바일 | 010 - 66** - 07**
+              모바일 | {this.state.user}
             </Text>
           </View>
         </View>

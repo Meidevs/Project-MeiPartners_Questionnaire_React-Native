@@ -21,10 +21,12 @@ export default class Question extends React.Component {
     super(props)
     this.state = {
       categoryItems: [
-        { id: '1', name: '안티 에이징', selection: styles.categoryItemTxt },
-        { id: '2', name: '화이트닝', selection: styles.categoryItemTxt },
-        { id: '3', name: '트러블', selection: styles.categoryItemTxt },
-        { id: '4', name: '리프팅', selection: styles.categoryItemTxt },
+        { code: 'code1', name: '건성 타입', selection: styles.categoryItemTxt },
+        { code: 'code2', name: '민감성 타입', selection: styles.categoryItemTxt },
+        { code: 'code3', name: '트러블 지성 타입', selection: styles.categoryItemTxt },
+        { code: 'code4', name: '색소성 타입', selection: styles.categoryItemTxt },
+        { code: 'code5', name: '탄력 주름 타입', selection: styles.categoryItemTxt },
+
       ],
       gender: [
         { id: '여성', name: '여성', selection: styles.categoryBox, txtSelection: styles.categoryBoxTxt },
@@ -39,6 +41,7 @@ export default class Question extends React.Component {
     data[index].isSelected = !data[index].isSelected;
     data[index].selection = data[index].isSelected ? styles.categoryItemTxtPress : styles.categoryItemTxt;
     this.setState({ categoryItemsd: data[index].name });
+    this.setState({ code: data[index].code });
     for (i = 0; i < index; i++) {
       if (data[i].isSelected == true) {
         data[i].isSelected = !data[i].isSelected;
@@ -82,20 +85,6 @@ export default class Question extends React.Component {
     });
   }
 
-  onPress = () => {
-    var transD = {
-      day: this.state.day,
-      month: this.state.month,
-      year: this.state.year,
-      locaton: this.state.location,
-      gender: this.state.genderd,
-      category: this.state.categoryItemsd
-    }
-    this.props.navigation.navigate('QuestionContent', {
-      transD
-    });
-  }
-
   getYears = (data) => {
     this.setState({ year: data.years });
   }
@@ -124,27 +113,33 @@ export default class Question extends React.Component {
             </View>
             <View style={styles.categoryImage}>
               <TouchableOpacity style={styles.categoryItem} onPress={() => this.categoryItemPress(0)}>
-                <Image source={require('../public/images/antiaging_basic.png')} style={{ width: 66, height: 80 }} />
+                <Image source={require('../public/images/antiaging_basic.png')} style={{ width: 40, height: 60 }} />
                 <Text style={this.state.categoryItems[0].selection}>
                   {this.state.categoryItems[0].name}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.categoryItem} onPress={() => this.categoryItemPress(1)}>
-                <Image source={require('../public/images/whitening_basic_2.png')} style={{ width: 66, height: 80 }} />
+                <Image source={require('../public/images/whitening_basic_2.png')} style={{ width: 40, height: 60 }} />
                 <Text style={this.state.categoryItems[1].selection}>
                   {this.state.categoryItems[1].name}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.categoryItem} onPress={() => this.categoryItemPress(2)}>
-                <Image source={require('../public/images/Troublecareing_basic.png')} style={{ width: 66, height: 80 }} />
+                <Image source={require('../public/images/Troublecareing_basic.png')} style={{ width: 40, height: 60 }} />
                 <Text style={this.state.categoryItems[2].selection}>
                   {this.state.categoryItems[2].name}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.categoryItem} onPress={() => this.categoryItemPress(3)}>
-                <Image source={require('../public/images/lifting_basic.png')} style={{ width: 66, height: 80 }} />
+                <Image source={require('../public/images/lifting_basic.png')} style={{ width: 40, height: 60 }} />
                 <Text style={this.state.categoryItems[3].selection}>
                   {this.state.categoryItems[3].name}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.categoryItem} onPress={() => this.categoryItemPress(4)}>
+                <Image source={require('../public/images/antiaging_basic.png')} style={{ width: 40, height: 60 }} />
+                <Text style={this.state.categoryItems[4].selection}>
+                  {this.state.categoryItems[4].name}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -172,8 +167,7 @@ export default class Question extends React.Component {
             <View style={styles.categoryName}>
               <TextInput
                 style={{ height: 40, borderColor: '#C0C0C0', borderWidth: 1 }}
-                onChangeText={text => onChangeText(text)}
-              />
+                onChangeText={name => this.setState({ name })} value={this.state.name} />
             </View>
             <View style={styles.subCategory}>
               <Text style={{ color: 'red', fontSize: 12 }}>*<Text style={{ color: 'black' }}>생년월일</Text></Text>
@@ -198,13 +192,41 @@ export default class Question extends React.Component {
               </View>
             </View>
             <TouchableOpacity style={styles.button}
-              onPress={() => this.onPress(this.state.parameters)}>
+              onPress={() => this.onPress()}>
               <Text>다음</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
       </SafeAreaView>
     );
+  }
+
+  onPress = async () => {
+    console.log(this.state.day)
+    console.log(this.state.month)
+    console.log(this.state.location)
+    console.log(this.state.year)
+    console.log(this.state.genderd)
+    console.log(this.state.categoryItemsd)
+    console.log(this.state.name)
+    console.log(this.state.code)
+
+    try {
+      let response = await fetch('http://localhost:19000/api/getuserselectiondata', {
+        method: 'POST',
+        headers: {
+          Accpet: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ day: this.state.day, month: this.state.month, year: this.state.year, location: this.state.location, gender: this.state.genderd, category: this.state.categoryItemsd, name: this.state.name, code: this.state.code }),
+      });
+      if (response.ok) {
+        this.props.navigation.navigate('QuestionContent');
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 
@@ -241,7 +263,7 @@ const styles = StyleSheet.create({
   },
   categoryItem: {
     padding: 10,
-    width: '25%',
+    width: '20%',
     height: null,
   },
   categoryItemTxt: {

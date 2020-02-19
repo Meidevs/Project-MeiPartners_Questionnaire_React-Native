@@ -18,7 +18,7 @@ export default class Login extends React.Component {
                 <View style={styles.container}>
                     <View style={styles.top_container}>
                         <View style={styles.logo}>
-                            <Image source={require('../public/images/MEI_Symbol.png')} style={styles.logoStyle} />
+                            <Image source={require('../public/images/LovU_448x180.png')} style={styles.logoStyle} />
                             {/* <Image source={require('../public/images/MEI_String_tr.png')} style={styles.logoTxtStyle} /> */}
                         </View>
                     </View>
@@ -26,27 +26,27 @@ export default class Login extends React.Component {
                         <View style={styles.bottomContent}>
                             <View style={styles.phonenumber}>
                                 <Text style={styles.phonenumberTxt}>
-                                    PHONENUMBER
+                                    전화번호
                                     </Text>
-                                <TextInput style={styles.phonenumberTxtInput} placeholderTextColor="#C0C0C0"  placeholder='010 - 0000 - 0000' onChangeText={(phonenumber) => this.setState({phonenumber})} value={this.state.phonenumber} />
+                                <TextInput style={styles.phonenumberTxtInput} placeholderTextColor="#F56093" placeholder='010 - 0000 - 0000' onChangeText={(phonenumber) => this.setState({ phonenumber })} value={this.state.phonenumber} />
 
                             </View>
                             <View style={styles.password}>
                                 <Text style={styles.passwordTxt}>
-                                    PASSWORD
+                                    비밀번호
                                     </Text>
-                                <TextInput style={styles.passwordTxtInput} placeholderTextColor="#C0C0C0"  placeholder='******' onChangeText={(password) => this.setState({password})} value={this.state.password}/>
+                                <TextInput style={styles.passwordTxtInput} placeholderTextColor="#F56093" placeholder='******' onChangeText={(password) => this.setState({ password })} value={this.state.password} />
                             </View>
                             <View style={styles.forgot}>
-                                <TouchableOpacity>
+                                {/* <TouchableOpacity>
                                     <Text style={styles.fotgotTxt}>
                                         Forgot Password?
                                     </Text>
-                                </TouchableOpacity>
+                                </TouchableOpacity> */}
                             </View>
                             <View style={styles.touchableStyle}>
                                 <TouchableOpacity style={styles.loginButton} onPress={this.login}>
-                                    <Text style={styles.loginTxt}>LOGIN</Text>
+                                    <Text style={styles.loginTxt}>로그인</Text>
                                 </TouchableOpacity>
                             </View>
 
@@ -63,21 +63,25 @@ export default class Login extends React.Component {
     }
 
     login = async () => {
-        this.props.navigation.navigate('Main')
         try {
             let response = await fetch('http://localhost:19000/api/login', {
-                method : 'POST',
+                method: 'POST',
                 headers: {
                     Accpet: 'application/json',
                     'Content-Type': 'application/json',
                 },
-                credentials : 'include',
-                body : JSON.stringify({ user : this.state.phonenumber, password : this.state.password }),
+                credentials: 'include',
+                body: JSON.stringify({ user: this.state.phonenumber, password: this.state.password }),
             });
-            
+            let json = await response.json();
+
+            if (!json.user) {
+                alert('아이디 및 비밀번호를 확인해주세요')
+            }
             if (response.ok) {
-                console.log('?')
-                
+                this.props.navigation.navigate('Main',  {
+                    json,
+                })
             }
         } catch (err) {
             console.log(err)
@@ -89,7 +93,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: 'rgba(212, 191, 201, 0.9)',
+        backgroundColor: 'rgba(224, 64, 122, 1)',
     },
     imageBackground: {
         flex: 1,
@@ -97,7 +101,7 @@ const styles = StyleSheet.create({
         height: null,
     },
     top_container: {
-        width: '80%',
+        width: '100%',
         padding: 10,
         flex: 3,
         flexDirection: 'row',
@@ -105,12 +109,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     logo: {
+        // backgroundColor : 'black',
+        width : '100%',
+        height : '100%',
         alignItems: 'center',
+        justifyContent : 'center',
     },
     logoStyle: {
         margin: 10,
-        width: 80,
-        height: 80,
+        width : 224,
+        height : 90,
+        // resizeMode :'stretch',
     },
     logoTxt: {
         margin: 15,
@@ -126,63 +135,65 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     bottomContent: {
-        top: 80,
         width: '90%',
-        alignItems: 'center'
+        alignItems: 'center',
+
     },
     loginButton: {
         borderWidth: 1,
         borderColor: '#ffffff',
-        borderRadius: 30,
+        borderRadius: 8,
         width: 200,
-        height: 30,
+        height: 40,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#ffffff'
     },
     loginTxt: {
-        fontSize: 15,
-        fontWeight: 'bold',
-        color: '#E581B0',
+        fontSize: 24,
+        fontWeight: '400',
+        color: '#E0407A',
     },
     phonenumber: {
         width: '100%',
+        marginBottom : 10,
     },
     phonenumberTxt: {
-        color: '#C52F76',
-        fontSize: 10,
-        fontWeight: 'bold',
-        margin: 5,
+        color: '#000000',
+        fontSize: 24,
+        fontWeight: '400',
+
     },
     phonenumberTxtInput: {
         borderBottomWidth: 1,
-        borderColor: '#C52F76',
+        borderColor: '#ffffff',
         marginBottom: 10,
+        fontSize: 24,
     },
     password: {
         width: '100%',
     },
     passwordTxt: {
-        color: '#C52F76',
-        fontSize: 10,
-        fontWeight: 'bold',
-        margin: 5,
+        color: '#000000',
+        fontSize: 24,
+        fontWeight: '400',
     },
     passwordTxtInput: {
         borderBottomWidth: 1,
-        borderColor: '#C52F76',
-        marginBottom: 10, 
+        borderColor: '#ffffff',
+        marginBottom: 10,
+        fontSize: 24,
     },
     forgot: {
         flexDirection: 'row',
         alignSelf: 'flex-end'
     },
     fotgotTxt: {
-        fontSize: 10,
-        fontWeight: 'bold',
+        fontSize: 24,
+        fontWeight: '400',
         color: '#ffffff',
     },
     touchableStyle: {
-        top: 40,
+        top: 80,
     }
 });
