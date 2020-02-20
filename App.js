@@ -22,7 +22,7 @@ const QuestionStack = createStackNavigator(
           backgroundColor: '#ffffff',
         },
         headerTitleStyle: {
-          fontWeight: 'bold',
+          fontWeight: '400',
           textAlign: 'center',
           flexGrow: 1,
           alignSelf: 'center',
@@ -54,17 +54,14 @@ const MainStack = createMaterialBottomTabNavigator(
 
 const RootStack = createStackNavigator(
   {
-    Ready: {
-      screen: ReadyScreen,
+    Login: {
+      screen: LoginScreen,
     },
     Register: {
       screen: RegisterScreen,
     },
-    Login: {
-      screen: LoginScreen,
-    },
     Main: {
-      screen: MainStack
+      screen: QuestionStack
     },
   },
   {

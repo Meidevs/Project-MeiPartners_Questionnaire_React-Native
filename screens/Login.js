@@ -48,6 +48,9 @@ export default class Login extends React.Component {
                                 <TouchableOpacity style={styles.loginButton} onPress={this.login}>
                                     <Text style={styles.loginTxt}>로그인</Text>
                                 </TouchableOpacity>
+                                <TouchableOpacity style={styles.registerButton} onPress={this.register}>
+                                    <Text style={styles.loginTxt}>회원가입</Text>
+                                </TouchableOpacity>
                             </View>
 
                         </View>
@@ -61,7 +64,9 @@ export default class Login extends React.Component {
         super(props);
         this.state = { phonenumber: '', password: '' };
     }
-
+    register = () => {
+        this.props.navigation.navigate('Register')
+    }
     login = async () => {
         try {
             let response = await fetch('http://localhost:19000/api/login', {
@@ -79,9 +84,9 @@ export default class Login extends React.Component {
                 alert('아이디 및 비밀번호를 확인해주세요')
             }
             if (response.ok) {
-                this.props.navigation.navigate('Main',  {
+                this.props.navigation.navigate('Main', {
                     json,
-                })
+                });
             }
         } catch (err) {
             console.log(err)
@@ -110,15 +115,15 @@ const styles = StyleSheet.create({
     },
     logo: {
         // backgroundColor : 'black',
-        width : '100%',
-        height : '100%',
+        width: '100%',
+        height: '100%',
         alignItems: 'center',
-        justifyContent : 'center',
+        justifyContent: 'center',
     },
     logoStyle: {
         margin: 10,
-        width : 224,
-        height : 90,
+        width: 224,
+        height: 90,
         // resizeMode :'stretch',
     },
     logoTxt: {
@@ -140,6 +145,7 @@ const styles = StyleSheet.create({
 
     },
     loginButton: {
+        margin : 10,
         borderWidth: 1,
         borderColor: '#ffffff',
         borderRadius: 8,
@@ -156,7 +162,7 @@ const styles = StyleSheet.create({
     },
     phonenumber: {
         width: '100%',
-        marginBottom : 10,
+        marginBottom: 10,
     },
     phonenumberTxt: {
         color: '#000000',
@@ -169,6 +175,8 @@ const styles = StyleSheet.create({
         borderColor: '#ffffff',
         marginBottom: 10,
         fontSize: 24,
+        color : '#ffffff'
+
     },
     password: {
         width: '100%',
@@ -183,6 +191,7 @@ const styles = StyleSheet.create({
         borderColor: '#ffffff',
         marginBottom: 10,
         fontSize: 24,
+        color : '#ffffff'
     },
     forgot: {
         flexDirection: 'row',
@@ -195,5 +204,16 @@ const styles = StyleSheet.create({
     },
     touchableStyle: {
         top: 80,
+    },
+    registerButton : {
+        margin : 10,
+        // borderWidth: 1,
+        // borderColor: '#ffffff',
+        borderRadius: 8,
+        width: 200,
+        height: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#FFD5D5'
     }
 });

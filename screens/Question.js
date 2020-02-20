@@ -13,7 +13,9 @@ import {
 import PickerYear from '../components/PickerYear.js';
 import PickerMonth from '../components/PickerMonth.js';
 import PickerDay from '../components/PickerDay.js';
-import PickerLocation from '../components/PickerLocation.js';
+import PickerMarriage from '../components/PickerMarriage.js';
+import PickerPregnant from '../components/PickerPregnant.js';
+
 
 
 export default class Question extends React.Component {
@@ -32,6 +34,7 @@ export default class Question extends React.Component {
         { id: '여성', name: '여성', selection: styles.categoryBox, txtSelection: styles.categoryBoxTxt },
         { id: '남성', name: '남성', selection: styles.categoryBox, txtSelection: styles.categoryBoxTxt }
       ],
+      name : this.props.navigation.state.params.json.name,
     }
   }
 
@@ -94,8 +97,11 @@ export default class Question extends React.Component {
   getDays = (data) => {
     this.setState({ day: data.days });
   }
-  getLocations = (data) => {
-    this.setState({ location: data.location });
+  getMarriage = (data) => {
+    this.setState({ marriage: data.marriage });
+  }
+  getPregnant = (data) => {
+    this.setState({ pregnant: data.pregnant });
   }
 
   render() {
@@ -165,9 +171,7 @@ export default class Question extends React.Component {
               <Text style={{ color: 'red', fontSize: 12 }}>*<Text style={{ color: 'black' }}>이름</Text></Text>
             </View>
             <View style={styles.categoryName}>
-              <TextInput
-                style={{ height: 40, borderColor: '#C0C0C0', borderWidth: 1 }}
-                onChangeText={name => this.setState({ name })} value={this.state.name} />
+              <Text>{this.state.name}</Text>
             </View>
             <View style={styles.subCategory}>
               <Text style={{ color: 'red', fontSize: 12 }}>*<Text style={{ color: 'black' }}>생년월일</Text></Text>
@@ -188,7 +192,8 @@ export default class Question extends React.Component {
             </View>
             <View style={styles.categoryBirth}>
               <View style={styles.categoryLocation}>
-                <PickerLocation locationData={this.getLocations.bind(this)} />
+                <PickerMarriage marriageData={this.getMarriage.bind(this)} />
+                <PickerPregnant pregnantData={this.getPregnant.bind(this)} />
               </View>
             </View>
             <TouchableOpacity style={styles.button}
@@ -202,15 +207,6 @@ export default class Question extends React.Component {
   }
 
   onPress = async () => {
-    console.log(this.state.day)
-    console.log(this.state.month)
-    console.log(this.state.location)
-    console.log(this.state.year)
-    console.log(this.state.genderd)
-    console.log(this.state.categoryItemsd)
-    console.log(this.state.name)
-    console.log(this.state.code)
-
     try {
       let response = await fetch('http://localhost:19000/api/getuserselectiondata', {
         method: 'POST',
@@ -219,10 +215,14 @@ export default class Question extends React.Component {
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: JSON.stringify({ day: this.state.day, month: this.state.month, year: this.state.year, location: this.state.location, gender: this.state.genderd, category: this.state.categoryItemsd, name: this.state.name, code: this.state.code }),
+        body: JSON.stringify({ day: this.state.day, month: this.state.month, year: this.state.year, marriage: this.state.marriage, gender: this.state.genderd, category: this.state.categoryItemsd, name: this.state.name, pregnant : this.state.pregnant, code: this.state.code }),
       });
+      
+      let json = await response.json();
       if (response.ok) {
-        this.props.navigation.navigate('QuestionContent');
+        this.props.navigation.navigate('QuestionContent', {
+          questions : json,
+        });
       }
     } catch (err) {
       console.log(err);
@@ -329,6 +329,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   categoryLocation: {
+    flex: 1,
+    flexDirection : 'row',
+    justifyContent : 'space-between',
     padding: 10,
     width: 100,
   }

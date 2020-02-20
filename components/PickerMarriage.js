@@ -6,29 +6,15 @@ export default class PickerLocation extends React.Component {
         super(props);
         this.state ={
             itemList : [
-                {location : '서울특별시'},
-                {location : '인천광역시'},
-                {location : '대전광역시'},
-                {location : '세종특별시'},
-                {location : '광주광역시'},
-                {location : '대구광역시'},
-                {location : '울산광역시'},
-                {location : '부산광역시'},
-                {location : '경기도'},
-                {location : '강원도'},
-                {location : '충청북도'},
-                {location : '충청남도'},
-                {location : '전라북도'},
-                {location : '전라남도'},
-                {location : '경상북도'},
-                {location : '경상남도'},
+                {marriage : '미혼'},
+                {marriage : '기혼'},
         ]
         };
     }
     
-    sendLocation = (data) => {
-        this.props.locationData(data);
-        this.setState({location : data.location});
+    sendMarriage = (data) => {
+        this.props.marriageData(data);
+        this.setState({marriage : data.marriage});
     }
 
     render() {
@@ -36,13 +22,13 @@ export default class PickerLocation extends React.Component {
             <View>
                 <Picker style={styles.pickerStyle}
                     mode="dropdown"
-                    selectedValue={this.state.location}
+                    selectedValue={this.state.marriage}
                     onValueChange={(itemValue) =>
-                        this.sendLocation({ location: itemValue })}
+                        this.sendMarriage({ marriage: itemValue })}
                 >
                     {
                         this.state.itemList.map((member) => 
-                        <Picker.Item label={member.location} value={member.location} />
+                        <Picker.Item label={member.marriage} value={member.marriage} />
                         )
                     }
                 </Picker>
