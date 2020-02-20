@@ -35,6 +35,11 @@ export default class Question extends React.Component {
         { id: '남성', name: '남성', selection: styles.categoryBox, txtSelection: styles.categoryBoxTxt }
       ],
       name : this.props.navigation.state.params.json.name,
+      marriage : '미혼',
+      pregnant : '무',
+      year : 1970,
+      month : 1,
+      day : 1,
     }
   }
 
@@ -208,7 +213,7 @@ export default class Question extends React.Component {
 
   onPress = async () => {
     try {
-      let response = await fetch('http://localhost:19000/api/getuserselectiondata', {
+      let response = await fetch('http://localhost:19001/api/getuserselectiondata', {
         method: 'POST',
         headers: {
           Accpet: 'application/json',

@@ -192,7 +192,7 @@ export default class QuestionContent extends React.Component {
     final = async (data) => {
         console.log('increaseCount', this.state.code5);
         try {
-            let response = await fetch(`http://localhost:19000/api/question/`, {
+            let response = await fetch(`http://localhost:19001/api/question/`, {
                 method: 'POST',
                 headers: {
                     Accpet: 'application/json',

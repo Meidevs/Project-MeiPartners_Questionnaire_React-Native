@@ -88,7 +88,7 @@ export default class Login extends React.Component {
         alert('비밀 번호를 확인해주세요.');
         return null;
       }
-      let response  = await fetch ('http://localhost:19000/api/register', {
+      let response  = await fetch ('http://localhost:19001/api/register', {
         method : 'POST', 
         headers : {
           Accpet: 'application/json',
