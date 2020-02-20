@@ -8,25 +8,13 @@ import {
     FlatList,
 } from 'react-native';
 import { ProgressBar, Colors } from 'react-native-paper';
-import { render } from 'react-dom';
 
 export default class QuestionContent extends React.Component {
 
     constructor(props) {
-        console.log('hi')
         super(props)
-        var getData = this.props.navigation.state.params.questions;
         this.props.navigation.setParams({ increaseCount: 1 });
         this.state = {
-            count: 1,
-            data: this.props.navigation.state.params.data,
-            // subTxt: getData[0].subtxt,
-            // mainTxt: getData[0].maintxt,
-            // dataSource: [
-            //     { id: getData[0].question1, selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-            //     { id: getData[0].question2, selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-            //     { id: getData[0].question3, selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-            // ],
             code1: 0,
             code2: 0,
             code3: 0,
@@ -56,21 +44,21 @@ export default class QuestionContent extends React.Component {
 
     };
 
-    renderItem = data =>
-        <TouchableOpacity
-            style={data.item.selectedBackground}
-            onPress={() => this.selectItem(data)}
-        >
-            <Text style={data.item.selectedTxt}>{data.item.id}</Text>
-        </TouchableOpacity>
-
-
+    renderItem = data => {
+        return (
+            <TouchableOpacity
+                style={data.item.selectedBackground}
+                onPress={() => this.selectItem(data)}
+            >
+                <Text style={data.item.selectedTxt}>{data.item.id}</Text>
+            </TouchableOpacity>
+        )
+    }
 
     onPress = () => {
         let j;
-        let arrayData = this.props.navigation.state.params.questions;
+        let arrayData = this.state.contents;
         let nextCount = this.props.navigation.getParam('increaseCount');
-        console.log(nextCount)
         let curCount = nextCount - 1;
         let nextData = nextCount + 1;
 
@@ -88,10 +76,7 @@ export default class QuestionContent extends React.Component {
                     this.state.code4 = this.state.code4 + j;
                 } else if (arrayData[curCount].type == 'code5') {
                     this.state.code5 = this.state.code5 + j;
-
-
                 }
-
             }
         }
         let data = {
@@ -189,8 +174,11 @@ export default class QuestionContent extends React.Component {
 
         );
     }
+
+    componentDidMount() {
+        this.getQuestions();
+    }
     final = async (data) => {
-        console.log('increaseCount', this.state.code5);
         try {
             let response = await fetch(`http://localhost:19001/api/question/`, {
                 method: 'POST',
@@ -201,13 +189,14 @@ export default class QuestionContent extends React.Component {
                 credentials: 'include',
                 body: JSON.stringify(data),
             });
+
+            let json = await response.json();
+            this.props.navigation.navigate('Recommendation', {
+                json
+            })
         } catch (err) {
             console.log(err);
         }
-    }
-
-    componentDidMount() {
-        this.getQuestions();
     }
 
     getQuestions = async () => {
@@ -222,11 +211,18 @@ export default class QuestionContent extends React.Component {
             });
 
             let json = await response.json();
-            console.log('Get Questions', json)
+            this.setState({ contents: json });
             if (response.ok) {
                 this.setState({
-                    
-                })
+                    subTxt: json[0].subtxt,
+                    mainTxt: json[0].maintxt,
+                    dataSource: [
+                        { id: json[0].question1, selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
+                        { id: json[0].question2, selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
+                        { id: json[0].question3, selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
+                    ],
+                    type: json[0].type,
+                });
             }
         } catch (err) {
             console.log(err);
@@ -241,7 +237,6 @@ const styles = StyleSheet.create({
     },
     top_container: {
         height: 150,
-        backgroundColor: 'red',
     },
     rectangle: {
         position: 'absolute',

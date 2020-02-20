@@ -11,6 +11,7 @@ import ReadyScreen from './screens/Ready.js';
 import LoginScreen from './screens/Login.js';
 import RegisterScreen from './screens/Register.js';
 import QuestionContentScreen from './screens/QuestionContent.js';
+import RecommendationScreen from './screens/recommendation.js';
 
 const QuestionStack = createStackNavigator(
   {
@@ -29,9 +30,21 @@ const QuestionStack = createStackNavigator(
         }
       }
     },
-    // QuestionContent: {
-    //   screen: QuestionContentScreen,
-    // }
+    Recommendation: {
+      screen: RecommendationScreen,
+      navigationOptions: {
+        title: '상품 추천',
+        headerStyle: {
+          backgroundColor: '#ffffff',
+        },
+        headerTitleStyle: {
+          fontWeight: '400',
+          textAlign: 'center',
+          flexGrow: 1,
+          alignSelf: 'center',
+        }
+      }
+    }
   },
 )
 

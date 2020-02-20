@@ -35,7 +35,7 @@ export default class Login extends React.Component {
                                 <Text style={styles.passwordTxt}>
                                     비밀번호
                                     </Text>
-                                <TextInput style={styles.passwordTxtInput} placeholderTextColor="#F56093" placeholder='******' onChangeText={(password) => this.setState({ password })} value={this.state.password} />
+                                <TextInput style={styles.passwordTxtInput} placeholderTextColor="#F56093" placeholder='********' onChangeText={(password) => this.setState({ password })} value={this.state.password} />
                             </View>
                             <View style={styles.forgot}>
                                 {/* <TouchableOpacity>

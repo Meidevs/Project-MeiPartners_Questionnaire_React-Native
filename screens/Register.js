@@ -5,104 +5,88 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Dimensions,
   Image,
   ImageBackground,
 } from 'react-native';
-import { ProgressBar } from 'react-native-paper';
-import { ThemeColors } from 'react-navigation';
 
 export default class Login extends React.Component {
 
-  login = () => {
-    this.props.navigation.navigate('Login');
-  }
-
-  register = () => {
-    this.props.navigation.navigate('Register')
-  }
-
   render() {
     return (
-      <ImageBackground source={require('../public/images/loginbackimage.jpg')} style={styles.imageBackground} resizeMode='stretch'>
         <View style={styles.container}>
           <View style={styles.top_container}>
             <View style={styles.logo}>
-              <Image source={require('../public/images/MEI_Symbol_tr.png')} style={styles.logoStyle} />
-              <Image source={require('../public/images/MEI_String_tr.png')} style={styles.logoTxtStyle} />
             </View>
           </View>
           <View style={styles.bottom_container}>
             <View style={styles.bottomContent}>
-              <View style={styles.inputContent}>
-                <Text style={styles.inputTxt}>
-                  PHONENUMBER
+              <View style={styles.name}>
+                <Text style={styles.nameTxt}>
+                  이름
                 </Text>
-                <View style={styles.txtInputStyle}>
-                  <TextInput onChangeText={phonenumber => this.setState({ phonenumber })}
-                    value={this.state.phonenumber} />
-                </View>
-
-                <Text style={styles.inputTxt}>
-                  NAME
-                </Text>
-                <View style={styles.txtInputStyle}>
-                  <TextInput onChangeText={name => this.setState({ name })}
-                    value={this.state.name} />
-                </View>
-                <Text style={styles.inputTxt}>
-                  PASSWORD
-                </Text>
-                <View style={styles.txtInputStyle}>
-                  <TextInput onChangeText={password1 => this.setState({ password1 })}
-                    value={this.state.password1} />
-                </View>
-                <Text style={styles.inputTxt}>
-                  PASSWORD CONFIRM
-                </Text>
-                <View style={styles.txtInputStyle}>
-                  <TextInput onChangeText={password2 => this.setState({ password2 })}
-                    value={this.state.password2} />
-                </View>
+                <TextInput style={styles.nameTxtInput} placeholderTextColor="#F56093" placeholder='010 - 0000 - 0000' onChangeText={(name) => this.setState({ name })} value={this.state.name} />
               </View>
-              <View style={styles.inputButton}>
-                <TouchableOpacity style={styles.register} onPress={this.register}>
-                  <Text style={styles.registerTxt}>REGISTER</Text>
+              <View style={styles.phonenumber}>
+                <Text style={styles.phonenumberTxt}>
+                  전화번호
+                </Text>
+                <TextInput style={styles.phonenumberTxtInput} placeholderTextColor="#F56093" placeholder='010 - 0000 - 0000' onChangeText={(phonenumber) => this.setState({ phonenumber })} value={this.state.phonenumber} />
+              </View>
+              <View style={styles.password}>
+                <Text style={styles.passwordTxt}>
+                  비밀번호
+                </Text>
+                <TextInput style={styles.passwordTxtInput} placeholderTextColor="#F56093" placeholder='********' onChangeText={(password) => this.setState({ password })} value={this.state.password} />
+              </View>
+              <View style={styles.passwordConfrim}>
+                <Text style={styles.passwordConfrimTxt}>
+                  비밀번호 확인
+                </Text>
+                <TextInput style={styles.passwordConfrimTxtInput} placeholderTextColor="#F56093" placeholder='********' onChangeText={(passwordConfirm) => this.setState({ passwordConfirm })} value={this.state.passwordConfirm} />
+              </View>
+              <View style={styles.touchableStyle}>
+                <TouchableOpacity style={styles.registerButton} onPress={this.register}>
+                  <Text style={styles.loginTxt}>가입 완료</Text>
                 </TouchableOpacity>
               </View>
 
             </View>
           </View>
         </View>
-      </ImageBackground >
     );
   }
 
   constructor(props) {
     super(props);
-    this.state = { phonenumber: '', name : '', password1: '', password2 : '' };
+    this.state = { phonenumber: '', password: '' };
   }
-
-  register = async () => {
+  register = () => {
+    this.props.navigation.navigate('Register')
+  }
+  login = async () => {
     try {
-      if (this.state.password1 != this.state.password2) {
-        alert('비밀 번호를 확인해주세요.');
-        return null;
-      }
-      let response  = await fetch ('http://localhost:19001/api/register', {
-        method : 'POST', 
-        headers : {
+      let response = await fetch('http://localhost:19001/api/login', {
+        method: 'POST',
+        headers: {
           Accpet: 'application/json',
           'Content-Type': 'application/json',
         },
-        credentials : 'include',
-        body : JSON.stringify ({user : this.state.phonenumber, name : this.state.name, password : this.state.password1}),
+        credentials: 'include',
+        body: JSON.stringify({ user: this.state.phonenumber, password: this.state.password }),
       });
+      let json = await response.json();
+
+      if (!json.user) {
+        alert('아이디 및 비밀번호를 확인해주세요')
+      }
       if (response.ok) {
-        console.log('aa')
-        this.props.navigation.navigate('Main');
+        this.props.navigation.navigate('Main', {
+          json,
+        });
       }
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
   }
 }
@@ -111,29 +95,28 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: 'rgba(229, 129, 176, 0.9)',
-  },
-  imageBackground: {
-    flex: 1,
-    width: null,
-    height: null,
+    backgroundColor: 'rgba(224, 64, 122, 1)',
   },
   top_container: {
-    width: '80%',
+    width: '100%',
     padding: 10,
-    bottom: 30,
-    flex: 1,
+    flex: 1.5,
     flexDirection: 'row',
-    alignItems: 'flex-end',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   logo: {
+    // backgroundColor : 'black',
+    width: '100%',
+    height: '100%',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   logoStyle: {
     margin: 10,
-    width: 30,
-    height: 30,
+    width: 224,
+    height: 90,
+    // resizeMode :'stretch',
   },
   logoTxt: {
     margin: 15,
@@ -144,65 +127,105 @@ const styles = StyleSheet.create({
   },
   bottom_container: {
     width: '80%',
-    flex: 3,
+    flex: 5,
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'center',
   },
   bottomContent: {
-    top: 30,
+    width: '90%',
     alignItems: 'center',
+
   },
-  register: {
-    borderWidth: 1,
-    borderColor: '#ffffff',
-    borderRadius: 30,
-    width: 200,
-    height: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
+  loginButton: {
     margin: 10,
-  },
-  login: {
     borderWidth: 1,
     borderColor: '#ffffff',
-    borderRadius: 30,
+    borderRadius: 8,
     width: 200,
-    height: 30,
+    height: 40,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#ffffff'
   },
-  registerTxt: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: '#ffffff',
-  },
+  
   loginTxt: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: '#E581B0',
+    fontSize: 24,
+    fontWeight: '400',
+    color: '#E0407A',
   },
-  inputContent: {
-    top: 100,
+  name: {
     width: '100%',
-    flex: 2,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
+    marginBottom: 10,
   },
-  inputButton: {
-    flex: 1,
-
+  nameTxt: {
+    color: '#000000',
+    fontSize: 24,
+    fontWeight: '400',
   },
-  inputTxt: {
-    marginTop: 3,
-    color: '#ffffff',
-    fontSize: 12,
-    fontWeight: 'bold',
-  },
-  txtInputStyle: {
+  nameTxtInput: {
     borderBottomWidth: 1,
     borderColor: '#ffffff',
-  }
+    marginBottom: 10,
+    fontSize: 24,
+    color: '#ffffff'
+  },
+  phonenumber: {
+    width: '100%',
+    marginBottom: 10,
+  },
+  phonenumberTxt: {
+    color: '#000000',
+    fontSize: 24,
+    fontWeight: '400',
 
+  },
+  phonenumberTxtInput: {
+    borderBottomWidth: 1,
+    borderColor: '#ffffff',
+    marginBottom: 10,
+    fontSize: 24,
+    color: '#ffffff'
+  },
+  password: {
+    width: '100%',
+  },
+  passwordTxt: {
+    color: '#000000',
+    fontSize: 24,
+    fontWeight: '400',
+  },
+  passwordTxtInput: {
+    borderBottomWidth: 1,
+    borderColor: '#ffffff',
+    marginBottom: 10,
+    fontSize: 24,
+    color: '#ffffff'
+  },
+  passwordConfrim: {
+    width: '100%',
+  },
+  passwordConfrimTxt: {
+    color: '#000000',
+    fontSize: 24,
+    fontWeight: '400',
+  },
+  passwordConfrimTxtInput: {
+    borderBottomWidth: 1,
+    borderColor: '#ffffff',
+    marginBottom: 10,
+    fontSize: 24,
+    color: '#ffffff'
+  },
+  touchableStyle: {
+    top: 80,
+  },
+  registerButton: {
+    margin: 10,
+    borderRadius: 8,
+    width: 200,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FFD5D5'
+  }
 });
