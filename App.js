@@ -15,7 +15,7 @@ import QuestionContentScreen from './screens/QuestionContent.js';
 const QuestionStack = createStackNavigator(
   {
     Question: {
-      screen: QuestionScreen,
+      screen: QuestionContentScreen,
       navigationOptions: {
         title: '설문지',
         headerStyle: {
@@ -29,9 +29,9 @@ const QuestionStack = createStackNavigator(
         }
       }
     },
-    QuestionContent: {
-      screen: QuestionContentScreen,
-    }
+    // QuestionContent: {
+    //   screen: QuestionContentScreen,
+    // }
   },
 )
 

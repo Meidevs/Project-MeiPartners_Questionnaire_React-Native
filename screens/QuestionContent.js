@@ -20,13 +20,13 @@ export default class QuestionContent extends React.Component {
         this.state = {
             count: 1,
             data: this.props.navigation.state.params.data,
-            subTxt: getData[0].subtxt,
-            mainTxt: getData[0].maintxt,
-            dataSource: [
-                { id: getData[0].question1, selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-                { id: getData[0].question2, selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-                { id: getData[0].question3, selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
-            ],
+            // subTxt: getData[0].subtxt,
+            // mainTxt: getData[0].maintxt,
+            // dataSource: [
+            //     { id: getData[0].question1, selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
+            //     { id: getData[0].question2, selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
+            //     { id: getData[0].question3, selectedBackground: styles.contentBorder, selectedTxt: styles.contentItem },
+            // ],
             code1: 0,
             code2: 0,
             code3: 0,
@@ -91,15 +91,15 @@ export default class QuestionContent extends React.Component {
 
 
                 }
-                
+
             }
         }
         let data = {
-            code1 : this.state.code1,
-            code2 : this.state.code2,
-            code3 : this.state.code3,
-            code4 : this.state.code4,
-            code5 : this.state.code5,
+            code1: this.state.code1,
+            code2: this.state.code2,
+            code3: this.state.code3,
+            code4: this.state.code4,
+            code5: this.state.code5,
         }
 
         if (nextData == 11) {
@@ -117,7 +117,7 @@ export default class QuestionContent extends React.Component {
                 ]
             });
         }
-        
+
 
     }
 
@@ -201,6 +201,33 @@ export default class QuestionContent extends React.Component {
                 credentials: 'include',
                 body: JSON.stringify(data),
             });
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    componentDidMount() {
+        this.getQuestions();
+    }
+
+    getQuestions = async () => {
+        try {
+            let response = await fetch('http://localhost:19001/api/getuserselectiondata', {
+                method: 'GET',
+                headers: {
+                    Accpet: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            });
+
+            let json = await response.json();
+            console.log('Get Questions', json)
+            if (response.ok) {
+                this.setState({
+                    
+                })
+            }
         } catch (err) {
             console.log(err);
         }
