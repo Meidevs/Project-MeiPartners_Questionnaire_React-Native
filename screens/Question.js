@@ -213,7 +213,7 @@ export default class Question extends React.Component {
 
   onPress = async () => {
     try {
-      let response = await fetch('http://localhost:19001/api/getuserselectiondata', {
+      let response = await fetch('http://meipartners.xyz:9999/api/getuserselectiondata', {
         method: 'POST',
         headers: {
           Accpet: 'application/json',

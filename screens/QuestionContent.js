@@ -180,7 +180,7 @@ export default class QuestionContent extends React.Component {
     }
     final = async (data) => {
         try {
-            let response = await fetch(`http://localhost:19001/api/question/`, {
+            let response = await fetch(`http://meipartners.xyz:9999/api/question/`, {
                 method: 'POST',
                 headers: {
                     Accpet: 'application/json',
@@ -191,6 +191,7 @@ export default class QuestionContent extends React.Component {
             });
 
             let json = await response.json();
+            console.log('json', json);
             this.props.navigation.navigate('Recommendation', {
                 json
             })
@@ -201,7 +202,7 @@ export default class QuestionContent extends React.Component {
 
     getQuestions = async () => {
         try {
-            let response = await fetch('http://localhost:19001/api/getuserselectiondata', {
+            let response = await fetch('http://meipartners.xyz:9999/api/getuserselectiondata', {
                 method: 'GET',
                 headers: {
                     Accpet: 'application/json',

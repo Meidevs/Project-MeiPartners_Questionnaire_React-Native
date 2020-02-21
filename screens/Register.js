@@ -14,46 +14,46 @@ export default class Login extends React.Component {
 
   render() {
     return (
-        <View style={styles.container}>
-          <View style={styles.top_container}>
-            <View style={styles.logo}>
-            </View>
-          </View>
-          <View style={styles.bottom_container}>
-            <View style={styles.bottomContent}>
-              <View style={styles.name}>
-                <Text style={styles.nameTxt}>
-                  이름
-                </Text>
-                <TextInput style={styles.nameTxtInput} placeholderTextColor="#F56093" placeholder='010 - 0000 - 0000' onChangeText={(name) => this.setState({ name })} value={this.state.name} />
-              </View>
-              <View style={styles.phonenumber}>
-                <Text style={styles.phonenumberTxt}>
-                  전화번호
-                </Text>
-                <TextInput style={styles.phonenumberTxtInput} placeholderTextColor="#F56093" placeholder='010 - 0000 - 0000' onChangeText={(phonenumber) => this.setState({ phonenumber })} value={this.state.phonenumber} />
-              </View>
-              <View style={styles.password}>
-                <Text style={styles.passwordTxt}>
-                  비밀번호
-                </Text>
-                <TextInput style={styles.passwordTxtInput} placeholderTextColor="#F56093" placeholder='********' onChangeText={(password) => this.setState({ password })} value={this.state.password} />
-              </View>
-              <View style={styles.passwordConfrim}>
-                <Text style={styles.passwordConfrimTxt}>
-                  비밀번호 확인
-                </Text>
-                <TextInput style={styles.passwordConfrimTxtInput} placeholderTextColor="#F56093" placeholder='********' onChangeText={(passwordConfirm) => this.setState({ passwordConfirm })} value={this.state.passwordConfirm} />
-              </View>
-              <View style={styles.touchableStyle}>
-                <TouchableOpacity style={styles.registerButton} onPress={this.register}>
-                  <Text style={styles.loginTxt}>가입 완료</Text>
-                </TouchableOpacity>
-              </View>
-
-            </View>
+      <View style={styles.container}>
+        <View style={styles.top_container}>
+          <View style={styles.logo}>
           </View>
         </View>
+        <View style={styles.bottom_container}>
+          <View style={styles.bottomContent}>
+            <View style={styles.name}>
+              <Text style={styles.nameTxt}>
+                이름
+                </Text>
+              <TextInput style={styles.nameTxtInput} placeholderTextColor="#F57081" placeholder='OOO' onChangeText={(name) => this.setState({ name })} value={this.state.name} />
+            </View>
+            <View style={styles.phonenumber}>
+              <Text style={styles.phonenumberTxt}>
+                전화번호
+                </Text>
+              <TextInput style={styles.phonenumberTxtInput} placeholderTextColor="#F57081" placeholder='010 - 0000 - 0000' onChangeText={(phonenumber) => this.setState({ phonenumber })} value={this.state.phonenumber} />
+            </View>
+            <View style={styles.password}>
+              <Text style={styles.passwordTxt}>
+                비밀번호
+                </Text>
+              <TextInput style={styles.passwordTxtInput} placeholderTextColor="#F57081" placeholder='********' onChangeText={(password) => this.setState({ password })} value={this.state.password} />
+            </View>
+            <View style={styles.passwordConfrim}>
+              <Text style={styles.passwordConfrimTxt}>
+                비밀번호 확인
+                </Text>
+              <TextInput style={styles.passwordConfrimTxtInput} placeholderTextColor="#F57081" placeholder='********' onChangeText={(passwordConfirm) => this.setState({ passwordConfirm })} value={this.state.passwordConfirm} />
+            </View>
+            <View style={styles.touchableStyle}>
+              <TouchableOpacity style={styles.registerButton} onPress={this.register}>
+                <Text style={styles.loginTxt}>가입 완료</Text>
+              </TouchableOpacity>
+            </View>
+
+          </View>
+        </View>
+      </View>
     );
   }
 
@@ -61,32 +61,32 @@ export default class Login extends React.Component {
     super(props);
     this.state = { phonenumber: '', password: '' };
   }
-  register = () => {
-    this.props.navigation.navigate('Register')
-  }
-  login = async () => {
+
+  register = async () => {
     try {
-      let response = await fetch('http://localhost:19001/api/login', {
+      let response = await fetch('http://meipartners.xyz:9999/api/register', {
         method: 'POST',
         headers: {
           Accpet: 'application/json',
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: JSON.stringify({ user: this.state.phonenumber, password: this.state.password }),
+        body: JSON.stringify({ user: this.state.phonenumber, name: this.state.name, password: this.state.password, passwordConfirm: this.state.passwordConfirm }),
       });
       let json = await response.json();
-
-      if (!json.user) {
-        alert('아이디 및 비밀번호를 확인해주세요')
-      }
-      if (response.ok) {
-        this.props.navigation.navigate('Main', {
-          json,
-        });
+      if (json == false) {
+        alert('아이디 & 비밀번호를 확인해주세요')
+      } else {
+        console.log('hi1')
+        if (response.ok) {
+        console.log('hi2')
+          this.props.navigation.navigate('Main', {
+            json,
+          });
+        }
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
 }
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: 'rgba(224, 64, 122, 1)',
+    backgroundColor: 'rgba(224, 96, 112, 1)',
   },
   top_container: {
     width: '100%',
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#ffffff'
   },
-  
+
   loginTxt: {
     fontSize: 24,
     fontWeight: '400',

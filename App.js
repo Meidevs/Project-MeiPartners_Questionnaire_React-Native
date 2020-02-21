@@ -33,15 +33,17 @@ const QuestionStack = createStackNavigator(
     Recommendation: {
       screen: RecommendationScreen,
       navigationOptions: {
-        title: '상품 추천',
+        headerTitleAlign: 'center',
+        title: '추천 제품',
         headerStyle: {
-          backgroundColor: '#ffffff',
+          backgroundColor: '#FCE2E5',
         },
         headerTitleStyle: {
           fontWeight: '400',
-          textAlign: 'center',
-          flexGrow: 1,
           alignSelf: 'center',
+          textAlign: 'center',
+          justifyContent: 'center',
+          flex:1,
         }
       }
     }

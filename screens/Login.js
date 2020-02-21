@@ -18,7 +18,7 @@ export default class Login extends React.Component {
                 <View style={styles.container}>
                     <View style={styles.top_container}>
                         <View style={styles.logo}>
-                            <Image source={require('../public/images/LovU_448x180.png')} style={styles.logoStyle} />
+                            <Image source={require('../public/images/LovU_800_redpink.png')} style={styles.logoStyle} />
                             {/* <Image source={require('../public/images/MEI_String_tr.png')} style={styles.logoTxtStyle} /> */}
                         </View>
                     </View>
@@ -28,14 +28,14 @@ export default class Login extends React.Component {
                                 <Text style={styles.phonenumberTxt}>
                                     전화번호
                                     </Text>
-                                <TextInput style={styles.phonenumberTxtInput} placeholderTextColor="#F56093" placeholder='010 - 0000 - 0000' onChangeText={(phonenumber) => this.setState({ phonenumber })} value={this.state.phonenumber} />
+                                <TextInput style={styles.phonenumberTxtInput} placeholderTextColor="#F57081" placeholder='010 - 0000 - 0000' onChangeText={(phonenumber) => this.setState({ phonenumber })} value={this.state.phonenumber} />
 
                             </View>
                             <View style={styles.password}>
                                 <Text style={styles.passwordTxt}>
                                     비밀번호
                                     </Text>
-                                <TextInput style={styles.passwordTxtInput} placeholderTextColor="#F56093" placeholder='********' onChangeText={(password) => this.setState({ password })} value={this.state.password} />
+                                <TextInput style={styles.passwordTxtInput} placeholderTextColor="#F57081" placeholder='********' onChangeText={(password) => this.setState({ password })} value={this.state.password} />
                             </View>
                             <View style={styles.forgot}>
                                 {/* <TouchableOpacity>
@@ -69,7 +69,7 @@ export default class Login extends React.Component {
     }
     login = async () => {
         try {
-            let response = await fetch('http://localhost:19001/api/login', {
+            let response = await fetch('http://meipartners.xyz:9999/api/login', {
                 method: 'POST',
                 headers: {
                     Accpet: 'application/json',
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: 'rgba(224, 64, 122, 1)',
+        backgroundColor: 'rgba(224, 96, 112, 1)',
     },
     imageBackground: {
         flex: 1,
@@ -122,8 +122,8 @@ const styles = StyleSheet.create({
     },
     logoStyle: {
         margin: 10,
-        width: 224,
-        height: 90,
+        width: 200,
+        height: 200,
         // resizeMode :'stretch',
     },
     logoTxt: {
@@ -207,8 +207,6 @@ const styles = StyleSheet.create({
     },
     registerButton : {
         margin : 10,
-        // borderWidth: 1,
-        // borderColor: '#ffffff',
         borderRadius: 8,
         width: 200,
         height: 40,
