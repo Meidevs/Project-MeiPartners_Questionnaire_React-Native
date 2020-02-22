@@ -74,12 +74,11 @@ export default class Login extends React.Component {
         body: JSON.stringify({ user: this.state.phonenumber, name: this.state.name, password: this.state.password, passwordConfirm: this.state.passwordConfirm }),
       });
       let json = await response.json();
-      if (json == false) {
-        alert('아이디 & 비밀번호를 확인해주세요')
-      } else {
-        console.log('hi1')
-        if (response.ok) {
-        console.log('hi2')
+
+      if (response.ok) {
+        if (json.success == false ) {
+          alert(json.msg);
+        } else {
           this.props.navigation.navigate('Main', {
             json,
           });

@@ -79,14 +79,14 @@ export default class Login extends React.Component {
                 body: JSON.stringify({ user: this.state.phonenumber, password: this.state.password }),
             });
             let json = await response.json();
-
-            if (!json.user) {
-                alert('아이디 및 비밀번호를 확인해주세요')
-            }
             if (response.ok) {
-                this.props.navigation.navigate('Main', {
-                    json,
-                });
+                if (json.success ==false) {
+                    alert(json.msg)
+                } else {
+                    this.props.navigation.navigate('Main', {
+                        json,
+                    });
+                }
             }
         } catch (err) {
             console.log(err)
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
 
     },
     loginButton: {
-        margin : 10,
+        margin: 10,
         borderWidth: 1,
         borderColor: '#ffffff',
         borderRadius: 8,
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
         borderColor: '#ffffff',
         marginBottom: 10,
         fontSize: 24,
-        color : '#ffffff'
+        color: '#ffffff'
 
     },
     password: {
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
         borderColor: '#ffffff',
         marginBottom: 10,
         fontSize: 24,
-        color : '#ffffff'
+        color: '#ffffff'
     },
     forgot: {
         flexDirection: 'row',
@@ -205,8 +205,8 @@ const styles = StyleSheet.create({
     touchableStyle: {
         top: 80,
     },
-    registerButton : {
-        margin : 10,
+    registerButton: {
+        margin: 10,
         borderRadius: 8,
         width: 200,
         height: 40,

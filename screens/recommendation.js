@@ -12,7 +12,7 @@ import { render } from 'react-dom'
 const { width } = Dimensions.get('window')
 
 export default class Recommendation extends React.Component {
-    
+
     constructor(props) {
         super(props)
         var preData = this.props.navigation.state.params.json;
@@ -22,13 +22,22 @@ export default class Recommendation extends React.Component {
         console.log('this.state.items', this.state.items)
         //피부 타입 중 랜덤 선별=>
         var aNum = this.state.items.length;
-        var rNum = Math.floor(Math.random()*aNum);
+        var rNum = Math.floor(Math.random() * aNum);
 
         //랜덤 상품 선별 난수 생성
         var aContentNum = this.state.items[rNum].items.length;
-        var rNum1 = Math.floor(Math.random()*aContentNum);
-        var rNum2 = Math.floor(Math.random()*aContentNum);
-        var rNum3 = Math.floor(Math.random()*aContentNum);
+        var rNum1 = Math.floor(Math.random() * aContentNum);
+        var rNum2 = Math.floor(Math.random() * aContentNum);
+        var rNum3 = Math.floor(Math.random() * aContentNum);
+
+        // if (rNum1 == rNum2) {
+        //     var rNum2 = Math.floor(Math.random() * aContentNum);
+        // } else if (rNum2 == rNum3) {
+        //     var rNum3 = Math.floor(Math.random() * aContentNum);
+        // } else if (rNum1 == rNum3) {
+        //     var rNum1 = Math.floor(Math.random() * aContentNum);
+
+        // }
 
         var rawArray = [];
 
@@ -60,10 +69,10 @@ export default class Recommendation extends React.Component {
         return (
             <View style={styles.txtDesign}>
                 <View styles={styles.txtDesignContent}>
-                    <Text style={{fontSize : 20, fontWeight : '400', textAlign : 'left', lineHeight : 30, color : '#222222'}}>{data.item.manual}</Text>
+                    <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#222222' }}>{data.item.manual}</Text>
                 </View>
                 <View styles={styles.txtDesignContent}>
-                    <Text style={{fontSize : 20, fontWeight : '400', textAlign : 'left', lineHeight : 30,color : '#FFFAFC' }}>{data.item.submanual}</Text>
+                    <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#FFFAFC' }}>{data.item.submanual}</Text>
                 </View>
             </View>
         )
@@ -73,10 +82,10 @@ export default class Recommendation extends React.Component {
         return (
             <View style={styles.txtDesign}>
                 <View styles={styles.txtDesignContent}>
-                    <Text style={{fontSize : 20, fontWeight : '400', textAlign : 'left', lineHeight : 30, color : '#222222'}}>{data.item.manual}</Text>
+                    <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#222222' }}>{data.item.manual}</Text>
                 </View>
                 <View styles={styles.txtDesignContent}>
-                    <Text style={{fontSize : 20, fontWeight : '400', textAlign : 'left', lineHeight : 30, color : '#FFFAFC'}}>{data.item.submanual}</Text>
+                    <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#FFFAFC' }}>{data.item.submanual}</Text>
                 </View>
             </View>
         )
@@ -85,10 +94,10 @@ export default class Recommendation extends React.Component {
         return (
             <View style={styles.txtDesign}>
                 <View styles={styles.txtDesignContent}>
-                    <Text style={{fontSize : 20, fontWeight : '400', textAlign : 'left', lineHeight : 30, color : '#222222'}}>{data.item.manual}</Text>
+                    <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#222222' }}>{data.item.manual}</Text>
                 </View>
                 <View styles={styles.txtDesignContent}>
-                    <Text style={{fontSize : 20, fontWeight : '400', textAlign : 'left', lineHeight : 30, color : '#FFFAFC'}}>{data.item.submanual}</Text>
+                    <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#FFFAFC' }}>{data.item.submanual}</Text>
                 </View>
             </View>
         )
@@ -173,9 +182,9 @@ const styles = StyleSheet.create({
     },
     sliderImage: {
         flex: 1,
-        flexDirection : 'column',
-        alignItems : 'center',
-        justifyContent : 'flex-end',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
     },
     image: {
         width,
@@ -184,14 +193,14 @@ const styles = StyleSheet.create({
     txtDesign: {
         padding: 10,
     },
-    txtDesignContent : {
-        
-        marginTop : 100,
+    txtDesignContent: {
+
+        marginTop: 100,
     },
-    text : {
-        marginBottom : 10,
-        fontSize : 20,
-        fontWeight : '400',
-        color : '#444444'
+    text: {
+        marginBottom: 10,
+        fontSize: 20,
+        fontWeight: '400',
+        color: '#444444'
     }
 });
