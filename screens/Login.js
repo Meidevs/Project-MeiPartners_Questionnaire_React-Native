@@ -60,7 +60,7 @@ export default class Login extends React.Component {
     }
     login = async () => {
         try {
-            let response = await fetch('http://meipartners.xyz:19999/api/login', {
+            let response = await fetch('http://meipartners.xyz:20000/api/login', {
                 method: 'POST',
                 headers: {
                     Accpet: 'application/json',

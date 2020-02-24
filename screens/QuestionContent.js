@@ -160,6 +160,7 @@ export default class QuestionContent extends React.Component {
                                 data={this.state.dataSource}
                                 ItemSeparatorComponent={this.FlatListItemSeparator}
                                 renderItem={item => this.renderItem(item)}
+                                keyExtractor={item => item.id}
                             />
                         </View>
                         <View style={styles.rectangleContentDowner}>
@@ -179,7 +180,7 @@ export default class QuestionContent extends React.Component {
 
     final = async (data) => {
         try {
-            let response = await fetch(`http://meipatners.xyz:19999/api/question/`, {
+            let response = await fetch(`http://meipartners.xyz:20000/api/question/`, {
                 method: 'POST',
                 headers: {
                     Accpet: 'application/json',
@@ -201,7 +202,7 @@ export default class QuestionContent extends React.Component {
 
     getQuestions = async () => {
         try {
-            let response = await fetch('http://meipatners.xyz:19999/api/getuserselectiondata', {
+            let response = await fetch('http://meipartners.xyz:20000/api/randquestions', {
                 method: 'GET',
                 headers: {
                     Accpet: 'application/json',
@@ -241,7 +242,7 @@ const styles = StyleSheet.create({
     },
     rectangle: {
         position: 'absolute',
-        top: height * 0.15,
+        top: height * 0.10,
         width: '80%',
         flexDirection: 'row',
         alignSelf: 'center',

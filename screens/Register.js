@@ -64,7 +64,7 @@ export default class Login extends React.Component {
 
   register = async () => {
     try {
-      let response = await fetch('http://meipartners.xyz:19999/api/register', {
+      let response = await fetch('http://meipartners.xyz:20000/api/register', {
         method: 'POST',
         headers: {
           Accpet: 'application/json',

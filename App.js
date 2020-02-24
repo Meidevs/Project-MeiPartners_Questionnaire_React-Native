@@ -34,10 +34,6 @@ const QuestionStack = createStackNavigator(
         },
         headerTitleStyle: {
           fontWeight: '400',
-          alignSelf: 'center',
-          textAlign: 'center',
-          justifyContent: 'center',
-          flex:1,
         }
       }
     }
