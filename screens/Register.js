@@ -50,7 +50,6 @@ export default class Login extends React.Component {
                 <Text style={styles.loginTxt}>가입 완료</Text>
               </TouchableOpacity>
             </View>
-
           </View>
         </View>
       </View>
@@ -64,7 +63,7 @@ export default class Login extends React.Component {
 
   register = async () => {
     try {
-      let response = await fetch('http://meipartners.xyz:9999/api/register', {
+      let response = await fetch('http://meipartners.xyz:19999/api/register', {
         method: 'POST',
         headers: {
           Accpet: 'application/json',
@@ -93,7 +92,7 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    // alignItems: 'center',
     backgroundColor: 'rgba(224, 96, 112, 1)',
   },
   top_container: {
@@ -105,7 +104,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    // backgroundColor : 'black',
     width: '100%',
     height: '100%',
     alignItems: 'center',
@@ -115,7 +113,6 @@ const styles = StyleSheet.create({
     margin: 10,
     width: 224,
     height: 90,
-    // resizeMode :'stretch',
   },
   logoTxt: {
     margin: 15,

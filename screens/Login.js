@@ -9,54 +9,53 @@ import {
     Image,
     ImageBackground,
 } from 'react-native';
+const { width } = Dimensions.get('window')
 
 export default class Login extends React.Component {
 
     render() {
         return (
-            <ImageBackground source={require('../public/images/loginbackimage.jpg')} style={styles.imageBackground} resizeMode='stretch'>
-                <View style={styles.container}>
-                    <View style={styles.top_container}>
-                        <View style={styles.logo}>
-                            <Image source={require('../public/images/LovU_800_redpink.png')} style={styles.logoStyle} />
-                            {/* <Image source={require('../public/images/MEI_String_tr.png')} style={styles.logoTxtStyle} /> */}
-                        </View>
+            <View style={styles.container}>
+                <View style={styles.top_container}>
+                    <View style={styles.logo}>
+                        <Image source={require('../public/images/LovU_800_redpink.png')} style={styles.logoStyle} />
+                        {/* <Image source={require('../public/images/MEI_String_tr.png')} style={styles.logoTxtStyle} /> */}
                     </View>
-                    <View style={styles.bottom_container}>
-                        <View style={styles.bottomContent}>
-                            <View style={styles.phonenumber}>
-                                <Text style={styles.phonenumberTxt}>
-                                    전화번호
+                </View>
+                <View style={styles.bottom_container}>
+                    <View style={styles.bottomContent}>
+                        <View style={styles.phonenumber}>
+                            <Text style={styles.phonenumberTxt}>
+                                전화번호
                                     </Text>
-                                <TextInput style={styles.phonenumberTxtInput} placeholderTextColor="#F57081" placeholder='010 - 0000 - 0000' onChangeText={(phonenumber) => this.setState({ phonenumber })} value={this.state.phonenumber} />
+                            <TextInput style={styles.phonenumberTxtInput} placeholderTextColor="#F57081" placeholder='010 - 0000 - 0000' onChangeText={(phonenumber) => this.setState({ phonenumber })} value={this.state.phonenumber} />
 
-                            </View>
-                            <View style={styles.password}>
-                                <Text style={styles.passwordTxt}>
-                                    비밀번호
+                        </View>
+                        <View style={styles.password}>
+                            <Text style={styles.passwordTxt}>
+                                비밀번호
                                     </Text>
-                                <TextInput style={styles.passwordTxtInput} placeholderTextColor="#F57081" placeholder='********' onChangeText={(password) => this.setState({ password })} value={this.state.password} />
-                            </View>
-                            <View style={styles.forgot}>
-                                {/* <TouchableOpacity>
+                            <TextInput style={styles.passwordTxtInput} placeholderTextColor="#F57081" placeholder='********' onChangeText={(password) => this.setState({ password })} value={this.state.password} />
+                        </View>
+                        <View style={styles.forgot}>
+                            {/* <TouchableOpacity>
                                     <Text style={styles.fotgotTxt}>
                                         Forgot Password?
                                     </Text>
                                 </TouchableOpacity> */}
-                            </View>
-                            <View style={styles.touchableStyle}>
-                                <TouchableOpacity style={styles.loginButton} onPress={this.login}>
-                                    <Text style={styles.loginTxt}>로그인</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={styles.registerButton} onPress={this.register}>
-                                    <Text style={styles.loginTxt}>회원가입</Text>
-                                </TouchableOpacity>
-                            </View>
-
                         </View>
+                        <View style={styles.touchableStyle}>
+                            <TouchableOpacity style={styles.loginButton} onPress={this.login}>
+                                <Text style={styles.loginTxt}>로그인</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.registerButton} onPress={this.register}>
+                                <Text style={styles.loginTxt}>회원가입</Text>
+                            </TouchableOpacity>
+                        </View>
+
                     </View>
                 </View>
-            </ImageBackground >
+            </View>
         );
     }
 
@@ -69,7 +68,7 @@ export default class Login extends React.Component {
     }
     login = async () => {
         try {
-            let response = await fetch('http://meipartners.xyz:9999/api/login', {
+            let response = await fetch('http://127.0.0.1:19000/api/login', {
                 method: 'POST',
                 headers: {
                     Accpet: 'application/json',
@@ -80,7 +79,7 @@ export default class Login extends React.Component {
             });
             let json = await response.json();
             if (response.ok) {
-                if (json.success ==false) {
+                if (json.success == false) {
                     alert(json.msg)
                 } else {
                     this.props.navigation.navigate('Main', {
@@ -100,11 +99,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'rgba(224, 96, 112, 1)',
     },
-    imageBackground: {
-        flex: 1,
-        width: null,
-        height: null,
-    },
     top_container: {
         width: '100%',
         padding: 10,
@@ -122,8 +116,8 @@ const styles = StyleSheet.create({
     },
     logoStyle: {
         margin: 10,
-        width: 200,
-        height: 200,
+        width : width * 0.6,
+        height : '100%'
         // resizeMode :'stretch',
     },
     logoTxt: {

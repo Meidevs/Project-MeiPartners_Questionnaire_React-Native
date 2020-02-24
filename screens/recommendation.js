@@ -8,7 +8,6 @@ import {
     FlatList,
 } from 'react-native'
 import Swiper from 'react-native-swiper'
-import { render } from 'react-dom'
 const { width } = Dimensions.get('window')
 
 export default class Recommendation extends React.Component {
@@ -25,32 +24,34 @@ export default class Recommendation extends React.Component {
         var rNum = Math.floor(Math.random() * aNum);
 
         //랜덤 상품 선별 난수 생성
+        var randArray = [];
         var aContentNum = this.state.items[rNum].items.length;
-        var rNum1 = Math.floor(Math.random() * aContentNum);
-        var rNum2 = Math.floor(Math.random() * aContentNum);
-        var rNum3 = Math.floor(Math.random() * aContentNum);
+        let i = 0;
+        while (i < 6) {
+            let n = Math.floor(Math.random() * aContentNum);
+            if(!sameNum(n)) {
+                randArray.push(n);
+                i++;
+            }
+        }
 
-        // if (rNum1 == rNum2) {
-        //     var rNum2 = Math.floor(Math.random() * aContentNum);
-        // } else if (rNum2 == rNum3) {
-        //     var rNum3 = Math.floor(Math.random() * aContentNum);
-        // } else if (rNum1 == rNum3) {
-        //     var rNum1 = Math.floor(Math.random() * aContentNum);
+        function sameNum(n) {
+            for (var i = 0; i < randArray.length; i++ ){
+                if( n === randArray[i]) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
-        // }
+        console.log('randArray',randArray);
 
-        var rawArray = [];
-
-        rawArray.push(this.state.items[rNum].items[rNum1]);
-        rawArray.push(this.state.items[rNum].items[rNum2]);
-        rawArray.push(this.state.items[rNum].items[rNum3]);
+        rawArray = [];
+        rawArray.push(this.state.items[rNum].items[randArray[0]]);
+        rawArray.push(this.state.items[rNum].items[randArray[1]]);
+        rawArray.push(this.state.items[rNum].items[randArray[2]]);
 
         console.log('rawArray', rawArray);
-        // for (var i = 0; i < this.state.items.length; i++) {
-        //     for (var j = 0; j < this.state.items[i].items.length; j++) {
-        //         rawArray.push(this.state.items[i].items[j]);
-        //     }
-        // }
         var aArray = [];
         var bArray = [];
         var cArray = [];
