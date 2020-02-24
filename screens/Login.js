@@ -33,7 +33,7 @@ export default class Login extends React.Component {
                             <Text style={styles.passwordTxt}>
                                 비밀번호
                                     </Text>
-                            <TextInput style={styles.passwordTxtInput} placeholderTextColor="#F57081" placeholder='********' onChangeText={(password) => this.setState({ password })} value={this.state.password} />
+                            <TextInput style={styles.passwordTxtInput} placeholderTextColor="#F57081" placeholder='********' onChangeText={(password) => this.setState({ password })} value={this.state.password} secureTextEntry={true}/>
                         </View>
                     </View>
                     <View style={styles.bottomContent_2}>
