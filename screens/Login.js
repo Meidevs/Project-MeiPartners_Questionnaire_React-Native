@@ -7,9 +7,8 @@ import {
     StyleSheet,
     Dimensions,
     Image,
-    ImageBackground,
 } from 'react-native';
-const { width } = Dimensions.get('window')
+const { width, height } = Dimensions.get('window');
 
 export default class Login extends React.Component {
 
@@ -23,13 +22,12 @@ export default class Login extends React.Component {
                     </View>
                 </View>
                 <View style={styles.bottom_container}>
-                    <View style={styles.bottomContent}>
+                    <View style={styles.bottomContent_1}>
                         <View style={styles.phonenumber}>
                             <Text style={styles.phonenumberTxt}>
                                 전화번호
                                     </Text>
                             <TextInput style={styles.phonenumberTxtInput} placeholderTextColor="#F57081" placeholder='010 - 0000 - 0000' onChangeText={(phonenumber) => this.setState({ phonenumber })} value={this.state.phonenumber} />
-
                         </View>
                         <View style={styles.password}>
                             <Text style={styles.passwordTxt}>
@@ -37,13 +35,8 @@ export default class Login extends React.Component {
                                     </Text>
                             <TextInput style={styles.passwordTxtInput} placeholderTextColor="#F57081" placeholder='********' onChangeText={(password) => this.setState({ password })} value={this.state.password} />
                         </View>
-                        <View style={styles.forgot}>
-                            {/* <TouchableOpacity>
-                                    <Text style={styles.fotgotTxt}>
-                                        Forgot Password?
-                                    </Text>
-                                </TouchableOpacity> */}
-                        </View>
+                    </View>
+                    <View style={styles.bottomContent_2}>
                         <View style={styles.touchableStyle}>
                             <TouchableOpacity style={styles.loginButton} onPress={this.login}>
                                 <Text style={styles.loginTxt}>로그인</Text>
@@ -52,7 +45,6 @@ export default class Login extends React.Component {
                                 <Text style={styles.loginTxt}>회원가입</Text>
                             </TouchableOpacity>
                         </View>
-
                     </View>
                 </View>
             </View>
@@ -116,8 +108,8 @@ const styles = StyleSheet.create({
     },
     logoStyle: {
         margin: 10,
-        width : width * 0.6,
-        height : '100%'
+        width: width * 0.6,
+        height: '100%'
         // resizeMode :'stretch',
     },
     logoTxt: {
@@ -130,12 +122,25 @@ const styles = StyleSheet.create({
     bottom_container: {
         width: '80%',
         flex: 5,
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'center',
+        alignItems : 'center',
     },
-    bottomContent: {
+    bottomContent_1: {
+        flex: 3,
+        flexDirection: 'column',
         width: '90%',
         alignItems: 'center',
+        justifyContent: 'center',
+
+    },
+    bottomContent_2: {
+        flex: 2,
+        flexDirection: 'column',
+        width: '90%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 30,
 
     },
     loginButton: {
@@ -143,8 +148,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#ffffff',
         borderRadius: 8,
-        width: 200,
-        height: 40,
+        width: width * 0.63,
+        height: height * 0.08,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#ffffff'
@@ -170,7 +175,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         fontSize: 24,
         color: '#ffffff'
-
     },
     password: {
         width: '100%',
@@ -187,23 +191,15 @@ const styles = StyleSheet.create({
         fontSize: 24,
         color: '#ffffff'
     },
-    forgot: {
-        flexDirection: 'row',
-        alignSelf: 'flex-end'
-    },
-    fotgotTxt: {
-        fontSize: 24,
-        fontWeight: '400',
-        color: '#ffffff',
-    },
     touchableStyle: {
-        top: 80,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     registerButton: {
         margin: 10,
         borderRadius: 8,
-        width: 200,
-        height: 40,
+        width: width * 0.63,
+        height: height * 0.08,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#FFD5D5'
