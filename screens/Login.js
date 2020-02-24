@@ -7,56 +7,47 @@ import {
     StyleSheet,
     Dimensions,
     Image,
-    ImageBackground,
 } from 'react-native';
+const { width, height } = Dimensions.get('window');
 
 export default class Login extends React.Component {
 
     render() {
         return (
-            <ImageBackground source={require('../public/images/loginbackimage.jpg')} style={styles.imageBackground} resizeMode='stretch'>
-                <View style={styles.container}>
-                    <View style={styles.top_container}>
-                        <View style={styles.logo}>
-                            <Image source={require('../public/images/LovU_800_redpink.png')} style={styles.logoStyle} />
-                            {/* <Image source={require('../public/images/MEI_String_tr.png')} style={styles.logoTxtStyle} /> */}
+            <View style={styles.container}>
+                <View style={styles.top_container}>
+                    <View style={styles.logo}>
+                        <Image source={require('../public/images/LovU_800_redpink.png')} style={styles.logoStyle} />
+                        {/* <Image source={require('../public/images/MEI_String_tr.png')} style={styles.logoTxtStyle} /> */}
+                    </View>
+                </View>
+                <View style={styles.bottom_container}>
+                    <View style={styles.bottomContent_1}>
+                        <View style={styles.phonenumber}>
+                            <Text style={styles.phonenumberTxt}>
+                                전화번호
+                                    </Text>
+                            <TextInput style={styles.phonenumberTxtInput} placeholderTextColor="#F57081" placeholder='010 - 0000 - 0000' onChangeText={(phonenumber) => this.setState({ phonenumber })} value={this.state.phonenumber} />
+                        </View>
+                        <View style={styles.password}>
+                            <Text style={styles.passwordTxt}>
+                                비밀번호
+                                    </Text>
+                            <TextInput style={styles.passwordTxtInput} placeholderTextColor="#F57081" placeholder='********' onChangeText={(password) => this.setState({ password })} value={this.state.password} />
                         </View>
                     </View>
-                    <View style={styles.bottom_container}>
-                        <View style={styles.bottomContent}>
-                            <View style={styles.phonenumber}>
-                                <Text style={styles.phonenumberTxt}>
-                                    전화번호
-                                    </Text>
-                                <TextInput style={styles.phonenumberTxtInput} placeholderTextColor="#F57081" placeholder='010 - 0000 - 0000' onChangeText={(phonenumber) => this.setState({ phonenumber })} value={this.state.phonenumber} />
-
-                            </View>
-                            <View style={styles.password}>
-                                <Text style={styles.passwordTxt}>
-                                    비밀번호
-                                    </Text>
-                                <TextInput style={styles.passwordTxtInput} placeholderTextColor="#F57081" placeholder='********' onChangeText={(password) => this.setState({ password })} value={this.state.password} />
-                            </View>
-                            <View style={styles.forgot}>
-                                {/* <TouchableOpacity>
-                                    <Text style={styles.fotgotTxt}>
-                                        Forgot Password?
-                                    </Text>
-                                </TouchableOpacity> */}
-                            </View>
-                            <View style={styles.touchableStyle}>
-                                <TouchableOpacity style={styles.loginButton} onPress={this.login}>
-                                    <Text style={styles.loginTxt}>로그인</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={styles.registerButton} onPress={this.register}>
-                                    <Text style={styles.loginTxt}>회원가입</Text>
-                                </TouchableOpacity>
-                            </View>
-
+                    <View style={styles.bottomContent_2}>
+                        <View style={styles.touchableStyle}>
+                            <TouchableOpacity style={styles.loginButton} onPress={this.login}>
+                                <Text style={styles.loginTxt}>로그인</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.registerButton} onPress={this.register}>
+                                <Text style={styles.loginTxt}>회원가입</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>
-            </ImageBackground >
+            </View>
         );
     }
 
@@ -69,7 +60,7 @@ export default class Login extends React.Component {
     }
     login = async () => {
         try {
-            let response = await fetch('http://meipartners.xyz:9999/api/login', {
+            let response = await fetch('http://meipartners.xyz:20000/api/login', {
                 method: 'POST',
                 headers: {
                     Accpet: 'application/json',
@@ -79,14 +70,14 @@ export default class Login extends React.Component {
                 body: JSON.stringify({ user: this.state.phonenumber, password: this.state.password }),
             });
             let json = await response.json();
-
-            if (!json.user) {
-                alert('아이디 및 비밀번호를 확인해주세요')
-            }
             if (response.ok) {
-                this.props.navigation.navigate('Main', {
-                    json,
-                });
+                if (json.success == false) {
+                    alert(json.msg)
+                } else {
+                    this.props.navigation.navigate('Main', {
+                        json,
+                    });
+                }
             }
         } catch (err) {
             console.log(err)
@@ -99,11 +90,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         backgroundColor: 'rgba(224, 96, 112, 1)',
-    },
-    imageBackground: {
-        flex: 1,
-        width: null,
-        height: null,
     },
     top_container: {
         width: '100%',
@@ -122,8 +108,8 @@ const styles = StyleSheet.create({
     },
     logoStyle: {
         margin: 10,
-        width: 200,
-        height: 200,
+        width: width * 0.6,
+        height: '100%'
         // resizeMode :'stretch',
     },
     logoTxt: {
@@ -136,21 +122,34 @@ const styles = StyleSheet.create({
     bottom_container: {
         width: '80%',
         flex: 5,
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'center',
+        alignItems : 'center',
     },
-    bottomContent: {
+    bottomContent_1: {
+        flex: 3,
+        flexDirection: 'column',
         width: '90%',
         alignItems: 'center',
+        justifyContent: 'center',
+
+    },
+    bottomContent_2: {
+        flex: 2,
+        flexDirection: 'column',
+        width: '90%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 30,
 
     },
     loginButton: {
-        margin : 10,
+        margin: 10,
         borderWidth: 1,
         borderColor: '#ffffff',
         borderRadius: 8,
-        width: 200,
-        height: 40,
+        width: width * 0.63,
+        height: height * 0.08,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#ffffff'
@@ -175,8 +174,7 @@ const styles = StyleSheet.create({
         borderColor: '#ffffff',
         marginBottom: 10,
         fontSize: 24,
-        color : '#ffffff'
-
+        color: '#ffffff'
     },
     password: {
         width: '100%',
@@ -191,25 +189,17 @@ const styles = StyleSheet.create({
         borderColor: '#ffffff',
         marginBottom: 10,
         fontSize: 24,
-        color : '#ffffff'
-    },
-    forgot: {
-        flexDirection: 'row',
-        alignSelf: 'flex-end'
-    },
-    fotgotTxt: {
-        fontSize: 24,
-        fontWeight: '400',
-        color: '#ffffff',
+        color: '#ffffff'
     },
     touchableStyle: {
-        top: 80,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    registerButton : {
-        margin : 10,
+    registerButton: {
+        margin: 10,
         borderRadius: 8,
-        width: 200,
-        height: 40,
+        width: width * 0.63,
+        height: height * 0.08,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#FFD5D5'

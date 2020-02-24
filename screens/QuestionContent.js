@@ -6,7 +6,9 @@ import {
     StyleSheet,
     Image,
     FlatList,
+    Dimensions,
 } from 'react-native';
+const { width, height } = Dimensions.get('window');
 import { ProgressBar, Colors } from 'react-native-paper';
 
 export default class QuestionContent extends React.Component {
@@ -112,7 +114,6 @@ export default class QuestionContent extends React.Component {
             headerRight: () =>
                 <View style={styles.headerStyle}>
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
-                        {/* <Text style={{ fontSize: 20, color: '#707070', fontWeight: '400' }}>응답 진행률</Text> */}
                         <Text style={{ fontSize: 20, color: '#707070', fontWeight: '400' }}>{navigation.getParam('increaseCount')} / 10</Text>
                     </View>
                     <View>
@@ -125,14 +126,14 @@ export default class QuestionContent extends React.Component {
     componentJSX() {
         if (this.props.navigation.getParam('increaseCount') != 10) {
             return (
-                <TouchableOpacity onPress={this.onPress} style={{ height: 40, width: 200, backgroundColor: '#FFC9DD', borderRadius: 10, justifyContent: 'center', borderColor: '#707070', borderWidth: 1 }}>
+                <TouchableOpacity onPress={this.onPress} style={{ height: height * 0.06, width: width * 0.55, backgroundColor: '#FFC9DD', borderRadius: 10, justifyContent: 'center', borderColor: '#707070', borderWidth: 1 }}>
                     <Text style={{ color: '#ffffff', fontWeight: 'bold', fontSize: 20, textAlign: 'center' }
                     }> 확인</Text >
                 </TouchableOpacity>
             )
         } else {
             return (
-                <TouchableOpacity onPress={this.onPress} style={{ height: 40, width: 200, backgroundColor: '#FFC9DD', borderRadius: 10, justifyContent: 'center', borderColor: '#707070', borderWidth: 1 }}>
+                <TouchableOpacity onPress={this.onPress} style={{ height: height * 0.06, width: width * 0.55, backgroundColor: '#FFC9DD', borderRadius: 10, justifyContent: 'center', borderColor: '#707070', borderWidth: 1 }}>
                     <Text style={{ color: '#ffffff', fontWeight: 'bold', fontSize: 20, textAlign: 'center' }
                     }>제출</Text >
                 </TouchableOpacity>
@@ -155,14 +156,12 @@ export default class QuestionContent extends React.Component {
                             <Text style={styles.mainTxt}>{this.props.navigation.getParam('increaseCount')}. {this.state.mainTxt}</Text>
                         </View>
                         <View style={styles.rectagleContentMiddle}>
-                            <View style={styles.rectangleUpper}>
-                                <FlatList
-                                    data={this.state.dataSource}
-                                    ItemSeparatorComponent={this.FlatListItemSeparator}
-                                    renderItem={item => this.renderItem(item)}
-                                />
-
-                            </View>
+                            <FlatList
+                                data={this.state.dataSource}
+                                ItemSeparatorComponent={this.FlatListItemSeparator}
+                                renderItem={item => this.renderItem(item)}
+                                keyExtractor={item => item.id}
+                            />
                         </View>
                         <View style={styles.rectangleContentDowner}>
                             {this.componentJSX()}
@@ -178,9 +177,10 @@ export default class QuestionContent extends React.Component {
     componentDidMount() {
         this.getQuestions();
     }
+
     final = async (data) => {
         try {
-            let response = await fetch(`http://meipartners.xyz:9999/api/question/`, {
+            let response = await fetch(`http://meipartners.xyz:20000/api/question/`, {
                 method: 'POST',
                 headers: {
                     Accpet: 'application/json',
@@ -202,7 +202,7 @@ export default class QuestionContent extends React.Component {
 
     getQuestions = async () => {
         try {
-            let response = await fetch('http://meipartners.xyz:9999/api/getuserselectiondata', {
+            let response = await fetch('http://meipartners.xyz:20000/api/randquestions', {
                 method: 'GET',
                 headers: {
                     Accpet: 'application/json',
@@ -237,11 +237,12 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     top_container: {
-        height: 150,
+        height: height * 0.23,
+        backgroundColor: '#FD7777'
     },
     rectangle: {
         position: 'absolute',
-        top: 80,
+        top: height * 0.10,
         width: '80%',
         flexDirection: 'row',
         alignSelf: 'center',
@@ -250,7 +251,7 @@ const styles = StyleSheet.create({
     rectagleContent: {
         flex: 1,
         width: '80%',
-        height: 450,
+        height: height * 0.7,
         alignItems: 'center',
         backgroundColor: '#ffffff',
         borderColor: '#707070',
@@ -259,15 +260,24 @@ const styles = StyleSheet.create({
     },
     rectagleContentUpper: {
         flex: 1,
+        width: '100%',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
         padding: 20,
     },
     rectagleContentMiddle: {
+        width: '100%',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
         flex: 2,
     },
     rectangleContentDowner: {
         flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
+        width : '100%',
+        flexDirection: 'column',
+        justifyContent: 'center',
         alignItems: 'center',
     },
     contentBorder: {
@@ -275,8 +285,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#707070',
         borderRadius: 10,
-        width: 250,
-        height: 40,
+        width: width * 0.7,
+        height: height * 0.06,
         margin: 8,
         justifyContent: 'center'
     },
@@ -285,8 +295,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#707070',
         borderRadius: 10,
-        width: 250,
-        height: 40,
+        width: width * 0.7,
+        height: height * 0.06,
         margin: 8,
         justifyContent: 'center'
     },

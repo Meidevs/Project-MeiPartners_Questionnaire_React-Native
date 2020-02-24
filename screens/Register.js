@@ -9,6 +9,7 @@ import {
   Image,
   ImageBackground,
 } from 'react-native';
+const { width, height } = Dimensions.get('window');
 
 export default class Login extends React.Component {
 
@@ -16,11 +17,9 @@ export default class Login extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.top_container}>
-          <View style={styles.logo}>
-          </View>
         </View>
         <View style={styles.bottom_container}>
-          <View style={styles.bottomContent}>
+          <View style={styles.bottomContent_1}>
             <View style={styles.name}>
               <Text style={styles.nameTxt}>
                 이름
@@ -45,12 +44,13 @@ export default class Login extends React.Component {
                 </Text>
               <TextInput style={styles.passwordConfrimTxtInput} placeholderTextColor="#F57081" placeholder='********' onChangeText={(passwordConfirm) => this.setState({ passwordConfirm })} value={this.state.passwordConfirm} />
             </View>
+          </View>
+          <View style={styles.bottomContent_2}>
             <View style={styles.touchableStyle}>
               <TouchableOpacity style={styles.registerButton} onPress={this.register}>
-                <Text style={styles.loginTxt}>가입 완료</Text>
+                <Text style={styles.registerTxt}>가입 완료</Text>
               </TouchableOpacity>
             </View>
-
           </View>
         </View>
       </View>
@@ -64,7 +64,7 @@ export default class Login extends React.Component {
 
   register = async () => {
     try {
-      let response = await fetch('http://meipartners.xyz:9999/api/register', {
+      let response = await fetch('http://meipartners.xyz:20000/api/register', {
         method: 'POST',
         headers: {
           Accpet: 'application/json',
@@ -74,12 +74,11 @@ export default class Login extends React.Component {
         body: JSON.stringify({ user: this.state.phonenumber, name: this.state.name, password: this.state.password, passwordConfirm: this.state.passwordConfirm }),
       });
       let json = await response.json();
-      if (json == false) {
-        alert('아이디 & 비밀번호를 확인해주세요')
-      } else {
-        console.log('hi1')
-        if (response.ok) {
-        console.log('hi2')
+
+      if (response.ok) {
+        if (json.success == false) {
+          alert(json.msg);
+        } else {
           this.props.navigation.navigate('Main', {
             json,
           });
@@ -100,58 +99,26 @@ const styles = StyleSheet.create({
   top_container: {
     width: '100%',
     padding: 10,
-    flex: 1.5,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logo: {
-    // backgroundColor : 'black',
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logoStyle: {
-    margin: 10,
-    width: 224,
-    height: 90,
-    // resizeMode :'stretch',
-  },
-  logoTxt: {
-    margin: 15,
-  },
-  logoTxtStyle: {
-    width: 185,
-    height: 19,
+    flex: 1,
   },
   bottom_container: {
-    width: '80%',
+    width : '80%',
     flex: 5,
-    flexDirection: 'row',
-    justifyContent: 'center',
+    alignItems: 'center',
   },
-  bottomContent: {
+  bottomContent_1: {
+    flex: 3,
+    flexDirection: 'column',
     width: '90%',
     alignItems: 'center',
-
+    justifyContent: 'center'
   },
-  loginButton: {
-    margin: 10,
-    borderWidth: 1,
-    borderColor: '#ffffff',
-    borderRadius: 8,
-    width: 200,
-    height: 40,
+  bottomContent_2: {
+    flex: 1,
+    flexDirection: 'column',
+    width: '90%',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#ffffff'
-  },
-
-  loginTxt: {
-    fontSize: 24,
-    fontWeight: '400',
-    color: '#E0407A',
+    justifyContent: 'center'
   },
   name: {
     width: '100%',
@@ -177,7 +144,6 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontSize: 24,
     fontWeight: '400',
-
   },
   phonenumberTxtInput: {
     borderBottomWidth: 1,
@@ -217,15 +183,21 @@ const styles = StyleSheet.create({
     color: '#ffffff'
   },
   touchableStyle: {
-    top: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   registerButton: {
     margin: 10,
     borderRadius: 8,
-    width: 200,
-    height: 40,
+    width: width * 0.63,
+    height: height * 0.08,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#FFD5D5'
-  }
+  },
+  registerTxt: {
+    fontSize: 24,
+    fontWeight: '400',
+    color: '#E0407A',
+  },
 });
