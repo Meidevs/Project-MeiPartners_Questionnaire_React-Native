@@ -28,7 +28,7 @@
     },
     "android" : {
       "package" : "com.Meipartners.LovU",
-      "versionCode" : 2
+      "versionCode" : 3
     },
     "description": ""
   }

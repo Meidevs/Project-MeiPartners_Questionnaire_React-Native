@@ -61,7 +61,7 @@ export default class Recommendation extends React.Component {
         console.log('this.state.a',this.state.a)
         console.log('this.state.b',this.state.b)
         console.log('this.state.c',this.state.c)
-
+        
     }
 
     renderItem1 = data => {
