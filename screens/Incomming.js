@@ -32,7 +32,9 @@ export default class Incomming extends React.Component {
                     <Image source={require('../public/images/Incomming_1_flower.png')} style={styles.flowerImage} />
                 </View>
                 <View style={styles.middleContainer}>
-                    <Image source={require('../public/images/Incomming_1_girl.png')} style={styles.girlImage} />
+                    <View style={styles.imageBox}>
+                        <Image source={require('../public/images/Incomming_1_girl.png')} style={styles.girlImage} />
+                    </View>
                 </View>
                 <View style={styles.bottomContainer}>
                     <View style={styles.mainTxtContent}>
@@ -43,7 +45,7 @@ export default class Incomming extends React.Component {
                         <Text style={styles.subTxt}>나도 몰랐던 나의 피부를 알려드리겠습니다!</Text>
                     </View>
                     <View style={styles.buttonContent}>
-                        <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('Start')}>
+                        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Start')}>
                             <Text>다음</Text>
                         </TouchableOpacity>
                     </View>
@@ -69,18 +71,28 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'flex-end',
     },
+    imageBox: {
+        flex: 1,
+        width: width * 0.7,
+        height: width * 0.59,
+        flexDirection: 'column',
+        alignItems: 'flex-end',
+    },
     bottomContainer: {
         flex: 3,
         width: width,
     },
     flowerImage: {
-        width: width * 1,
+        flex: 1,
+        resizeMode: 'cover',
+        aspectRatio : 2,
         height: width * 0.496,
     },
     girlImage: {
+        flex: 1,
+        resizeMode: 'cover',
         marginRight: 10,
-        width: width * 0.7,
-        height: width * 0.59,
+        aspectRatio : 1.19,
     },
     mainTxtContent: {
         flex: 1,

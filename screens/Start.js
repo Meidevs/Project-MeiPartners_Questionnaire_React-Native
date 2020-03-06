@@ -27,24 +27,32 @@ export default class Incomming extends React.Component {
                     //allowing light, but not detailed shapes
                     networkActivityIndicatorVisible={true}
                 />
-
                 <View style={styles.topContainer}>
-                    <Image source={require('../public/images/Incomming_1_flower.png')} style={styles.flowerImage} />
+                    <View style={styles.mainTxtContent}>
+                        <Text style={styles.mainTxt}>본인의 피부타입,제대로 알고 계신가요?</Text>
+                        <Text>
+
+                        </Text>
+                        <Text style={styles.mainTxt}>지성? 건성? 복합성? 어떤 피부타입인지</Text>
+                        <Text style={styles.mainTxt}>애매모호하진 않으신가요?</Text>
+                        <Text>
+
+                        </Text>
+                        <Text style={styles.mainTxt}>아주 간단한 테스트를 통해 당신의 피부를</Text>
+                        <Text style={styles.mainTxt}>알아보고 피부에 맞는 맞춤형 솔루션도</Text>
+                        <Text style={styles.mainTxt}>알려드리도록 할게요</Text>
+                    </View>
                 </View>
                 <View style={styles.middleContainer}>
-                    <Image source={require('../public/images/Incomming_1_girl.png')} style={styles.girlImage} />
+                    <Image source={require('../public/images/Start_1_Riding.png')} style={styles.ridingImage} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <View style={styles.mainTxtContent}>
-                        <Text style={styles.mainTxt}>소중한 피부, 당신만의 솔루션으로</Text>
-                        <Text style={styles.mainTxt}>소중하게 관리해주세요</Text>
-                    </View>
-                    <View style={styles.subTxtContent}>
-                        <Text style={styles.subTxt}>나도 몰랐던 나의 피부를 알려드리겠습니다!</Text>
+                    <View style={styles.startingTxtContent}>
+                        <Text style={styles.startingTxt}>자, 그럼 이제 시작해볼까요?</Text>
                     </View>
                     <View style={styles.buttonContent}>
-                        <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('Start')}>
-                            <Text>다음</Text>
+                        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Main')}>
+                            <Text style={{color : '#ffffff'}}>다음</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -57,48 +65,49 @@ const styles = StyleSheet.create({
     container: {
         marginTop: StatusBar.currentHeight,
         flex: 1,
-        backgroundColor: '#E6B8B8',
+        backgroundColor: '#FAF3E3',
     },
     topContainer: {
-        flex: 3,
+        flex: 1,
         width: width,
     },
     middleContainer: {
-        flex: 3,
+        flex: 1,
         width: width,
-        flexDirection: 'column',
-        alignItems: 'flex-end',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     bottomContainer: {
-        flex: 3,
+        flex: 0.75,
         width: width,
     },
-    flowerImage: {
-        width: width * 1,
-        height: width * 0.496,
-    },
-    girlImage: {
-        marginRight: 10,
-        width: width * 0.7,
-        height: width * 0.59,
+    ridingImage: {
+        flex: 1,
+        resizeMode: 'cover',
+        aspectRatio: 1.62,
     },
     mainTxtContent: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-end',
         alignItems: 'center',
     },
     mainTxt: {
-        color: '#025158',
+        color: '#725B31',
         fontSize: 20,
         fontWeight: '900',
     },
-    subTxtContent: {
+    startingTxtContent: {
         flex: 1,
         marginTop: 15,
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
+    },
+    startingTxt : {
+        color : "#E86479",
+        fontSize : 20,
+        fontWeight : '900',
     },
     buttonContent: {
         flex: 2,
@@ -106,11 +115,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
-    subTxt: {
-        color: '#ffffff',
-    },
     button: {
-        backgroundColor: '#ffffff',
+        backgroundColor: '#FEE543',
         width: width * 0.4,
         height: 30,
         flexDirection: 'column',
