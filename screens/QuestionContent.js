@@ -192,7 +192,7 @@ export default class QuestionContent extends React.Component {
 
             let json = await response.json();
             console.log('json', json);
-            this.props.navigation.navigate('Recommendation', {
+            this.props.navigation.navigate('Waiting', {
                 json
             })
         } catch (err) {

@@ -18,7 +18,6 @@ export default class Recommendation extends React.Component {
         this.state = {
             items: preData,
         }
-        console.log('this.state.items', this.state.items)
         //피부 타입 중 랜덤 선별=>
         var aNum = this.state.items.length;
         var rNum = Math.floor(Math.random() * aNum);
@@ -43,15 +42,11 @@ export default class Recommendation extends React.Component {
             }
             return false;
         }
-
-        console.log('randArray',randArray);
-
         rawArray = [];
         rawArray.push(this.state.items[rNum].items[randArray[0]]);
         rawArray.push(this.state.items[rNum].items[randArray[1]]);
         rawArray.push(this.state.items[rNum].items[randArray[2]]);
 
-        console.log('rawArray', rawArray);
         var aArray = [];
         var bArray = [];
         var cArray = [];
@@ -63,6 +58,9 @@ export default class Recommendation extends React.Component {
         this.state.a = aArray;
         this.state.b = bArray;
         this.state.c = cArray;
+        console.log('this.state.a',this.state.a)
+        console.log('this.state.b',this.state.b)
+        console.log('this.state.c',this.state.c)
 
     }
 
@@ -149,8 +147,13 @@ export default class Recommendation extends React.Component {
                                 data={this.state.c}
                                 ItemSeparatorComponent={this.FlatListItemSeparator}
                                 renderItem={item => this.renderItem3(item)}
-                                keyExtractor={item => item.id}
+                                keyExtractor={item => item.item}
                             />
+                        </View>
+                    </View>
+                    <View style={styles.sliderContent}>
+                        <View>
+                            <Text>hi</Text>
                         </View>
                     </View>
                 </Swiper>
