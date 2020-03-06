@@ -2,10 +2,10 @@ import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import LoginScreen from './screens/Login.js';
-import RegisterScreen from './screens/Register.js';
 import QuestionContentScreen from './screens/QuestionContent.js';
 import RecommendationScreen from './screens/recommendation.js';
+import IncommingScreen from './screens/Incomming.js';
+import StartScreen from './screens/Start.js';
 
 const QuestionStack = createStackNavigator(
   {
@@ -42,11 +42,11 @@ const QuestionStack = createStackNavigator(
 
 const RootStack = createStackNavigator(
   {
-    Login: {
-      screen: LoginScreen,
+    Incomming: {
+      screen: IncommingScreen,
     },
-    Register: {
-      screen: RegisterScreen,
+    Start: {
+      screen: StartScreen,
     },
     Main: {
       screen: QuestionStack
