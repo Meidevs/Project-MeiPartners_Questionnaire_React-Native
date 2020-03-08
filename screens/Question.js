@@ -37,21 +37,7 @@ export default class Question extends React.Component {
         var data = this.state.itemCategories;
         data[index].isSelected = !data[index].isSelected;
         data[index].selection = data[index].isSelected ? styles.itemCategoriesTxtPress : styles.itemCategoriesTxt;
-        // if(data[index].isSelected == true) {
-        //     this.codeArray.push(data[index].code, data[index].name)
-        // }
-        // for (i = 0; i < index; i++) {
-        //     if (data[i].isSelected == true) {
-        //         data[i].isSelected = !data[i].isSelected;
-        //         data[i].selection = data[i].isSelected ? styles.itemCategoriesTxtPress : styles.itemCategoriesTxt;
-        //     }
-        // }
-        // for (i = index + 1; i < data.length; i++) {
-        //     if (data[i].isSelected == true) {
-        //         data[i].isSelected = !data[i].isSelected;
-        //         data[i].selection = data[i].isSelected ? styles.itemCategoriesTxtPress : styles.itemCategoriesTxt;
-        //     }
-        // }
+        
         this.setState({
             itemCategories: data,
         });

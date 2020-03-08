@@ -14,7 +14,8 @@ export default class Recommendation extends React.Component {
 
     constructor(props) {
         super(props)
-        var preData = this.props.navigation.state.params.json;
+        var preData = this.props.navigation.state.params.data;
+        console.log(preData)
         this.state = {
             items: preData,
         }

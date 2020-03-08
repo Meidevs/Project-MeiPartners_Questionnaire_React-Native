@@ -16,9 +16,10 @@ export default class Incomming extends React.Component {
 
     constructor(props) {
         super(props);
+        console.log(this.props.navigation.state.params)
         this.state = {
             timer: 3,
-            json: this.props.navigation.state.params.json
+            data: this.props.navigation.state.params.data
         }
     }
 
@@ -34,7 +35,7 @@ export default class Incomming extends React.Component {
 
             if (timer === 0) {
                 clearInterval(this.interval)
-                this.props.navigation.navigate('Recommendation', this.state)
+                this.props.navigation.navigate('Recommendation', this.state.data)
             }
         }, 1000)
     }
