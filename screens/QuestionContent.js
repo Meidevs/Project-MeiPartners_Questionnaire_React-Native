@@ -15,6 +15,7 @@ export default class QuestionContent extends React.Component {
 
     constructor(props) {
         super(props)
+        console.log('this.props', this.props)
         this.props.navigation.setParams({ increaseCount: 1 });
         this.state = {
             code1: 0,

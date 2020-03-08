@@ -2,28 +2,16 @@ import React from 'react';
 import {
     View,
     Text,
-    TextInput,
     TouchableOpacity,
     StyleSheet,
-    Image,
     SafeAreaView,
     ScrollView,
+    Dimensions,
 } from 'react-native';
-import { render } from 'react-dom';
-
-class CategoriesInfo extends React.Component {
-    render() {
-        return (
-            <TouchableOpacity style={styles.categoryItem}>
-                <Text style={this.props.categories.selection}>
-                    {this.props.categories.name}
-                </Text>
-            </TouchableOpacity>
-        )
-    }
-}
+const { width, height } = Dimensions.get('window');
 
 export default class Question extends React.Component {
+    
     constructor(props) {
         super(props)
         this.state = {
@@ -46,13 +34,12 @@ export default class Question extends React.Component {
     }
 
     categoryItemPress = (index) => {
-        console.log(index)
-        var i;
         var data = this.state.itemCategories;
         data[index].isSelected = !data[index].isSelected;
         data[index].selection = data[index].isSelected ? styles.itemCategoriesTxtPress : styles.itemCategoriesTxt;
-        this.setState({ categoryItemsd: data[index].name });
-        this.setState({ code: data[index].code });
+        // if(data[index].isSelected == true) {
+        //     this.codeArray.push(data[index].code, data[index].name)
+        // }
         // for (i = 0; i < index; i++) {
         //     if (data[i].isSelected == true) {
         //         data[i].isSelected = !data[i].isSelected;
@@ -66,15 +53,25 @@ export default class Question extends React.Component {
         //     }
         // }
         this.setState({
-            categoryItems: data,
+            itemCategories: data,
         });
+    }
+
+    nextQuestion = data => {
+        var codeArray = new Array();
+        data.map((data, i) => {
+            if(data.isSelected == true) {
+                codeArray.push(data.code)
+            }
+        })
+        this.props.navigation.navigate('QuestionContent', {codes : codeArray});
     }
 
     render() {
         const mapToCategories = data => {
             return data.map((data, i) => {
                 return (
-                <TouchableOpacity key={i} onPress={() => this.categoryItemPress(i)}>
+                <TouchableOpacity style={styles.categoryItems} key={i} onPress={() => this.categoryItemPress(i)}>
                     <Text style={data.selection}>
                         {data.name}
                     </Text>
@@ -87,18 +84,20 @@ export default class Question extends React.Component {
                     <View style={styles.topContainer}>
                         <View style={styles.category}>
                             <Text style={styles.txt}>
-                                관심 카테고리
+                                관심 제품 카테고리
                             </Text>
                         </View>
                         <View style={styles.subCategory}>
-                            <Text style={{ color: 'red', fontSize: 12 }}>*<Text style={{ color: 'black' }}>집중 관리하고 싶은 피부케어를 선택해주세요.</Text></Text>
+                            <Text style={{ color: 'red', fontSize: 12 }}>*<Text style={{ color: 'black' }}>관심있는 피부 케어 제품을 선택해주세요.</Text></Text>
                         </View>
-                        <View style={styles.categoryImage}>
+                        <View style={styles.categoryList}>
                             {mapToCategories(this.state.itemCategories)}
                         </View>
                     </View>
                     <View style={styles.bottom_container}>
-
+                        <TouchableOpacity onPress={()=>this.nextQuestion(this.state.itemCategories)}>
+                            <Text>다음</Text>
+                        </TouchableOpacity>
                     </View>
                 </ScrollView>
             </SafeAreaView>
@@ -113,6 +112,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#C0C0C0',
     },
     topContainer: {
+        width : width,
         backgroundColor: '#ffffff',
         marginBottom: 5,
     },
@@ -132,14 +132,13 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         paddingBottom: 20
     },
-    categoryImage: {
-        flexDirection: 'row',
+    categoryList: {
+        flexDirection: 'column',
         justifyContent: 'space-between',
     },
-    categoryItem: {
+    categoryItems: {
         padding: 10,
-        width: '20%',
-        height: null,
+        width: '30%',
     },
     itemCategoriesTxt: {
         textAlign: 'center',
