@@ -8,7 +8,6 @@ import {
     FlatList,
 } from 'react-native'
 import Swiper from 'react-native-swiper'
-import { onFrameDidUpdate } from 'expo/build/AR'
 const { width } = Dimensions.get('window')
 
 export default class Recommendation extends React.Component {
@@ -17,8 +16,9 @@ export default class Recommendation extends React.Component {
         super(props)
         var cateData = this.props.navigation.state.params.itemCate;
         var preData = this.props.navigation.state.params.skinCode;
+        console.log(preData)
         this.state = {
-            skins: preData,
+            items: preData,
             cates : cateData,
             descriptions: [
                 {
@@ -137,7 +137,7 @@ export default class Recommendation extends React.Component {
                             cate : 'code7', item: 'R 크림', manual: '순도 99% 이상의 카퍼트라이펩타이드-1과 아세틸헥사펩타이드-8이 함유된 기능성 크림입니다. 강력한 이중 보습 성분들과 식약처에서 인증받은 주름개선기능성 성분인 아데노신이 함유되어있고, 부드러운 발림성으로 피부에 영양과 수분을 빠르게 공급하여 피부 속부터 채워지는 깊은 보습감과 탄력감을 느낄 수 있습니다. 일회용 포장제품은 위생적으로 사용할 수 있으며, 샘플용으로 활용하기에 매우 용이합니다.', submanual: '적당량을 덜어 얼굴 전체에 충분히 펴 발라 충분히 흡수시켜 줍니다.'
                         },
                         {
-                            cate : 'code11', item: '화산재 크림', manual: '미네랄이 풍부한 화산재 크림은 화산재 특유의 미세하고 고운 입자와 우수한 흡착력으로 모공 속 노폐물을 부드럽게 제거해주고 동시에 탄력있는 피부로 가꿔줍니다.', submanual: '세안 후 물기를 제거하고 모공관리가 필요한 부위에 적당량을 덜어 골고루 펴 발라줍니다. 10~15분 후 미온수로 세안하여 깨끗하게 씻어냅니다.'
+                            cate : 'code111', item: '화산재 크림', manual: '미네랄이 풍부한 화산재 크림은 화산재 특유의 미세하고 고운 입자와 우수한 흡착력으로 모공 속 노폐물을 부드럽게 제거해주고 동시에 탄력있는 피부로 가꿔줍니다.', submanual: '세안 후 물기를 제거하고 모공관리가 필요한 부위에 적당량을 덜어 골고루 펴 발라줍니다. 10~15분 후 미온수로 세안하여 깨끗하게 씻어냅니다.'
                         },
                         {
                             cate : 'code12', item: '펩타이드 이지에프 마스크', manual: '부드러운 텍스쳐타입의 제형으로 상피세포성장인자가 함유되어 있어 손상된 피부를 케어하고 칙칙하고 생기없는 각질층에 유·수분을 공급함으로서 유연하고 투명감있는 피부로 가꾸어줍니다.', submanual: null
@@ -148,83 +148,94 @@ export default class Recommendation extends React.Component {
                 }
             ]
         }
+        //피부 타입 중 랜덤 선별
+        var aNum = this.state.items.length;
+        var rNum = Math.floor(Math.random() * aNum);
 
-        console.log('this.state', this.state.skins)
-        //Item Matches
-        var rawArray = [];
-        for(var x = 0; x < this.state.skins.length; x++) {
-            for (var y = 0; y < this.state.descriptions.length; y++) {
-                if(this.state.skins[x] == this.state.descriptions[y].skinCode) {
-                    rawArray.push(this.state.descriptions[y].items)
-                }
+        //랜덤 상품 선별 난수 생성
+        var randArray = [];
+        var aContentNum = this.state.items[rNum].items.length;
+        let i = 0;
+        while (i < 6) {
+            let n = Math.floor(Math.random() * aContentNum);
+            if(!sameNum(n)) {
+                randArray.push(n);
+                i++;
             }
         }
 
-        var exArray = [];
-        this.state.cates.map((data) => {
-            for (var x = 0; x < rawArray.length; x++) {
-                for (var y = 0; y < rawArray[x].length; y++) {
-                    if (data == rawArray[x][y].cate) {
-                        exArray.push(rawArray[x][y])
-                    }
+        function sameNum(n) {
+            for (var i = 0; i < randArray.length; i++ ){
+                if( n === randArray[i]) {
+                    return true;
                 }
             }
-        })
-        console.log('rawArray', rawArray)
+            return false;
+        }
+        rawArray = [];
+        rawArray.push(this.state.items[rNum].items[randArray[0]]);
+        rawArray.push(this.state.items[rNum].items[randArray[1]]);
+        rawArray.push(this.state.items[rNum].items[randArray[2]]);
+
+        var aArray = [];
+        var bArray = [];
+        var cArray = [];
+
+        aArray.push(rawArray[0]);
+        bArray.push(rawArray[1]);
+        cArray.push(rawArray[2]);
+
+        this.state.a = aArray;
+        this.state.b = bArray;
+        this.state.c = cArray;
+        console.log('this.state.a',this.state.a)
+        console.log('this.state.b',this.state.b)
+        console.log('this.state.c',this.state.c)
+        
     }
 
-    // renderItem1 = data => {
-    //     return (
-    //         <View style={styles.txtDesign}>
-    //             <View styles={styles.txtDesignContent}>
-    //                 <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#222222' }}>{data.item.manual}</Text>
-    //             </View>
-    //             <View styles={styles.txtDesignContent}>
-    //                 <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#FFFAFC' }}>{data.item.submanual}</Text>
-    //             </View>
-    //         </View>
-    //     )
-    // }
+    renderItem1 = data => {
+        return (
+            <View style={styles.txtDesign}>
+                <View styles={styles.txtDesignContent}>
+                    <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#222222' }}>{data.item.manual}</Text>
+                </View>
+                <View styles={styles.txtDesignContent}>
+                    <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#FFFAFC' }}>{data.item.submanual}</Text>
+                </View>
+            </View>
+        )
+    }
 
-    // renderItem2 = data => {
-    //     return (
-    //         <View style={styles.txtDesign}>
-    //             <View styles={styles.txtDesignContent}>
-    //                 <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#222222' }}>{data.item.manual}</Text>
-    //             </View>
-    //             <View styles={styles.txtDesignContent}>
-    //                 <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#FFFAFC' }}>{data.item.submanual}</Text>
-    //             </View>
-    //         </View>
-    //     )
-    // }
-    // renderItem3 = data => {
-    //     return (
-    //         <View style={styles.txtDesign}>
-    //             <View styles={styles.txtDesignContent}>
-    //                 <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#222222' }}>{data.item.manual}</Text>
-    //             </View>
-    //             <View styles={styles.txtDesignContent}>
-    //                 <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#FFFAFC' }}>{data.item.submanual}</Text>
-    //             </View>
-    //         </View>
-    //     )
-    // }
+    renderItem2 = data => {
+        return (
+            <View style={styles.txtDesign}>
+                <View styles={styles.txtDesignContent}>
+                    <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#222222' }}>{data.item.manual}</Text>
+                </View>
+                <View styles={styles.txtDesignContent}>
+                    <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#FFFAFC' }}>{data.item.submanual}</Text>
+                </View>
+            </View>
+        )
+    }
+    renderItem3 = data => {
+        return (
+            <View style={styles.txtDesign}>
+                <View styles={styles.txtDesignContent}>
+                    <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#222222' }}>{data.item.manual}</Text>
+                </View>
+                <View styles={styles.txtDesignContent}>
+                    <Text style={{ fontSize: 20, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#FFFAFC' }}>{data.item.submanual}</Text>
+                </View>
+            </View>
+        )
+    }
 
     render() {
-        // const mapToExplanation = data => {
-        //     return data.map((data, i) => {
-        //         return (
-        //         <TouchableOpacity style={styles.categoryItems} key={i} onPress={() => this.categoryItemPress(i)}>
-        //             <Text style={data.selection}>
-        //                 {data.name}
-        //             </Text>
-        //         </TouchableOpacity>)
-        //     })
-        // }
         return (
             <View style={styles.container}>
-                {/* <Swiper style={styles.wrapper} vertical={false} showsPagination={false} buttonWrapperStyle={{ backgroundColor: 'transparent', flexDirection: 'row', position: 'absolute', top: -80, left: 0, flex: 1, paddingHorizontal: 10, paddingVertical: 10, justifyContent: 'space-between', alignItems: 'center' }} showsButtons>
+                <Swiper style={styles.wrapper} vertical={false} showsPagination={false} buttonWrapperStyle={{ backgroundColor: 'transparent', flexDirection: 'row', position: 'absolute', top: -80, left: 0, flex: 1, paddingHorizontal: 10, paddingVertical: 10, justifyContent: 'space-between', alignItems: 'center' }} showsButtons>
                     <View style={styles.sliderContent}>
                         <View style={styles.sliderTop}>
                             <View style={styles.sliderImage}>
@@ -240,13 +251,42 @@ export default class Recommendation extends React.Component {
                             />
                         </View>
                     </View>
-                    {mapToExplanation(this.state.contents)}
+                    <View style={styles.sliderContent}>
+                        <View style={styles.sliderTop}>
+                            <View style={styles.sliderImage}>
+                                <Text style={styles.text}>{this.state.b[0].item}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.sliderBottom}>
+                            <FlatList
+                                data={this.state.b}
+                                ItemSeparatorComponent={this.FlatListItemSeparator}
+                                renderItem={item => this.renderItem2(item)}
+                                keyExtractor={item => item.id}
+                            />
+                        </View>
+                    </View>
+                    <View style={styles.sliderContent}>
+                        <View style={styles.sliderTop}>
+                            <View style={styles.sliderImage}>
+                                <Text style={styles.text}>{this.state.c[0].item}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.sliderBottom}>
+                            <FlatList
+                                data={this.state.c}
+                                ItemSeparatorComponent={this.FlatListItemSeparator}
+                                renderItem={item => this.renderItem3(item)}
+                                keyExtractor={item => item.item}
+                            />
+                        </View>
+                    </View>
                     <View style={styles.sliderContent}>
                         <View>
                             <Text>hi</Text>
                         </View>
                     </View>
-                </Swiper> */}
+                </Swiper>
             </View>
         )
     }
