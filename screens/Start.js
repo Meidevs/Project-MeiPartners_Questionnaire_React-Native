@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     },
     mainTxt: {
         color: '#725B31',
-        fontSize: 20,
+        fontSize: width * 0.05,
         fontWeight: '900',
     },
     startingTxtContent: {
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     },
     startingTxt : {
         color : "#E86479",
-        fontSize : 20,
+        fontSize: width * 0.05,
         fontWeight : '900',
     },
     buttonContent: {

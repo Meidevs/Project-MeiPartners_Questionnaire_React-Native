@@ -13,17 +13,20 @@ const RecommendationStack = createStackNavigator(
   {
     Recommendation: {
       screen: RecommendationScreen,
-      navigationOptions: {
-        headerTitleAlign: 'center',
-        title: '추천 제품',
-        headerStyle: {
-          backgroundColor: '#FCE2E5',
-        },
-        headerTitleStyle: {
-          fontWeight: '400',
-        }
-      }
+      // navigationOptions: {
+      //   headerTitleAlign: 'center',
+      //   title: '추천 제품',
+      //   headerStyle: {
+      //     backgroundColor: '#FCE2E5',
+      //   },
+      //   headerTitleStyle: {
+      //     fontWeight: '400',
+      //   }
+      // }
     }
+  },
+  {
+    headerMode: 'none'
   }
 )
 
@@ -58,7 +61,7 @@ const QuestionStack = createStackNavigator(
         }
       }
     },
-    QuestionContent : {
+    QuestionContent: {
       screen: QuestionContentScreen,
       navigationOptions: {
         title: '설문지',

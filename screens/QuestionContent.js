@@ -8,8 +8,9 @@ import {
     FlatList,
     Dimensions,
 } from 'react-native';
-const { width, height } = Dimensions.get('window');
 import { ProgressBar, Colors } from 'react-native-paper';
+
+const { width, height } = Dimensions.get('window');
 
 export default class QuestionContent extends React.Component {
 
@@ -303,9 +304,7 @@ export default class QuestionContent extends React.Component {
                 returnArray.push(data.skinCode[i].code)
             }
         }
-        console.log('-------------------------------------')
-        console.log(this.state.itemCate)
-        console.log(returnArray)
+
         this.props.navigation.navigate('Loading', {
             data : {
                 itemCate : this.state.itemCate,

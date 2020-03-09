@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     },
     mainTxt: {
         color: '#025158',
-        fontSize: 20,
+        fontSize: width * 0.05,
         fontWeight: '900',
     },
     subTxtContent: {

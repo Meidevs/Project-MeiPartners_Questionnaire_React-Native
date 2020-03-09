@@ -9,14 +9,13 @@ import {
     Image,
     StatusBar
 } from 'react-native';
-import { ProgressBar } from 'react-native-paper';
+import { ProgressBar, Colors } from 'react-native-paper';
 const { width, height } = Dimensions.get('window');
 
 export default class Incomming extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(this.props.navigation.state.params)
         this.state = {
             timer: 3,
             data: this.props.navigation.state.params.data
@@ -26,7 +25,6 @@ export default class Incomming extends React.Component {
     componentDidMount() {
         this.interval = setInterval(() => {
             const { timer } = this.state
-            console.log(timer)
             if (timer > 0) {
                 this.setState(({ timer }) => ({
                     timer: timer - 1
@@ -66,7 +64,9 @@ export default class Incomming extends React.Component {
                         <Image source={require('../public/images/moving_image.png')} style={styles.movingImage} />
                     </View>
                     <View style={styles.secondContent}>
-
+                        <View>
+                            <ProgressBar progress={(3 - this.state.timer) / 3} color={Colors.pink600} style={{ height: 12, borderWidth: 0.5, borderColor: '#707070', borderRadius: 10 }} />
+                        </View>
                     </View>
                     <View style={styles.thirdContent}>
 
