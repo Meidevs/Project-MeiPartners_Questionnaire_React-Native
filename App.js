@@ -3,7 +3,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import QuestionContentScreen from './screens/QuestionContent.js';
-import RecommendationScreen from './screens/recommendation.js';
+import RecommendationScreen from './screens/Recommendation.js';
 import IncommingScreen from './screens/Incomming.js';
 import StartScreen from './screens/Start.js';
 import LoadingScreen from './screens/Loading.js';
