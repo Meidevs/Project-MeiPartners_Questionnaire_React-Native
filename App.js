@@ -9,34 +9,34 @@ import StartScreen from './screens/Start.js';
 import LoadingScreen from './screens/Loading.js';
 import QuestionScreen from './screens/Question.js';
 
-const RecommendationStack = createStackNavigator(
-  {
-    Recommendation: {
-      screen: RecommendationScreen,
-      // navigationOptions: {
-      //   headerTitleAlign: 'center',
-      //   title: '추천 제품',
-      //   headerStyle: {
-      //     backgroundColor: '#FCE2E5',
-      //   },
-      //   headerTitleStyle: {
-      //     fontWeight: '400',
-      //   }
-      // }
-    }
-  },
-  {
-    headerMode: 'none'
-  }
-)
+// const RecommendationStack = createStackNavigator(
+//   {
+//     Recommendation: {
+//       screen: RecommendationScreen,
+//       // navigationOptions: {
+//       //   headerTitleAlign: 'center',
+//       //   title: '추천 제품',
+//       //   headerStyle: {
+//       //     backgroundColor: '#FCE2E5',
+//       //   },
+//       //   headerTitleStyle: {
+//       //     fontWeight: '400',
+//       //   }
+//       // }
+//     }
+//   },
+//   {
+//     headerMode: 'none'
+//   }
+// )
 
 const WaitingStack = createStackNavigator(
   {
     Waiting: {
       screen: LoadingScreen,
     },
-    Recommendations: {
-      screen: RecommendationStack,
+    Recommendation: {
+      screen: RecommendationScreen,
     },
   },
   {

@@ -26,9 +26,9 @@
     "ios": {
       "supportsTablet": true
     },
-    "android" : {
-      "package" : "com.Meipartners.LovU",
-      "versionCode" : 3
+    "android": {
+      "package": "com.Meipartners.LovU",
+      "versionCode": 3
     },
     "description": ""
   }

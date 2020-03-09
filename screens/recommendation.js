@@ -172,8 +172,6 @@ export default class Recommendation extends React.Component {
                 }
             }
         }
-
-
         var exArray = [];
         this.state.cates.map((data) => {
             for (var x = 0; x < rawArray.length; x++) {

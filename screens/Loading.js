@@ -64,7 +64,7 @@ export default class Incomming extends React.Component {
                         <Image source={require('../public/images/moving_image.png')} style={styles.movingImage} />
                     </View>
                     <View style={styles.secondContent}>
-                        <View>
+                        <View style={styles.progressBar}>
                             <ProgressBar progress={(3 - this.state.timer) / 3} color={Colors.pink600} style={{ height: 12, borderWidth: 0.5, borderColor: '#707070', borderRadius: 10 }} />
                         </View>
                     </View>
@@ -97,16 +97,23 @@ const styles = StyleSheet.create({
     middleContainer: {
         flex: 1,
         width: width,
-        flexDirection: 'column'
+        flexDirection: 'column',
+        justifyContent : 'center',
+        alignItems : 'center'
     },
     firstContent: {
         flex: 2,
         justifyContent: 'center',
-        alignItems: 'center'
     },
     secondContent: {
         flex: 1,
-
+        width: width * 0.7,
+        justifyContent: 'center',
+    },
+    progressBar: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
     },
     bottomContainer: {
         flex: 1,
