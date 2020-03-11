@@ -9,6 +9,7 @@ import {
     Image,
     ImageBackground,
 } from 'react-native'
+import * as Font from 'expo-font';
 import Swiper from 'react-native-swiper'
 
 const { width, height } = Dimensions.get('window');
@@ -27,7 +28,26 @@ class CustomHeader extends React.Component {
 }
 
 export default class Recommendation extends React.Component {
+    state = {
+        fontLoaded: false,
+    }
+    async componentDidMount() {
+        await Font.loadAsync({
+            'NanumSquareRoundEB': require('../assets/fonts/NanumSquareRoundEB.ttf'),
+            'NanumSquareRoundB': require('../assets/fonts/NanumSquareRoundB.ttf'),
+            'NanumSquareRoundR': require('../assets/fonts/NanumSquareRoundR.ttf'),
+            'NanumSquareRoundL': require('../assets/fonts/NanumSquareRoundL.ttf'),
+            // 'NotosanscjkkrBl': require('../assets/fonts/NOTOSANSCJKKR-BLACK.OTF'),
+            // 'NotosanscjkkrB': require('../assets/fonts/NOTOSANSCJKKR-BOLD.OTF'),
+            // 'NotosanscjkkrL': require('../assets/fonts/NOTOSANSCJKKR-LIGHT.OTF'),
+            // 'NotosanscjkkrM': require('../assets/fonts/NOTOSANSCJKKR-MEDIUM.OTF'),
+            // 'NotosanscjkkrR': require('../assets/fonts/NOTOSANSCJKKR-REGULAR_0.OTF'),
+            // 'NotosanscjkkrT': require('../assets/fonts/NOTOSANSCJKKR-THIN.OTF'),
 
+        })
+
+        this.setState({ fontLoaded: true })
+    }
     constructor(props) {
         super(props)
         var cateData = this.props.navigation.state.params.itemCate;
@@ -195,13 +215,13 @@ export default class Recommendation extends React.Component {
 
     renderItem = data => {
         return (
+
             <View style={styles.txtDesign}>
-                <View styles={styles.txtDesignContent}>
-                    <Text style={{ fontSize: width * 0.05, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#222222' }}>{data.item.manual}</Text>
+                <Text style={styles.manualTxt}>{data.item.manual}</Text>
+                <View style={styles.manualBorder}>
+                    <Text style={styles.manualBorderTxt}>SOLUTION</Text>
                 </View>
-                <View styles={styles.txtDesignContent}>
-                    <Text style={{ fontSize: width * 0.05, fontWeight: '400', textAlign: 'left', lineHeight: 30, color: '#FFFAFC' }}>{data.item.submanual}</Text>
-                </View>
+                <Text style={styles.submanualTxt}>{data.item.submanual}</Text>
             </View>
         )
     }
@@ -217,44 +237,78 @@ export default class Recommendation extends React.Component {
                                 <View style={styles.sliderTop}>
                                     <View style={styles.sliderImage}>
                                         <View style={styles.itemImages}>
-                                            <Image source={data.uri} style={{flex : 1, aspectRatio : 1.2, resizeMode :'contain'}}/>
+                                            <Image source={data.uri} style={{ flex: 1, aspectRatio: 1.2, resizeMode: 'contain' }} />
                                         </View>
-                                        <Text style={styles.text}>{data.item}</Text>
                                     </View>
                                 </View>
                                 <View style={styles.sliderBottom}>
-                                    <FlatList
-                                        data={[data]}
-                                        renderItem={item => this.renderItem(item)}
-                                        keyExtractor={item => item.cate}
-                                    />
+                                    <View style={styles.sliderName}>
+                                        <View style={styles.members}>
+                                            <Text style={styles.mb}>멤버십 </Text><Text style={styles.dc}>10%</Text>
+                                        </View>
+
+                                        <Text style={styles.text}>{data.item}</Text>
+                                    </View>
+                                    <View style={{ borderWidth: 0.8, borderColor: '#BFBFBF', width: width * 0.9, alignSelf: 'center' }} />
+                                    <View>
+                                        <FlatList
+                                            data={[data]}
+                                            renderItem={item => this.renderItem(item)}
+                                            keyExtractor={item => item.cate}
+                                        />
+                                    </View>
                                 </View>
                             </View>
                         )
                     } else {
                         return (
-                            // <ImageBackground source={require('../public/images/lpback.png')} style={{ backgroundColor: '#E4F2F7', flex: 1, aspectRatio: 0.818, resizeMode: 'cover' }}>
-                                <View style={styles.topContainer_LP}>
-                                    <View style={styles.upperContainer_LP}>
-                                        <Text style={styles.LastTxt}>현재 당신의 피부는 어떠한가요?</Text>
-                                        <Text></Text>
-                                        <Text style={styles.LastTxt}>당신만의 솔루션을 통해 변화되어가는</Text>
-                                        <Text style={styles.LastTxt}>당신의 피부가 궁금하지 않나요?</Text>
-                                        <Text></Text>
-                                        <Text style={styles.LastTxt}>새롭게 만들어질 뷰티앱 LOV.U가</Text>
-                                        <Text style={styles.LastTxt}>더 많은 솔루션들과 더 상세한 컨텐츠들로</Text>
-                                        <Text style={styles.LastTxt}>당신의 피부를 함께 관리해드리겠습니다.</Text>
-                                        <Text></Text>
-                                        <Text style={styles.LastTxt}>뷰티앱 LOV.U를 기다려주세요!</Text>
+                            <View style={styles.container}>
+                                <StatusBar
+                                    barStyle="dark-content"
+                                    // dark-content, light-content and default
+                                    hidden={false}
+                                    //To hide statusBar
+                                    backgroundColor="#00BCD4"
+                                    //Background color of statusBar
+                                    translucent={false}
+                                    //allowing light, but not detailed shapes
+                                    networkActivityIndicatorVisible={true}
+                                />
 
-                                    </View>
-                                    <View style={styles.downerContainer_LP}>
-                                        <View style={styles.girlImageBox}>
-                                            {/* <Image source={require('../public/images/lpgirl.png')} style={{ flex: 1, resizeMode: 'cover', aspectRatio: 0.856 }} /> */}
-                                        </View>
+                                <View style={styles.topContainer}>
+                                    <Image source={require('../public/images/lovu_icon.png')} style={styles.icon} />
+                                </View>
+                                <View style={styles.middleContainer}>
+                                    <View style={styles.imageBox}>
+                                        <Image source={require('../public/images/pop3_BG.png')} style={styles.pop1_BG} />
                                     </View>
                                 </View>
-                            // </ImageBackground>
+                                <View style={styles.bottomContainer}>
+                                    {
+                                        this.state.fontLoaded ? (
+                                            <View style={styles.txtContent}>
+                                                <Text style={styles.mainTxt}>LOV.U를 기다려 주세요!</Text>
+                                                <Text style={styles.subTxt}>당신만의 솔루션을 통해 변화되어가는</Text>
+                                                <Text style={styles.subTxt}>당신의 피부가 궁금하지 않나요?</Text>
+                                                <Text></Text>
+                                                <Text style={styles.subTxt}>새롭게 만들어질 뷰티앱 LOV.U가</Text>
+                                                <Text style={styles.subTxt}>더 많은 솔루션들과 더 상세한 컨텐츠들로</Text>
+                                                <Text style={styles.subTxt}>당신의 피부를 함께 관리해드리겠습니다.</Text>
+                                            </View>
+                                        ) : (
+                                                <View style={styles.txtContent}>
+                                                    <Text style={styles.mainTxtB}>LOV.U를 기다려 주세요!</Text>
+                                                    <Text style={styles.subTxtB}>당신만의 솔루션을 통해 변화되어가는</Text>
+                                                    <Text style={styles.subTxtB}>당신의 피부가 궁금하지 않나요?</Text>
+                                                    <Text></Text>
+                                                    <Text style={styles.subTxtB}>새롭게 만들어질 뷰티앱 LOV.U가</Text>
+                                                    <Text style={styles.subTxtB}>더 많은 솔루션들과 더 상세한 컨텐츠들로</Text>
+                                                    <Text style={styles.subTxtB}>당신의 피부를 함께 관리해드리겠습니다.</Text>
+                                                </View>
+                                            )
+                                    }
+                                </View>
+                            </View>
                         )
                     }
                 })
@@ -283,6 +337,7 @@ export default class Recommendation extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#FFFFFF',
         marginTop: StatusBar.currentHeight,
     },
     sliderContent: {
@@ -294,72 +349,127 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent'
     },
     sliderTop: {
-        flex: 2,
+        backgroundColor: '#F4F4F4',
+        flex: 1,
     },
     sliderBottom: {
-        backgroundColor: '#F8B7BD',
-        flex: 1,
+        backgroundColor: '#FFFFFF',
+        flex: 2,
+    },
+    members: {
+        flexDirection: 'row'
+    },
+    mb: {
+        fontFamily: 'NanumSquareRoundB',
+        color: '#737373'
+    },
+    dc: {
+        fontFamily: 'NanumSquareRoundB',
+        color: '#FE7CAD'
     },
     sliderImage: {
-        flex: 1,
+        flex: 8,
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
     },
-    itemImages : {
-        width : width*0.8,
+    itemImages: {
+        width: width * 0.8,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    sliderName: {
+        padding: 20,
     },
     image: {
         width,
         flex: 1
     },
     txtDesign: {
-        padding: 10,
+        padding: 20,
     },
-    txtDesignContent: {
-        marginTop: 100,
+    manualTxt: {
+        fontSize: width * 0.04,
+        lineHeight: 20,
+        color: '#737373'
+    },
+    manualBorder: {
+        paddingTop: 10,
+        paddingBottom: 10,
+        flexDirection: 'row',
+        alignItems: 'flex-start'
+    },
+    manualBorderTxt: {
+        fontFamily: 'NanumSquareRoundB',
+        color: '#FE7CAD'
+    },
+    submanualTxt: {
+        fontSize: width * 0.04,
+        lineHeight: 20
     },
     text: {
-        marginBottom: 10,
         fontSize: width * 0.05,
-        fontWeight: '400',
+        fontFamily: 'NanumSquareRoundEB',
         color: '#444444'
     },
-    child: {
-        height: height * 0.5,
-        width,
-        justifyContent: 'center'
-    },
-    topContainer_LP: {
+    topContainer: {
         flex: 1,
+        flexDirection: 'column',
         width: width,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    upperContainer_LP: {
-        flex: 5,
-        width: '100%',
+    middleContainer: {
+        flex: 3,
+        width: width,
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'flex-end'
     },
-    downerContainer_LP: {
-        flex: 4,
-        width: '100%',
-        flexDirection: 'row',
+    imageBox: {
+        flex: 1,
+        width: width * 0.8,
+        height: width * 0.7,
+        flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center'
     },
-    girlImageBox: {
-        width: width * 0.5,
-        flexDirection: 'row',
+    bottomContainer: {
+        flex: 2,
+        width: width,
         alignItems: 'center',
-        justifyContent: 'center',
     },
-    LastTxt: {
-        color: '#005257',
-        fontSize: width * 0.05,
-        fontWeight: '900',
-    }
+    icon: {
+        flex: 1,
+        resizeMode: 'contain',
+        width: width * 0.4,
+    },
+    pop1_BG: {
+        flex: 1,
+        resizeMode: 'contain',
+        width: width * 0.5
+    },
+    txtContent: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    mainTxt: {
+        color: '#044B77',
+        fontSize: width * 0.07,
+        fontFamily: 'NanumSquareRoundEB',
+    },
+    mainTxtB: {
+        color: '#044B77',
+        fontSize: width * 0.07,
+    },
+    subTxt: {
+        color: '#B7B7B7',
+        fontSize: width * 0.04,
+        fontFamily: 'NanumSquareRoundEB',
+    },
+    subTxtB: {
+        color: '#B7B7B7',
+        fontSize: width * 0.04,
+    },
 });
