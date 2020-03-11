@@ -7,12 +7,25 @@ import {
     StyleSheet,
     Dimensions,
     Image,
-    StatusBar
+    StatusBar,
 } from 'react-native';
+import * as Font from 'expo-font';
 const { width, height } = Dimensions.get('window');
 
 export default class Incomming extends React.Component {
+    state = {
+        fontLoaded: false,
+    }
+    async componentDidMount() {
+        await Font.loadAsync({
+            'NanumSquareRoundEB': require('../assets/fonts/NanumSquareRoundEB.ttf'),
+            'NanumSquareRoundB': require('../assets/fonts/NanumSquareRoundB.ttf'),
+            'NanumSquareRoundR': require('../assets/fonts/NanumSquareRoundR.ttf'),
+            'NanumSquareRoundL': require('../assets/fonts/NanumSquareRoundL.ttf')
+        })
 
+        this.setState({ fontLoaded: true })
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -29,25 +42,34 @@ export default class Incomming extends React.Component {
                 />
 
                 <View style={styles.topContainer}>
-                    <Image source={require('../public/images/Incomming_1_flower.png')} style={styles.flowerImage} />
+                    <Image source={require('../public/images/lovu_icon.png')} style={styles.icon} />
                 </View>
                 <View style={styles.middleContainer}>
                     <View style={styles.imageBox}>
-                        <Image source={require('../public/images/Incomming_1_girl.png')} style={styles.girlImage} />
+                        <Image source={require('../public/images/pop1_BG_1.png')} style={styles.pop1_BG} />
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <View style={styles.mainTxtContent}>
-                        <Text style={styles.mainTxt}>소중한 피부, 당신만의 솔루션으로</Text>
-                        <Text style={styles.mainTxt}>소중하게 관리해주세요</Text>
-                    </View>
-                    <View style={styles.subTxtContent}>
-                        <Text style={styles.subTxt}>나도 몰랐던 나의 피부를 알려드리겠습니다!</Text>
-                    </View>
+                    {
+                        this.state.fontLoaded ? (
+                            <View style={styles.txtContent}>
+                                <Text style={styles.mainTxt}>환영합니다!</Text>
+                                <Text style={styles.subTxt}>소중한 피부, 당신만의 솔루션으로</Text>
+                                <Text style={styles.subTxt}>소중하게 관리해주세요</Text>
+                            </View>
+                        ) : (
+                                <View style={styles.txtContent}>
+                                    <Text style={styles.mainTxtB}>환영합니다!</Text>
+                                    <Text style={styles.subTxtB}>소중한 피부, 당신만의 솔루션으로</Text>
+                                    <Text style={styles.subTxtB}>소중하게 관리해주세요</Text>
+                                </View>
+                            )
+                    }
                     <View style={styles.buttonContent}>
                         <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Start')}>
-                            <Text>다음</Text>
+                            <Image source={require('../public/images/skipbt.png')} style={styles.buttonImage} />
                         </TouchableOpacity>
+                        <Image source={require('../public/images/pg_1.png')} style={styles.pgLink} />
                     </View>
                 </View>
             </View>
@@ -59,75 +81,87 @@ const styles = StyleSheet.create({
     container: {
         marginTop: StatusBar.currentHeight,
         flex: 1,
-        backgroundColor: '#E6B8B8',
+        backgroundColor: '#FFFFFF',
     },
     topContainer: {
-        flex: 3,
+        flex: 1,
+        flexDirection: 'column',
         width: width,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     middleContainer: {
         flex: 3,
         width: width,
         flexDirection: 'column',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     imageBox: {
         flex: 1,
-        width: width * 0.7,
-        height: width * 0.59,
+        width: width * 0.8,
+        height: width * 0.7,
         flexDirection: 'column',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     bottomContainer: {
-        flex: 3,
+        flex: 2,
         width: width,
+        alignItems: 'center',
     },
-    flowerImage: {
+    icon: {
         flex: 1,
-        resizeMode: 'cover',
-        aspectRatio : 2,
-        height: width * 0.496,
+        resizeMode: 'contain',
+        width: width * 0.4,
     },
-    girlImage: {
+    pop1_BG: {
         flex: 1,
-        resizeMode: 'cover',
-        marginRight: 10,
-        aspectRatio : 1.19,
+        resizeMode: 'contain',
+        width: width * 0.5
     },
-    mainTxtContent: {
+    txtContent: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
     mainTxt: {
-        color: '#025158',
-        fontSize: width * 0.05,
-        fontWeight: '900',
+        color: '#044B77',
+        fontSize: width * 0.07,
+        fontFamily: 'NanumSquareRoundEB',
     },
-    subTxtContent: {
-        flex: 1,
-        marginTop: 15,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
+    mainTxtB: {
+        color: '#044B77',
+        fontSize: width * 0.07,
+    },
+    subTxt: {
+        color: '#B7B7B7',
+        fontSize: width * 0.04,
+        fontFamily: 'NanumSquareRoundEB',
+    },
+    subTxtB: {
+        color: '#B7B7B7',
+        fontSize: width * 0.04,
     },
     buttonContent: {
         flex: 2,
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-end',
         alignItems: 'center',
-    },
-    subTxt: {
-        color: '#ffffff',
     },
     button: {
-        backgroundColor: '#ffffff',
         width: width * 0.4,
-        height: 30,
-        flexDirection: 'column',
+        height: width * 0.2,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 15,
+
+    },
+    buttonImage: {
+        width: width * 0.4,
+        resizeMode: 'contain',
+    },
+    pgLink: {
+        width: width * 0.1,
+        height : width  * 0.1,
+        resizeMode: 'contain',
     }
 });

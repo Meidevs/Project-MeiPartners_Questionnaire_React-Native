@@ -12,3 +12,4 @@ web-report/
 tmp/expo
 # macOS
 .DS_Store
+tmp
