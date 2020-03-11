@@ -233,7 +233,7 @@ export default class Recommendation extends React.Component {
                         )
                     } else {
                         return (
-                            <ImageBackground source={require('../public/images/lpback.png')} style={{ backgroundColor: '#E4F2F7', flex: 1, aspectRatio: 0.818, resizeMode: 'cover' }}>
+                            // <ImageBackground source={require('../public/images/lpback.png')} style={{ backgroundColor: '#E4F2F7', flex: 1, aspectRatio: 0.818, resizeMode: 'cover' }}>
                                 <View style={styles.topContainer_LP}>
                                     <View style={styles.upperContainer_LP}>
                                         <Text style={styles.LastTxt}>현재 당신의 피부는 어떠한가요?</Text>
@@ -250,11 +250,11 @@ export default class Recommendation extends React.Component {
                                     </View>
                                     <View style={styles.downerContainer_LP}>
                                         <View style={styles.girlImageBox}>
-                                            <Image source={require('../public/images/lpgirl.png')} style={{ flex: 1, resizeMode: 'cover', aspectRatio: 0.856 }} />
+                                            {/* <Image source={require('../public/images/lpgirl.png')} style={{ flex: 1, resizeMode: 'cover', aspectRatio: 0.856 }} /> */}
                                         </View>
                                     </View>
                                 </View>
-                            </ImageBackground>
+                            // </ImageBackground>
                         )
                     }
                 })

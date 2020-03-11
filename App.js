@@ -4,8 +4,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import QuestionContentScreen from './screens/QuestionContent.js';
 import RecommendationScreen from './screens/Recommendation.js';
-import IncommingScreen from './screens/Incomming.js';
-import StartScreen from './screens/Start.js';
+import Incomming1Screen from './screens/Incomming1.js';
+import Incomming2Screen from './screens/Incomming2.js';
 import LoadingScreen from './screens/Loading.js';
 import QuestionScreen from './screens/Question.js';
 
@@ -87,11 +87,11 @@ const QuestionStack = createStackNavigator(
 
 const RootStack = createStackNavigator(
   {
-    Incomming: {
-      screen: IncommingScreen,
+    Incomming1: {
+      screen: Incomming1Screen,
     },
-    Start: {
-      screen: StartScreen,
+    Incomming2: {
+      screen: Incomming2Screen,
     },
     Main: {
       screen: QuestionStack

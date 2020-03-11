@@ -12,7 +12,7 @@ import {
 import * as Font from 'expo-font';
 const { width, height } = Dimensions.get('window');
 
-export default class Incomming extends React.Component {
+export default class Incomming1 extends React.Component {
     state = {
         fontLoaded: false,
     }
@@ -66,7 +66,7 @@ export default class Incomming extends React.Component {
                             )
                     }
                     <View style={styles.buttonContent}>
-                        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Start')}>
+                        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Incomming2')}>
                             <Image source={require('../public/images/skipbt.png')} style={styles.buttonImage} />
                         </TouchableOpacity>
                         <Image source={require('../public/images/pg_1.png')} style={styles.pgLink} />

@@ -7,37 +7,48 @@ import {
     SafeAreaView,
     ScrollView,
     Dimensions,
+    Image,
+    ImageBackground
 } from 'react-native';
+import * as Font from 'expo-font';
 const { width, height } = Dimensions.get('window');
 
 export default class Question extends React.Component {
-    
+
     constructor(props) {
         super(props)
         this.state = {
+            fontLoaded: false,
             itemCategories: [
-                { code: 'code1', name: '클렌징', selection: styles.itemCategoriesTxt },
-                { code: 'code2', name: '딥 클렌징', selection: styles.itemCategoriesTxt },
-                { code: 'code3', name: '토너', selection: styles.itemCategoriesTxt },
-                { code: 'code4', name: '앰플', selection: styles.itemCategoriesTxt },
-                { code: 'code5', name: '세럼 & 에센스', selection: styles.itemCategoriesTxt },
-                { code: 'code6', name: '아이크림', selection: styles.itemCategoriesTxt },
-                { code: 'code7', name: '크림', selection: styles.itemCategoriesTxt },
-                { code: 'code8', name: '마스크', selection: styles.itemCategoriesTxt },
-                { code: 'code9', name: '자외선차단제', selection: styles.itemCategoriesTxt },
-                { code: 'code10', name: '블레미쉬 밤', selection: styles.itemCategoriesTxt },
-                { code: 'code11', name: '특수 / 영양', selection: styles.itemCategoriesTxt },
-                { code: 'code12', name: '옵션 1', selection: styles.itemCategoriesTxt },
-                { code: 'code13', name: '옵션 2', selection: styles.itemCategoriesTxt },
+                { code: 'code1', name: '클렌징', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cleansing.png'), uriSelected: require('../public/itemimages/cleansing_s.png') },
+                { code: 'code2', name: '토너', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/skin.png'), uriSelected: require('../public/itemimages/skin_s.png') },
+                { code: 'code3', name: '앰플', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/ample.png'), uriSelected: require('../public/itemimages/ample_s.png') },
+                { code: 'code4', name: '세럼 & 에센스', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/serum.png'), uriSelected: require('../public/itemimages/serum_s.png') },
+                { code: 'code5', name: '아이크림', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cream.png'), uriSelected: require('../public/itemimages/cream_s.png') },
+                { code: 'code6', name: '크림', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cream.png'), uriSelected: require('../public/itemimages/cream_s.png') },
+                { code: 'code7', name: '마스크', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/mask.png'), uriSelected: require('../public/itemimages/mask_s.png') },
+                { code: 'code8', name: '자외선차단제', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/sunblock.png'), uriSelected: require('../public/itemimages/sunblock_s.png') },
+                { code: 'code9', name: '블레미쉬 밤', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/mist.png'), uriSelected: require('../public/itemimages/mist_s.png') },
+                { code: 'code10', name: '특수 / 영양', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/bb.png'), uriSelected: require('../public/itemimages/bb_s.png') },
+                { code: 'code11', name: '옵션 1', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cleansing.png'), uriSelected: require('../public/itemimages/cleansing_s.png') },
+                { code: 'code12', name: '옵션 2', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cleansing.png'), uriSelected: require('../public/itemimages/cleansing_s.png') },
             ]
         }
     }
+    async componentDidMount() {
+        await Font.loadAsync({
+            'NanumSquareRoundEB': require('../assets/fonts/NanumSquareRoundEB.ttf'),
+            'NanumSquareRoundB': require('../assets/fonts/NanumSquareRoundB.ttf'),
+            'NanumSquareRoundR': require('../assets/fonts/NanumSquareRoundR.ttf'),
+            'NanumSquareRoundL': require('../assets/fonts/NanumSquareRoundL.ttf')
+        })
 
+        this.setState({ fontLoaded: true })
+    }
     categoryItemPress = (index) => {
         var data = this.state.itemCategories;
         data[index].isSelected = !data[index].isSelected;
-        data[index].selection = data[index].isSelected ? styles.itemCategoriesTxtPress : styles.itemCategoriesTxt;
-        
+        data[index].txtSelection = data[index].isSelected ? styles.itemCategoriesTxtPress : styles.itemCategoriesTxt;
         this.setState({
             itemCategories: data,
         });
@@ -46,47 +57,63 @@ export default class Question extends React.Component {
     nextQuestion = data => {
         var codeArray = new Array();
         data.map((data, i) => {
-            if(data.isSelected == true) {
+            if (data.isSelected == true) {
                 codeArray.push(data.code)
             }
         })
-        this.props.navigation.navigate('QuestionContent', {codes : codeArray});
+        this.props.navigation.navigate('QuestionContent', { codes: codeArray });
     }
 
     render() {
         const mapToCategories = data => {
             return data.map((data, i) => {
                 return (
-                <TouchableOpacity style={styles.categoryItems} key={i} onPress={() => this.categoryItemPress(i)}>
-                    <Text style={data.selection}>
-                        {data.name}
-                    </Text>
-                </TouchableOpacity>)
+                    <TouchableOpacity style={styles.categoryItems} key={i} onPress={() => this.categoryItemPress(i)}>
+                        {
+                            data.isSelected ? (
+                                <Image source={data.uriSelected} style={styles.cateImages}/>
+                            ) : (
+                                    <Image source={data.uri} style={styles.cateImages}/>
+                                )
+                        }
+                        <Text style={data.txtSelection}>
+                            {data.name}
+                        </Text>
+                    </TouchableOpacity>)
             })
         }
         return (
             <SafeAreaView style={styles.container}>
                 <ScrollView style={styles.scrollView}>
-                    <View style={styles.topContainer}>
-                        <View style={styles.category}>
-                            <Text style={styles.txt}>
-                                관심 제품 카테고리
-                            </Text>
+                    <ImageBackground source={require('../public/images/cate_BG.png')} style={styles.cateBGImage}>
+                        <View style={styles.topContainer}>
+                            {
+                                this.state.fontLoaded ? (
+                                    <View style={styles.txtContent}>
+                                        <Text style={styles.mainTxt}>"추천받고 싶은 유형을 선택해주세요"</Text>
+                                        <Text style={styles.subTxt}>설문을 실시하고, 당신에게 맞는</Text>
+                                        <Text style={styles.subTxt}>맞춤형 화장품을 준비해 드리겠습니다!</Text>
+                                    </View>
+                                ) : (
+                                        <View style={styles.txtContent}>
+                                            <Text style={styles.mainTxtB}>"추천받고 싶은 유형을 선택해주세요"</Text>
+                                            <Text style={styles.subTxtB}>설문을 실시하고, 당신에게 맞는</Text>
+                                            <Text style={styles.subTxtB}>맞춤형 화장품을 준비해 드리겠습니다!</Text>
+                                        </View>
+                                    )
+                            }
                         </View>
-                        <View style={styles.subCategory}>
-                            <Text style={{ color: 'red', fontSize: 12 }}>*<Text style={{ color: 'black' }}>관심있는 피부 케어 제품을 선택해주세요.</Text></Text>
-                        </View>
+                    </ImageBackground>
+                    <View style={styles.bottomContainer}>
                         <View style={styles.categoryList}>
                             {mapToCategories(this.state.itemCategories)}
                         </View>
-                    </View>
-                    <View style={styles.bottom_container}>
-                        <TouchableOpacity onPress={()=>this.nextQuestion(this.state.itemCategories)}>
-                            <Text>다음</Text>
+                        <TouchableOpacity style={styles.button}onPress={() => this.nextQuestion(this.state.itemCategories)}>
+                            <Image source={require('../public/images/nextbt.png')} style={styles.nextButton} />
                         </TouchableOpacity>
                     </View>
                 </ScrollView>
-            </SafeAreaView>
+            </SafeAreaView >
         );
     }
 }
@@ -98,47 +125,74 @@ const styles = StyleSheet.create({
         backgroundColor: '#C0C0C0',
     },
     topContainer: {
+    },
+    cateBGImage: {
+        aspectRatio: 1.43,
+    },
+    bottomContainer: {
         width : width,
         backgroundColor: '#ffffff',
-        marginBottom: 5,
-    },
-    bottom_container: {
-        backgroundColor: '#ffffff',
-    },
-    category: {
-        paddingTop: 10,
-        paddingRight: 10,
-        paddingLeft: 10,
-    },
-    txt: {
-        fontWeight: 'bold'
-    },
-    subCategory: {
-        paddingRight: 10,
-        paddingLeft: 10,
-        paddingBottom: 20
     },
     categoryList: {
-        flexDirection: 'column',
-        justifyContent: 'space-between',
+        flexWrap : 'wrap',
+        flexDirection: 'row',
     },
     categoryItems: {
         padding: 10,
-        width: '30%',
+        width: width * 0.25,
+        justifyContent : 'center',
+        alignItems : 'center'
     },
     itemCategoriesTxt: {
         textAlign: 'center',
-        fontSize: 10,
-        color: 'black'
+        fontFamily: 'NanumSquareRoundEB',
+        fontSize: width * 0.03,
+        color: '#BFBFBF'
     },
     itemCategoriesTxtPress: {
         textAlign: 'center',
-        fontSize: 10,
-        color: 'pink'
+        fontFamily: 'NanumSquareRoundEB',
+        fontSize: width * 0.03,
+        color: '#044B77'
+    },
+    
+    txtContent: {
+        top : width * 0.07,
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    mainTxt: {
+        color: '#FD85B2',
+        fontSize: width * 0.05,
+        fontFamily: 'NanumSquareRoundEB',
+        marginBottom : 10,
+    },
+    mainTxtB: {
+        color: '#FD85B2',
+        fontSize: width * 0.05,
+        marginBottom : 10,
+    },
+    subTxt: {
+        color: '#727272',
+        fontSize: width * 0.04,
+        fontFamily: 'NanumSquareRoundEB',
+    },
+    subTxtB: {
+        color: '#727272',
+        fontSize: width * 0.04,
+        
+    },
+    cateImages : {
+        height : width * 0.25,
+        aspectRatio : 0.872
     },
     button: {
+        width : width,
         alignItems: 'center',
-        backgroundColor: '#C0C0C0',
-        padding: 10
+        backgroundColor: '#FF7BAC',
     },
+    nextButton : {
+        height : width * 0.15,
+        aspectRatio : 6.252,
+    }
 });

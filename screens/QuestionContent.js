@@ -94,7 +94,7 @@ export default class QuestionContent extends React.Component {
         };
 
         var array = [];
-        temp = [];
+        var temp = [];
         var data = dataPackage.package;
         //Select Question List, Questions In The Package which was defined at Constructor
         for (var i = 0; i < data.length; i++) {
@@ -231,7 +231,7 @@ export default class QuestionContent extends React.Component {
                         <Text style={{ fontSize: 20, color: '#707070', fontWeight: '400' }}>{navigation.getParam('increaseCount')} / 10</Text>
                     </View>
                     <View>
-                        <ProgressBar progress={navigation.getParam('increaseCount') / 10} color={Colors.pink600} style={{ height: 8, borderWidth: 0.5, borderColor: '#707070', borderRadius: 10 }} />
+                        <ProgressBar progress={navigation.getParam('increaseCount') / 10} color={'#000000'} style={{ height: 8, borderWidth: 0.5, borderColor: '#707070', borderRadius: 10 }} />
                     </View>
                 </View>,
         }
@@ -270,7 +270,7 @@ export default class QuestionContent extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.top_container}>
-                    <Image source={require('../public/images/topback.png')} style={{ width: '100%', height: '100%' }} />
+                    {/* <Image source={require('../public/images/topback.png')} style={{ width: '100%', height: '100%' }} /> */}
                 </View>
                 <View style={styles.rectangle}>
                     <View style={styles.rectagleContent}>
