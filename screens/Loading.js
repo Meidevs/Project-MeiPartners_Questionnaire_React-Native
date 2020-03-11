@@ -9,8 +9,11 @@ import {
     Image,
     StatusBar
 } from 'react-native';
+import * as Font from 'expo-font';
 import { ProgressBar, Colors } from 'react-native-paper';
+
 const { width, height } = Dimensions.get('window');
+
 
 export default class Incomming extends React.Component {
 
@@ -21,7 +24,19 @@ export default class Incomming extends React.Component {
             data: this.props.navigation.state.params.data
         }
     }
+    state = {
+        fontLoaded: false,
+    }
+    async componentDidMount() {
+        await Font.loadAsync({
+            'NanumSquareRoundEB': require('../assets/fonts/NanumSquareRoundEB.ttf'),
+            'NanumSquareRoundB': require('../assets/fonts/NanumSquareRoundB.ttf'),
+            'NanumSquareRoundR': require('../assets/fonts/NanumSquareRoundR.ttf'),
+            'NanumSquareRoundL': require('../assets/fonts/NanumSquareRoundL.ttf')
+        })
 
+        this.setState({ fontLoaded: true })
+    }
     componentDidMount() {
         this.interval = setInterval(() => {
             const { timer } = this.state
@@ -56,28 +71,31 @@ export default class Incomming extends React.Component {
                     //allowing light, but not detailed shapes
                     networkActivityIndicatorVisible={true}
                 />
-                <View style={styles.topContainer}>
 
+                <View style={styles.topContainer}>
+                    <Image source={require('../public/images/lovu_icon.png')} style={styles.icon} />
                 </View>
                 <View style={styles.middleContainer}>
-                    <View style={styles.firstContent}>
-                        <Image source={require('../public/images/moving_image.png')} style={styles.movingImage} />
+                    <View style={styles.movingImage}>
+                        <Image source={require('../public/images/loading_anime.gif')} />
                     </View>
-                    <View style={styles.secondContent}>
-                        <View style={styles.progressBar}>
-                            <ProgressBar progress={(3 - this.state.timer) / 3} color={Colors.pink600} style={{ height: 12, borderWidth: 0.5, borderColor: '#707070', borderRadius: 10 }} />
+                    <View style={styles.progressBar}>
+                        <View style={{ width: width * 0.1, alignItems: 'center' }}>
+                            <Text style={styles.txt}>0</Text>
+                        </View>
+                        <View style={{ width: width * 0.6, }}>
+                            <ProgressBar progress={(this.state.timer - 3) / 3} color={Colors.grey500} style={{ height: 15, borderColor: '#707070', borderRadius: 10 }} />
+                        </View>
+                        <View style={{ width: width * 0.1, alignItems: 'center' }}>
+                            <Text style={styles.txt}>100</Text>
                         </View>
                     </View>
-                    <View style={styles.thirdContent}>
-
+                    <View style={styles.subTxtContent}>
+                        <Text style={styles.subTxt}>과연 당신의 피부 타입은?</Text>
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <View style={styles.iconContent}>
-                        <View style={styles.iconBox}>
-                            <Image source={require('../public/images/lovu_icon.png')} style={styles.lovuIcon} />
-                        </View>
-                    </View>
+                    <Text style={styles.txt}>LOADING</Text>
                 </View>
             </View>
         );
@@ -88,59 +106,53 @@ const styles = StyleSheet.create({
     container: {
         marginTop: StatusBar.currentHeight,
         flex: 1,
-        backgroundColor: '#F2F2F2',
+        backgroundColor: '#FFFFFF',
     },
     topContainer: {
-        flex: 0.75,
+        flex: 1,
+        flexDirection: 'column',
         width: width,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     middleContainer: {
         flex: 1,
         width: width,
         flexDirection: 'column',
-        justifyContent : 'center',
-        alignItems : 'center'
+        alignItems: 'center',
     },
-    firstContent: {
-        flex: 2,
+    movingImage: {
         justifyContent: 'center',
-    },
-    secondContent: {
-        flex: 1,
-        width: width * 0.7,
-        justifyContent: 'center',
+        alignItems: 'center'
     },
     progressBar: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
+        flexDirection: 'row',
+        width: width * 0.6,
+        justifyContent: 'center'
+    },
+    txt: {
+        fontFamily: 'NanumSquareRoundB',
+        color: '#FE7CAD'
+    },
+    subTxtContent: {
+        margin: 10,
+    },
+    subTxt: {
+        fontFamily: 'NanumSquareRoundB',
+        color: '#707070'
     },
     bottomContainer: {
         flex: 1,
         width: width,
-        flexDirection: 'column',
+        flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-end',
+        bottom: 30,
+
     },
-    iconContent: {
+    icon: {
         flex: 1,
-        width: '33%',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignContent: 'center',
+        resizeMode: 'contain',
+        width: width * 0.4,
     },
-    iconBox: {
-        width: '100%',
-        height: '34%',
-    },
-    lovuIcon: {
-        flex: 1,
-        resizeMode: 'cover',
-        aspectRatio: 2.11,
-    },
-    movingImage: {
-        flex: 1,
-        resizeMode: 'cover',
-        aspectRatio: 1.52,
-    }
 });
