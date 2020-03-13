@@ -37,13 +37,6 @@ export default class Recommendation extends React.Component {
             'NanumSquareRoundB': require('../assets/fonts/NanumSquareRoundB.ttf'),
             'NanumSquareRoundR': require('../assets/fonts/NanumSquareRoundR.ttf'),
             'NanumSquareRoundL': require('../assets/fonts/NanumSquareRoundL.ttf'),
-            // 'NotosanscjkkrBl': require('../assets/fonts/NOTOSANSCJKKR-BLACK.OTF'),
-            // 'NotosanscjkkrB': require('../assets/fonts/NOTOSANSCJKKR-BOLD.OTF'),
-            // 'NotosanscjkkrL': require('../assets/fonts/NOTOSANSCJKKR-LIGHT.OTF'),
-            // 'NotosanscjkkrM': require('../assets/fonts/NOTOSANSCJKKR-MEDIUM.OTF'),
-            // 'NotosanscjkkrR': require('../assets/fonts/NOTOSANSCJKKR-REGULAR_0.OTF'),
-            // 'NotosanscjkkrT': require('../assets/fonts/NOTOSANSCJKKR-THIN.OTF'),
-
         })
 
         this.setState({ fontLoaded: true })
@@ -215,7 +208,6 @@ export default class Recommendation extends React.Component {
 
     renderItem = data => {
         return (
-
             <View style={styles.txtDesign}>
                 <Text style={styles.manualTxt}>{data.item.manual}</Text>
                 <View style={styles.manualBorder}>
@@ -244,7 +236,7 @@ export default class Recommendation extends React.Component {
                                 <View style={styles.sliderBottom}>
                                     <View style={styles.sliderName}>
                                         <View style={styles.members}>
-                                            <Text style={styles.mb}>멤버십 </Text><Text style={styles.dc}>10%</Text>
+                                            {/* <Text style={styles.mb}>멤버십 </Text><Text style={styles.dc}>10%</Text> */}
                                         </View>
 
                                         <Text style={styles.text}>{data.item}</Text>

@@ -16,7 +16,6 @@ const { width, height } = Dimensions.get('window');
 
 
 export default class Incomming extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -34,7 +33,6 @@ export default class Incomming extends React.Component {
             'NanumSquareRoundR': require('../assets/fonts/NanumSquareRoundR.ttf'),
             'NanumSquareRoundL': require('../assets/fonts/NanumSquareRoundL.ttf')
         })
-
         this.setState({ fontLoaded: true })
     }
     componentDidMount() {
@@ -45,7 +43,6 @@ export default class Incomming extends React.Component {
                     timer: timer - 1
                 }))
             }
-
             if (timer === 0) {
                 clearInterval(this.interval)
                 this.props.navigation.navigate('Recommendation', this.state.data)
@@ -84,7 +81,7 @@ export default class Incomming extends React.Component {
                             <Text style={styles.txt}>0</Text>
                         </View>
                         <View style={{ width: width * 0.6, }}>
-                            <ProgressBar progress={(this.state.timer - 3) / 3} color={Colors.grey500} style={{ height: 15, borderColor: '#707070', borderRadius: 10 }} />
+                            <ProgressBar progress={(this.state.timer - 3) / 3} color={'red'} style={{ height: 15, borderRadius: 10 }} />
                         </View>
                         <View style={{ width: width * 0.1, alignItems: 'center' }}>
                             <Text style={styles.txt}>100</Text>

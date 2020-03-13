@@ -8,8 +8,10 @@ import {
     FlatList,
     Dimensions,
 } from 'react-native';
-import { ProgressBar, Colors } from 'react-native-paper';
+// import { ProgressBar, Colors } from 'react-native-paper';
 import * as Font from 'expo-font';
+import { LinearGradient } from 'expo-linear-gradient';
+// import { ProgressBar } from 'react-step-progress-bar';
 
 const { width, height } = Dimensions.get('window');
 
@@ -237,15 +239,23 @@ export default class QuestionContent extends React.Component {
     }
 
     static navigationOptions = ({ navigation }) => {
+        if (navigation.getParam('increaseCount') == undefined) {
+            var count = navigation.getParam('increaseCount')
+            count = 1;
+            var data = (count * width * 0.0065) / (width * 0.65);
+            console.log(data)
+        }
         return {
             headerTitle: () => null,
             headerRight: () =>
                 <View style={styles.headerStyle}>
                     <View>
-                        <ProgressBar progress={navigation.getParam('increaseCount') / 10} color={['#4c669f', '#192f6a']} style={{ height: 8, borderWidth: 0.5, borderColor: '#707070', borderRadius: 10 }} />
+                        <LinearGradient colors={['#FFADAC', '#FF7BAC']} style={{ width: data, height: 15 }} />
+                        {/* <ProgressBar progress={navigation.getParam('increaseCount') / 10} color={Colors.pink300} style={{ height: 8, borderWidth: 0.5, borderColor: '#707070', borderRadius: 10 }} /> */}
+                        {/* <ProgressBar percent={75} fillBackground="linear-gradient(to right, '#FFADAC', '#FF7BAC')" /> */}
                     </View>
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
-                        <Text style={{ fontSize: width * 0.04, color: '#707070', fontFamily : 'NanumSquareRoundB' }}>{navigation.getParam('increaseCount')} / 10 응답진행률</Text>
+                        <Text style={{ fontSize: width * 0.04, color: '#707070', fontFamily: 'NanumSquareRoundB' }}>{navigation.getParam('increaseCount')} / 10 응답진행률</Text>
                     </View>
                 </View>,
         }
@@ -258,7 +268,7 @@ export default class QuestionContent extends React.Component {
                     <Image source={require('../public/images/selection1.jpg')} style={styles.backgroundImages} />
                 </View>
             )
-        } else if (data > 3 && data <=7) {
+        } else if (data > 3 && data <= 7) {
             return (
                 <View style={styles.topContainer}>
                     <Image source={require('../public/images/selection2.jpg')} style={styles.backgroundImages} />
@@ -286,6 +296,7 @@ export default class QuestionContent extends React.Component {
         }
         return (
             <View style={styles.container}>
+
                 {this.componentJSX()}
                 {
                     this.state.fontLoaded ? (
@@ -314,6 +325,7 @@ export default class QuestionContent extends React.Component {
                 }
                 <View style={styles.selectionContainer}>
                     {mapToQuestions(this.state.dataSource)}
+
                 </View>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.button} onPress={this.nextPress}>
@@ -352,13 +364,13 @@ const styles = StyleSheet.create({
     topContainer: {
         flex: 2,
         backgroundColor: '#FFFFFF',
-        justifyContent :'center',
-        alignItems : 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    backgroundImages : {
-        flex : 1,
-        width : width,
-        resizeMode : 'cover'
+    backgroundImages: {
+        flex: 1,
+        width: width,
+        resizeMode: 'cover'
     },
     questionContainer: {
         flex: 1,
