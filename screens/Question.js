@@ -17,6 +17,7 @@ export default class Question extends React.Component {
 
     constructor(props) {
         super(props)
+        console.log('this.props.navigation.state', this.props.navigation.state)
         this.state = {
             fontLoaded: false,
             itemCategories: [
@@ -61,7 +62,7 @@ export default class Question extends React.Component {
                 codeArray.push(data.code)
             }
         })
-        this.props.navigation.navigate('QuestionContent', { codes: codeArray });
+        this.props.navigation.navigate('Loading', { codes: codeArray });
     }
 
     render() {

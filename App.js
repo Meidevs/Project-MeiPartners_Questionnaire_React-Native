@@ -46,21 +46,6 @@ const WaitingStack = createStackNavigator(
 
 const QuestionStack = createStackNavigator(
   {
-    Question: {
-      screen: QuestionScreen,
-      navigationOptions: {
-        title: '설문지',
-        headerStyle: {
-          backgroundColor: '#ffffff',
-        },
-        headerTitleStyle: {
-          fontWeight: '400',
-          textAlign: 'center',
-          flexGrow: 1,
-          alignSelf: 'center',
-        }
-      }
-    },
     QuestionContent: {
       screen: QuestionContentScreen,
       navigationOptions: {
@@ -75,6 +60,21 @@ const QuestionStack = createStackNavigator(
           alignSelf: 'center',
         }
       }
+    },
+    Question: {
+      screen: QuestionScreen,
+      // navigationOptions: {
+      //   title: '설문지',
+      //   headerStyle: {
+      //     backgroundColor: '#ffffff',
+      //   },
+      //   headerTitleStyle: {
+      //     fontWeight: '400',
+      //     textAlign: 'center',
+      //     flexGrow: 1,
+      //     alignSelf: 'center',
+      //   }
+      // }
     },
     Loading: {
       screen: WaitingStack,
