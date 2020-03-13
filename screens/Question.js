@@ -17,23 +17,241 @@ export default class Question extends React.Component {
 
     constructor(props) {
         super(props)
-        console.log('this.props.navigation.state', this.props.navigation.state)
+        var skinTypeScore = this.props.navigation.state.params.data.skinCode;
         this.state = {
             fontLoaded: false,
             itemCategories: [
-                { code: 'code1', name: '클렌징', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cleansing.png'), uriSelected: require('../public/itemimages/cleansing_s.png') },
-                { code: 'code2', name: '토너', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/skin.png'), uriSelected: require('../public/itemimages/skin_s.png') },
-                { code: 'code3', name: '앰플', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/ample.png'), uriSelected: require('../public/itemimages/ample_s.png') },
-                { code: 'code4', name: '세럼 & 에센스', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/serum.png'), uriSelected: require('../public/itemimages/serum_s.png') },
-                { code: 'code5', name: '아이크림', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cream.png'), uriSelected: require('../public/itemimages/cream_s.png') },
-                { code: 'code6', name: '크림', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cream.png'), uriSelected: require('../public/itemimages/cream_s.png') },
-                { code: 'code7', name: '마스크', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/mask.png'), uriSelected: require('../public/itemimages/mask_s.png') },
-                { code: 'code8', name: '자외선차단제', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/sunblock.png'), uriSelected: require('../public/itemimages/sunblock_s.png') },
-                { code: 'code9', name: '블레미쉬 밤', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/mist.png'), uriSelected: require('../public/itemimages/mist_s.png') },
-                { code: 'code10', name: '특수 / 영양', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/bb.png'), uriSelected: require('../public/itemimages/bb_s.png') },
-                { code: 'code11', name: '옵션 1', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cleansing.png'), uriSelected: require('../public/itemimages/cleansing_s.png') },
-                { code: 'code12', name: '옵션 2', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cleansing.png'), uriSelected: require('../public/itemimages/cleansing_s.png') },
-            ]
+                { code: 'cate0', name: '클렌징', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cleansing.png'), uriSelected: require('../public/itemimages/cleansing_s.png') },
+                { code: 'cate1', name: '에센스', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/skin.png'), uriSelected: require('../public/itemimages/skin_s.png') },
+                { code: 'cate2', name: '앰플', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/ample.png'), uriSelected: require('../public/itemimages/ample_s.png') },
+                { code: 'cate3', name: '세럼', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/serum.png'), uriSelected: require('../public/itemimages/serum_s.png') },
+                { code: 'cate4', name: '크림', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cream.png'), uriSelected: require('../public/itemimages/cream_s.png') },
+                { code: 'cate5', name: '마스크', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/mask.png'), uriSelected: require('../public/itemimages/mask_s.png') },
+                { code: 'cate6', name: '미스트', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/mist.png'), uriSelected: require('../public/itemimages/mist_s.png') },
+                { code: 'cate7', name: '필링 겔', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/bb.png'), uriSelected: require('../public/itemimages/bb_s.png') },
+            ],
+        }
+
+        //Select Recommendation List, 16 Case 
+        if (skinTypeScore[0] > 50) {
+            if (skinTypeScore[1] > 50) {
+                if (skinTypeScore[2] > 50) {
+                    if (skinTypeScore[3] > 50) {
+                        //건유,민유,색유,주유(100,100,100,100) a
+                        this.state = {
+                            dataSource: [
+                                this.state.itemCategories[0],
+                                this.state.itemCategories[2],
+                                this.state.itemCategories[4],
+                                this.state.itemCategories[5],
+                            ],
+                            itemsCode: '1',
+                            skinTypeScore: skinTypeScore
+                        }
+                    } else {
+                        //건유,민유,색유,주무(100,100,100,0) a
+                        this.state = {
+                            dataSource: [
+                                this.state.itemCategories[0],
+                                this.state.itemCategories[2],
+                                this.state.itemCategories[6],
+                            ],
+                            itemsCode: '2',
+                            skinTypeScore: skinTypeScore
+                        }
+                    }
+                } else {
+                    if (skinTypeScore[3] > 50) {
+                        //건유,민유,색무,주유(100,100,0,100) a
+                        this.state = {
+                            dataSource: [
+                                this.state.itemCategories[0],
+                                this.state.itemCategories[1],
+                                this.state.itemCategories[4],
+                                this.state.itemCategories[5],
+                            ],
+                            itemsCode: '3',
+                            skinTypeScore: skinTypeScore
+                        }
+                    } else {
+                        //건유,민유,색무,주무(100,100,0,0) a 
+                        this.state = {
+                            dataSource: [
+                                this.state.itemCategories[0],
+                                this.state.itemCategories[1],
+                                this.state.itemCategories[4],
+                                this.state.itemCategories[6],
+                            ],
+                            itemsCode: '4',
+                            skinTypeScore: skinTypeScore
+                        }
+                    }
+                }
+            } else {
+                if (skinTypeScore[2] > 50) {
+                    if (skinTypeScore[3] > 50) {
+                        //건유,민무,색유,주유(100,0,100,100) a
+                        this.state = {
+                            dataSource: [
+                                this.state.itemCategories[0],
+                                this.state.itemCategories[1],
+                                this.state.itemCategories[4],
+                                this.state.itemCategories[5],
+                            ],
+                            itemsCode: '5',
+                            skinTypeScore: skinTypeScore
+                        }
+                    } else {
+                        //건유,민무,색유,주무(100,0,100,0) a 
+                        this.state = {
+                            dataSource: [
+                                this.state.itemCategories[0],
+                                this.state.itemCategories[1],
+                                this.state.itemCategories[4],
+                                this.state.itemCategories[5],
+                            ],
+                            itemsCode: '6',
+                            skinTypeScore: skinTypeScore
+                        }
+                    }
+                } else {
+                    if (skinTypeScore[3] > 50) {
+                        //건유,민무,색무,주유(100,0,0,100) a
+                        this.state = {
+                            dataSource: [
+                                this.state.itemCategories[0],
+                                this.state.itemCategories[2],
+                                this.state.itemCategories[4],
+                            ],
+                            itemsCode: '7',
+                            skinTypeScore: skinTypeScore
+                        }
+                    } else {
+                        //건유,민무,색무,주무(100,0,0,0) a
+                        this.state = {
+                            dataSource: [
+                                this.state.itemCategories[0],
+                                this.state.itemCategories[1],
+                                this.state.itemCategories[4],
+                                this.state.itemCategories[6],
+                            ],
+                            itemsCode: '8',
+                            skinTypeScore: skinTypeScore
+                        }
+                    }
+                }
+            }
+        } else {
+            if (skinTypeScore[1] > 50) {
+                if (skinTypeScore[2] > 50) {
+                    if (skinTypeScore[3] > 50) {
+                        //건무,민유,색유,주유(0,100,100,100) a
+                        this.state = {
+                            dataSource: [
+                                this.state.itemCategories[0],
+                                this.state.itemCategories[2],
+                                this.state.itemCategories[4],
+                                this.state.itemCategories[5],
+                            ],
+                            itemsCode: '9',
+                            skinTypeScore: skinTypeScore
+                        }
+                    } else {
+                        //건무,민유,색유,주무(0,100,100,0) a
+                        this.state = {
+                            dataSource: [
+                                this.state.itemCategories[0],
+                                this.state.itemCategories[2],
+                                this.state.itemCategories[3],
+                                this.state.itemCategories[5],
+                            ],
+                            itemsCode: '10',
+                            skinTypeScore: skinTypeScore
+                        }
+                    }
+                } else {
+                    if (skinTypeScore[3] > 50) {
+                        //건무,민유,색무,주유(0,100,0,100) a
+                        this.state = {
+                            dataSource: [
+                                this.state.itemCategories[0],
+                                this.state.itemCategories[2],
+                                this.state.itemCategories[4],
+                                this.state.itemCategories[5],
+                            ],
+                            itemsCode: '11',
+                            skinTypeScore: skinTypeScore
+                        }
+                    } else {
+                        //건무,민유,색무,주무(0,100,0,0) ㅁ
+                        this.state = {
+                            dataSource: [
+                                this.state.itemCategories[0],
+                                this.state.itemCategories[3],
+                                this.state.itemCategories[4],
+                                this.state.itemCategories[5],
+                            ],
+                            itemsCode: '12',
+                            skinTypeScore: skinTypeScore
+                        }
+                    }
+                }
+            } else {
+                if (skinTypeScore[2] > 50) {
+                    if (skinTypeScore[3] > 50) {
+                        //건무,민무,색유,주유(0,0,100,100) ㅁ
+                        this.state = {
+                            dataSource: [
+                                this.state.itemCategories[0],
+                                this.state.itemCategories[2],
+                                this.state.itemCategories[4],
+                                this.state.itemCategories[5],
+                                this.state.itemCategories[7],
+                            ],
+                            itemsCode: '13',
+                            skinTypeScore: skinTypeScore
+                        }
+                    } else {
+                        //건무,민무,색유,주무(0,0,100,0) ㅁ
+                        this.state = {
+                            dataSource: [
+                                this.state.itemCategories[0],
+                                this.state.itemCategories[3],
+                                this.state.itemCategories[4],
+                                this.state.itemCategories[5],
+                                this.state.itemCategories[7],
+                            ],
+                            itemsCode: '14',
+                            skinTypeScore: skinTypeScore
+                        }
+                    }
+                } else {
+                    if (skinTypeScore[3] > 50) {
+                        //건무,민무,색무,주유(0,0,0,100)
+                        this.state = {
+                            dataSource: [
+                                this.state.itemCategories[0],
+                                this.state.itemCategories[2],
+                                this.state.itemCategories[5],
+                                this.state.itemCategories[7],
+                            ],
+                            itemsCode: '15',
+                            skinTypeScore: skinTypeScore
+                        }
+                    } else {
+                        //건무,민무,색무,주무(0,0,0,0)
+                        this.state = {
+                            dataSource: [
+                                this.state.itemCategories[0],
+                                this.state.itemCategories[5],
+                                this.state.itemCategories[7],
+                            ],
+                            itemsCode: '16',
+                            skinTypeScore: skinTypeScore
+                        }
+                    }
+                }
+            }
         }
     }
     async componentDidMount() {
@@ -47,22 +265,23 @@ export default class Question extends React.Component {
         this.setState({ fontLoaded: true })
     }
     categoryItemPress = (index) => {
-        var data = this.state.itemCategories;
+        var data = this.state.dataSource;
         data[index].isSelected = !data[index].isSelected;
         data[index].txtSelection = data[index].isSelected ? styles.itemCategoriesTxtPress : styles.itemCategoriesTxt;
         this.setState({
-            itemCategories: data,
+            dataSource: data,
         });
     }
 
     nextQuestion = data => {
+        console.log('this.state', this.state)
         var codeArray = new Array();
         data.map((data, i) => {
             if (data.isSelected == true) {
                 codeArray.push(data.code)
             }
         })
-        this.props.navigation.navigate('Loading', { codes: codeArray });
+        this.props.navigation.navigate('Loading', { cateCodes: codeArray, resultsCodes: this.state.itemsCode, skinTypeScore: this.state.skinTypeScore });
     }
 
     render() {
@@ -72,9 +291,9 @@ export default class Question extends React.Component {
                     <TouchableOpacity style={styles.categoryItems} key={i} onPress={() => this.categoryItemPress(i)}>
                         {
                             data.isSelected ? (
-                                <Image source={data.uriSelected} style={styles.cateImages}/>
+                                <Image source={data.uriSelected} style={styles.cateImages} />
                             ) : (
-                                    <Image source={data.uri} style={styles.cateImages}/>
+                                    <Image source={data.uri} style={styles.cateImages} />
                                 )
                         }
                         <Text style={data.txtSelection}>
@@ -107,9 +326,9 @@ export default class Question extends React.Component {
                     </ImageBackground>
                     <View style={styles.bottomContainer}>
                         <View style={styles.categoryList}>
-                            {mapToCategories(this.state.itemCategories)}
+                            {mapToCategories(this.state.dataSource)}
                         </View>
-                        <TouchableOpacity style={styles.button}onPress={() => this.nextQuestion(this.state.itemCategories)}>
+                        <TouchableOpacity style={styles.button} onPress={() => this.nextQuestion(this.state.dataSource)}>
                             <Image source={require('../public/images/nextbt.png')} style={styles.nextButton} />
                         </TouchableOpacity>
                     </View>
@@ -131,18 +350,18 @@ const styles = StyleSheet.create({
         aspectRatio: 1.43,
     },
     bottomContainer: {
-        width : width,
+        width: width,
         backgroundColor: '#ffffff',
     },
     categoryList: {
-        flexWrap : 'wrap',
+        flexWrap: 'wrap',
         flexDirection: 'row',
     },
     categoryItems: {
         padding: 10,
         width: width * 0.25,
-        justifyContent : 'center',
-        alignItems : 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     itemCategoriesTxt: {
         textAlign: 'center',
@@ -156,9 +375,9 @@ const styles = StyleSheet.create({
         fontSize: width * 0.03,
         color: '#044B77'
     },
-    
+
     txtContent: {
-        top : width * 0.07,
+        top: width * 0.07,
         flexDirection: 'column',
         alignItems: 'center',
     },
@@ -166,12 +385,12 @@ const styles = StyleSheet.create({
         color: '#FD85B2',
         fontSize: width * 0.05,
         fontFamily: 'NanumSquareRoundEB',
-        marginBottom : 10,
+        marginBottom: 10,
     },
     mainTxtB: {
         color: '#FD85B2',
         fontSize: width * 0.05,
-        marginBottom : 10,
+        marginBottom: 10,
     },
     subTxt: {
         color: '#727272',
@@ -181,19 +400,19 @@ const styles = StyleSheet.create({
     subTxtB: {
         color: '#727272',
         fontSize: width * 0.04,
-        
+
     },
-    cateImages : {
-        height : width * 0.25,
-        aspectRatio : 0.872
+    cateImages: {
+        height: width * 0.25,
+        aspectRatio: 0.872
     },
     button: {
-        width : width,
+        width: width,
         alignItems: 'center',
         backgroundColor: '#FF7BAC',
     },
-    nextButton : {
-        height : width * 0.15,
-        aspectRatio : 6.252,
+    nextButton: {
+        height: width * 0.15,
+        aspectRatio: 6.252,
     }
 });

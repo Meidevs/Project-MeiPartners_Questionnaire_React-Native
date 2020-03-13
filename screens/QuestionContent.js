@@ -9,10 +9,8 @@ import {
     Dimensions,
     NavigatorIOS,
 } from 'react-native';
-// import { ProgressBar, Colors } from 'react-native-paper';
 import * as Font from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
-// import { ProgressBar } from 'react-step-progress-bar';
 
 const { width, height } = Dimensions.get('window');
 
@@ -173,8 +171,6 @@ export default class QuestionContent extends React.Component {
                     this.state.skin3 = this.state.skin3 + j;
                 } else if (arrayData[curCount].type == 'skin4') {
                     this.state.skin4 = this.state.skin4 + j;
-                } else if (arrayData[curCount].type == 'skin5') {
-                    this.state.skin5 = this.state.skin5 + j;
                 }
             }
         }
@@ -184,7 +180,6 @@ export default class QuestionContent extends React.Component {
                 { code: 'skin2', skin: this.state.skin2 },
                 { code: 'skin3', skin: this.state.skin3 },
                 { code: 'skin4', skin: this.state.skin4 },
-                { code: 'skin5', skin: this.state.skin5 },
             ]
         }
 
@@ -209,7 +204,6 @@ export default class QuestionContent extends React.Component {
     }
 
     static navigationOptions = ({ navigation }) => {
-        console.log(navigation.getParam('progressBar'))
         return {
             headerTitle: () => null,
             headerRight: () =>
@@ -299,21 +293,12 @@ export default class QuestionContent extends React.Component {
 
     final = data => {
         var scoreArray = [];
-        var returnArray = [];
         data.skinCode.map((data) => {
             scoreArray.push(data.skin)
         })
-        var maxNum = Math.max(...scoreArray);
-        for (var i = 0; i < data.skinCode.length; i++) {
-            if (data.skinCode[i].skin == maxNum) {
-                returnArray.push(data.skinCode[i].code)
-            }
-        }
-
         this.props.navigation.navigate('Question', {
             data: {
-                itemCate: this.state.itemCate,
-                skinCode: returnArray
+                skinCode: scoreArray
             }
         })
     }

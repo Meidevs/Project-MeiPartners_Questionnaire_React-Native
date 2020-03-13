@@ -10,7 +10,9 @@ import {
     StatusBar
 } from 'react-native';
 import * as Font from 'expo-font';
-import { ProgressBar, Colors } from 'react-native-paper';
+import { LinearGradient } from 'expo-linear-gradient';
+
+// import { ProgressBar, Colors } from 'react-native-paper';
 
 const { width, height } = Dimensions.get('window');
 
@@ -18,9 +20,11 @@ const { width, height } = Dimensions.get('window');
 export default class Incomming extends React.Component {
     constructor(props) {
         super(props);
+        console.log('props', this.props.navigation.state.params)
         this.state = {
-            timer: 3,
-            data: this.props.navigation.state.params.data
+            timer: 0,
+            data: this.props.navigation.state.params,
+            progressBar : 0,
         }
     }
     state = {
@@ -38,12 +42,14 @@ export default class Incomming extends React.Component {
     componentDidMount() {
         this.interval = setInterval(() => {
             const { timer } = this.state
-            if (timer > 0) {
+            if (timer < 3) {
                 this.setState(({ timer }) => ({
-                    timer: timer - 1
+                    timer: timer + 1
                 }))
             }
-            if (timer === 0) {
+            var progressBar = (width * 0.60 * this.state.timer) / (3);
+            this.setState({progressBar : progressBar });
+            if (timer === 3) {
                 clearInterval(this.interval)
                 this.props.navigation.navigate('Recommendation', this.state.data)
             }
@@ -81,7 +87,8 @@ export default class Incomming extends React.Component {
                             <Text style={styles.txt}>0</Text>
                         </View>
                         <View style={{ width: width * 0.6, }}>
-                            <ProgressBar progress={(this.state.timer - 3) / 3} color={'red'} style={{ height: 15, borderRadius: 10 }} />
+                            {/* <ProgressBar progress={(this.state.timer - 3) / 3} color={'red'} style={{ height: 15, borderRadius: 10 }} /> */}
+                            <LinearGradient colors={['#FFADAC', '#FF7BAC']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: this.state.progressBar, height: 15, borderRadius: 10, backgroundColor: '#000000' }} />
                         </View>
                         <View style={{ width: width * 0.1, alignItems: 'center' }}>
                             <Text style={styles.txt}>100</Text>
