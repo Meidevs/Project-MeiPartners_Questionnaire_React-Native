@@ -274,14 +274,19 @@ export default class Question extends React.Component {
     }
 
     nextQuestion = data => {
-        console.log('this.state', this.state)
-        var codeArray = new Array();
+        console.log('nextQuestion', data)
+        var codeSelectedArray = new Array();
+        var codeAllCateArray = new Array();
         data.map((data, i) => {
             if (data.isSelected == true) {
-                codeArray.push(data.code)
+                codeSelectedArray.push(data.code)
             }
         })
-        this.props.navigation.navigate('Loading', { cateCodes: codeArray, resultsCodes: this.state.itemsCode, skinTypeScore: this.state.skinTypeScore });
+        data.map((data, i) => {
+            codeAllCateArray.push({name : data.name, code : data.code})
+        })
+        console.log('codeAllCateArray', codeAllCateArray)
+        this.props.navigation.navigate('Loading', { codeAllCateArray : codeAllCateArray, cateSelectedCodes: codeSelectedArray, resultsCodes: this.state.itemsCode, skinTypeScore: this.state.skinTypeScore });
     }
 
     render() {

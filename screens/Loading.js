@@ -20,7 +20,6 @@ const { width, height } = Dimensions.get('window');
 export default class Incomming extends React.Component {
     constructor(props) {
         super(props);
-        console.log('props', this.props.navigation.state.params)
         this.state = {
             timer: 0,
             data: this.props.navigation.state.params,
