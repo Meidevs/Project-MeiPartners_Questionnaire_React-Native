@@ -50,7 +50,7 @@ export default class Incomming extends React.Component {
             this.setState({progressBar : progressBar });
             if (timer === 3) {
                 clearInterval(this.interval)
-                this.props.navigation.navigate('Recommendation', this.state.data)
+                this.props.navigation.navigate('Graphs', this.state.data)
             }
         }, 1000)
     }

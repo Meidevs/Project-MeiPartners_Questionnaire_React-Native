@@ -20,6 +20,15 @@ import Incomming1Screen from './screens/Incomming1.js';
 import Incomming2Screen from './screens/Incomming2.js';
 import LoadingScreen from './screens/Loading.js';
 import QuestionScreen from './screens/Question.js';
+import GraphsScreen from './screens/Graphs.js';
+import cate0Screen from './screens/cate0.js';
+import cate1Screen from './screens/cate1.js';
+import cate2Screen from './screens/cate2.js';
+import cate3Screen from './screens/cate3.js';
+import cate4Screen from './screens/cate4.js';
+import cate5Screen from './screens/cate5.js';
+import cate6Screen from './screens/cate6.js';
+import cate7Screen from './screens/cate7.js';
 import SideMenu from './components/SideMenu.js';
 
 
@@ -27,20 +36,53 @@ const DrawerStack = createDrawerNavigator(
   {
     Recommendation: {
       screen: RecommendationScreen,
-    }
+    },
+    cate0: {
+      screen: cate0Screen,
+    },
+    cate1: {
+      screen: cate1Screen,
+    },
+    cate2: {
+      screen: cate2Screen,
+    },
+    cate3: {
+      screen: cate3Screen,
+    },
+    cate4: {
+      screen: cate4Screen,
+    },
+    cate5: {
+      screen: cate5Screen,
+    },
+    cate6: {
+      screen: cate6Screen,
+    },
+    cate7: {
+      screen: cate7Screen,
+    },
   },
   {
-    contentComponent: ({ navigation }) => (
-      <SideMenu navigation={navigation} />
-    ),
-  }
+    contentComponent: props => (<SideMenu {...props} />),
+  },
 )
 
 const DrawerNavigation = createStackNavigator(
   {
+    Graphs : {
+      screen : GraphsScreen,
+    },
     DrawerStack: {
-      screen: DrawerStack,
-      navigationOptions: ({ navigation }) => {
+      screen : DrawerStack
+    }
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => {
+      if (navigation.state.routeName == 'Graphs') {
+        return {
+          headerTitle : () => <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, flexDirection: 'row' }}><Text>설문 결과</Text></View>
+        }
+      } else {
         return {
           headerTitle: () => <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, flexDirection: 'row' }}><Text>추천 상품</Text></View>,
           headerLeft: () => (
@@ -50,8 +92,9 @@ const DrawerNavigation = createStackNavigator(
           )
         }
       }
+
     }
-  },
+  }
 )
 
 const WaitingStack = createStackNavigator(

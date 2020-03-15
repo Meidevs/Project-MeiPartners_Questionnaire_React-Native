@@ -268,13 +268,26 @@ export default class Question extends React.Component {
         var data = this.state.dataSource;
         data[index].isSelected = !data[index].isSelected;
         data[index].txtSelection = data[index].isSelected ? styles.itemCategoriesTxtPress : styles.itemCategoriesTxt;
+
+        for (var i = 0; i < index; i++) {
+            if (data[i].isSelected == true) {
+                data[i].isSelected = !data[i].isSelected;
+                data[i].txtSelection = data[i].isSelected ? styles.itemCategoriesTxtPress : styles.itemCategoriesTxt;
+
+            }
+        }
+        for (var i = index + 1; i < data.length; i++) {
+            if (data[i].isSelected == true) {
+                data[i].isSelected = !data[i].isSelected;
+                data[i].txtSelection = data[i].isSelected ? styles.itemCategoriesTxtPress : styles.itemCategoriesTxt;
+            }
+        }
         this.setState({
             dataSource: data,
         });
     }
 
     nextQuestion = data => {
-        console.log('nextQuestion', data)
         var codeSelectedArray = new Array();
         var codeAllCateArray = new Array();
         data.map((data, i) => {
@@ -283,10 +296,9 @@ export default class Question extends React.Component {
             }
         })
         data.map((data, i) => {
-            codeAllCateArray.push({name : data.name, code : data.code})
+            codeAllCateArray.push({ name: data.name, code: data.code })
         })
-        console.log('codeAllCateArray', codeAllCateArray)
-        this.props.navigation.navigate('Loading', { codeAllCateArray : codeAllCateArray, cateSelectedCodes: codeSelectedArray, resultsCodes: this.state.itemsCode, skinTypeScore: this.state.skinTypeScore });
+        this.props.navigation.navigate('Loading', { codeAllCateArray: codeAllCateArray, cateSelectedCodes: codeSelectedArray, resultsCodes: this.state.itemsCode, skinTypeScore: this.state.skinTypeScore });
     }
 
     render() {

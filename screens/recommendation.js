@@ -32,8 +32,8 @@ export default class Recommendation extends React.Component {
     }
     constructor(props) {
         super(props)
-        var cateData = this.props.navigation.state.params.cateSelectedCodes;
-        var preData = this.props.navigation.state.params.resultsCodes;
+        var cateData = this.props.navigation.getParam('cateSelectedCodes');
+        var preData = this.props.navigation.getParam('resultsCodes');
         this.state = {
             cates: cateData,
             listsNum: preData,

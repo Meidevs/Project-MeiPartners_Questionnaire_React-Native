@@ -7,14 +7,11 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 class SideMenu extends Component {
   constructor(props) {
     super(props)
-    console.log('props', this.props.navigation._childrenNavigation.Recommendation.state.params)
+    console.log('a', this.props.navigation._childrenNavigation.Recommendation.state.params.codeAllCateArray)
     var allCate = this.props.navigation._childrenNavigation.Recommendation.state.params.codeAllCateArray;
-
     this.state = {
       cateArray: allCate
     }
-    console.log('this.state.cateArray', this.state.cateArray)
-    console.log('?', this.props.children)
   }
 
   render() {
@@ -23,7 +20,7 @@ class SideMenu extends Component {
         return (
           <ScrollView>
             <View>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('Recommendation', {cateSelectedCodes : data.code})}>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate(data.code, {cateSelectedCodes : data.code})}>
                 <Text>{data.name}</Text>
               </TouchableOpacity>
             </View>
