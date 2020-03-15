@@ -26,7 +26,59 @@ export default class Incomming1 extends React.Component {
 
         this.setState({ fontLoaded: true })
     }
+
+    constructor(props) {
+        super(props)
+        console.log(this.props.navigation.getParam('data'))
+        console.log(this.props.navigation.getParam('code'))
+        this.state = {
+            uri: this.props.navigation.getParam('data')[0].uri
+        }
+    }
+
+    renderItem = data => {
+        return (
+            <View style={styles.txtDesign}>
+                <Text style={styles.manualTxt}>{data.item.manual}</Text>
+                <View style={styles.manualBorder}>
+                    <Text style={styles.manualBorderTxt}>SOLUTION</Text>
+                </View>
+                <Text style={styles.submanualTxt}>{data.item.submanual}</Text>
+            </View>
+        )
+    }
+
     render() {
+        const mapToExplanation = data => {
+            return data.map((data, i) => {
+                return (
+                    <View style={styles.sliderContent}>
+                        <View style={styles.sliderTop}>
+                            <View style={styles.sliderImage}>
+                                <View style={styles.itemImages}>
+                                    <Image source={data.uri} style={{ flex: 1, aspectRatio: 1.2, resizeMode: 'contain' }} />
+                                </View>
+                            </View>
+                        </View>
+                        <View style={styles.sliderBottom}>
+                            <View style={styles.sliderName}>
+                                <View style={styles.members}>
+                                </View>
+                                <Text style={styles.text}>{data.item}</Text>
+                            </View>
+                            <View style={{ borderWidth: 0.8, borderColor: '#BFBFBF', width: width * 0.9, alignSelf: 'center' }} />
+                            <View>
+                                <FlatList
+                                    data={[data]}
+                                    renderItem={item => this.renderItem(item)}
+                                    keyExtractor={item => item.cate}
+                                />
+                            </View>
+                        </View>
+                    </View>
+                )
+            })
+        }
         return (
             <View style={styles.container}>
                 <StatusBar
@@ -40,7 +92,9 @@ export default class Incomming1 extends React.Component {
                     //allowing light, but not detailed shapes
                     networkActivityIndicatorVisible={true}
                 />
-                <Text>Cate0</Text>
+                <View style={styles.container} >
+                    {mapToExplanation(this.state.dataSource)}
+                </View>
             </View>
         );
     }
@@ -48,9 +102,82 @@ export default class Incomming1 extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: StatusBar.currentHeight,
         flex: 1,
         backgroundColor: '#FFFFFF',
+        marginTop: StatusBar.currentHeight,
+    },
+    sliderContent: {
+        flex: 1,
+    },
+    slide: {
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: 'transparent'
+    },
+    sliderTop: {
+        backgroundColor: '#F4F4F4',
+        flex: 1,
+    },
+    sliderBottom: {
+        backgroundColor: '#FFFFFF',
+        flex: 2,
+    },
+    members: {
+        flexDirection: 'row'
+    },
+    mb: {
+        fontFamily: 'NanumSquareRoundB',
+        color: '#737373'
+    },
+    dc: {
+        fontFamily: 'NanumSquareRoundB',
+        color: '#FE7CAD'
+    },
+    sliderImage: {
+        flex: 8,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    itemImages: {
+        width: width * 0.8,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    sliderName: {
+        padding: 20,
+    },
+    image: {
+        width,
+        flex: 1
+    },
+    txtDesign: {
+        padding: 20,
+    },
+    manualTxt: {
+        fontSize: width * 0.04,
+        lineHeight: 20,
+        color: '#737373'
+    },
+    manualBorder: {
+        paddingTop: 10,
+        paddingBottom: 10,
+        flexDirection: 'row',
+        alignItems: 'flex-start'
+    },
+    manualBorderTxt: {
+        fontFamily: 'NanumSquareRoundB',
+        color: '#FE7CAD'
+    },
+    submanualTxt: {
+        fontSize: width * 0.04,
+        lineHeight: 20
+    },
+    text: {
+        fontSize: width * 0.05,
+        fontFamily: 'NanumSquareRoundEB',
+        color: '#444444'
     },
     topContainer: {
         flex: 1,
@@ -111,26 +238,4 @@ const styles = StyleSheet.create({
         color: '#B7B7B7',
         fontSize: width * 0.04,
     },
-    buttonContent: {
-        flex: 2,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-    button: {
-        width: width * 0.4,
-        height: width * 0.2,
-        justifyContent: 'center',
-        alignItems: 'center',
-
-    },
-    buttonImage: {
-        width: width * 0.4,
-        resizeMode: 'contain',
-    },
-    pgLink: {
-        width: width * 0.1,
-        height : width  * 0.1,
-        resizeMode: 'contain',
-    }
 });

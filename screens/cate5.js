@@ -26,6 +26,10 @@ export default class Incomming1 extends React.Component {
 
         this.setState({ fontLoaded: true })
     }
+    constructor (props) {
+        super(props)
+        console.log(this.props.navigation.getParam('data'))
+    }
     render() {
         return (
             <View style={styles.container}>
