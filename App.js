@@ -34,7 +34,10 @@ import SideMenu from './components/SideMenu.js';
 
 const DrawerStack = createDrawerNavigator(
   {
-    Recommendation: {
+    Graphs : {
+      screen : GraphsScreen,
+    },
+        Recommendation: {
       screen: RecommendationScreen,
     },
     cate0: {
@@ -69,9 +72,6 @@ const DrawerStack = createDrawerNavigator(
 
 const DrawerNavigation = createStackNavigator(
   {
-    Graphs : {
-      screen : GraphsScreen,
-    },
     DrawerStack: {
       screen : DrawerStack
     }

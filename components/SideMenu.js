@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component, Children } from 'react';
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions, ThemeColors } from 'react-navigation';
 import { ScrollView, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -8,9 +8,9 @@ class SideMenu extends Component {
   constructor(props) {
     super(props)
     
-    var allCate = this.props.navigation._childrenNavigation.Recommendation.state.params.codeAllCateArray;
-    var cateData = this.props.navigation._childrenNavigation.Recommendation.state.params.cateSelectedCodes;
-    var preData = this.props.navigation._childrenNavigation.Recommendation.state.params.resultsCodes;
+    var allCate = this.props.navigation._childrenNavigation.Graphs.state.params.codeAllCateArray;
+    var cateData = this.props.navigation._childrenNavigation.Graphs.state.params.cateSelectedCodes;
+    var preData = this.props.navigation._childrenNavigation.Graphs.state.params.resultsCodes;
 
     this.state = {
       cateArray: allCate,
@@ -570,16 +570,22 @@ class SideMenu extends Component {
       dataSource: allCate,
       resultsArray : resultsArray
     }
+    console.log(this.state.resultsArray)
   }
 
   render() {
-    console.log(this.props.navigation.state.routeName)
     const mapToCateArray = data => {
       return data.map((data, i) => {
+        var dataArray = [];
+        for(var j = 0; j < this.state.resultsArray.length; j++) {
+          if (data.code == this.state.resultsArray[j].code) {
+            dataArray.push(this.state.resultsArray[j])
+          }
+        }
         return (
           <ScrollView>
             <View>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate(data.code, {code : data.code, data : this.state.resultsArray})}>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate(data.code, {code : data.code, data : dataArray})}>
                 <Text>{data.name}</Text>
               </TouchableOpacity>
             </View>
@@ -590,6 +596,9 @@ class SideMenu extends Component {
     }
     return (
       <View>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Graphs')}>
+          <Text>그래프</Text>
+        </TouchableOpacity>
         {mapToCateArray(this.state.dataSource)}
       </View>
     );

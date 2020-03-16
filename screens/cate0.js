@@ -32,7 +32,7 @@ export default class Incomming1 extends React.Component {
         console.log(this.props.navigation.getParam('data'))
         console.log(this.props.navigation.getParam('code'))
         this.state = {
-            uri: this.props.navigation.getParam('data')[0].uri
+            // uri: this.props.navigation.getParam('data')[0].uri
         }
     }
 
