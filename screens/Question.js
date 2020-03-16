@@ -317,7 +317,8 @@ export default class Question extends React.Component {
                         <Text style={data.txtSelection}>
                             {data.name}
                         </Text>
-                    </TouchableOpacity>)
+                    </TouchableOpacity>
+                    )
             })
         }
         return (

@@ -13,7 +13,7 @@ import {
 import * as Font from 'expo-font';
 const { width, height } = Dimensions.get('window');
 
-export default class Incomming1 extends React.Component {
+export default class cate1 extends React.Component {
     state = {
         fontLoaded: false,
     }
@@ -30,9 +30,9 @@ export default class Incomming1 extends React.Component {
 
     constructor(props) {
         super(props)
-        console.log(this.props.navigation.getParam('data'))
         var datas = this.props.navigation.getParam('data')
         this.state = {
+            rawData: datas,
             index: 0,
             length: datas.length,
             dataSource: [
@@ -45,42 +45,97 @@ export default class Incomming1 extends React.Component {
     }
 
     renderItem = data => {
-        return (
-            <View style={styles.txtDesign}>
-                <Text style={styles.manualTxt}>{data.item.manual}</Text>
-                <View style={styles.manualBorder}>
-                    <Text style={styles.manualBorderTxt}>SOLUTION</Text>
+        if (this.state.length != 1 && this.state.index == 0) {
+            return (
+                <View style={styles.txtDesign}>
+                    <View>
+                        <Text style={styles.manualTxt}>{data.item[0].manual}</Text>
+                    </View>
+                    <View style={styles.manualBorder}>
+                        <Text style={styles.manualBorderTxt}>SOLUTION</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.submanualTxt}>{data.item[1].submanual}</Text>
+                    </View>
                 </View>
-                <Text style={styles.submanualTxt}>{data.item.submanual}</Text>
-                {this.componentJSX()}
-            </View>
-        )
+            )
+        } else if (this.state.length != 1 && this.state.index == 1) {
+            return (
+                <View style={styles.txtDesign}>
+                    <View>
+                        <Text style={styles.manualTxt}>{data.item[0].manual}</Text>
+                    </View>
+                    <View style={styles.manualBorder}>
+                        <Text style={styles.manualBorderTxt}>SOLUTION</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.submanualTxt}>{data.item[1].submanual}</Text>
+                    </View>
+                </View>
+            )
+        } else {
+            return (
+                <View style={styles.txtDesign}>
+                    <View>
+                        <Text style={styles.manualTxt}>{data.item[0].manual}</Text>
+                    </View>
+                    <View style={styles.manualBorder}>
+                        <Text style={styles.manualBorderTxt}>SOLUTION</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.submanualTxt}>{data.item[1].submanual}</Text>
+                    </View>
+                </View>
+            )
+        }
     }
-    nextButton() {
-
+    nextButton = data => {
+        this.setState({
+            index: 1,
+            length: data.length,
+            dataSource: [
+                { manual: data[1].manual },
+                { submanual: data[1].submanual },
+            ],
+            uri: data[1].uri,
+            item: data[1].item,
+        })
     }
-    goBack() {
-
+    goBack(data) {
+        this.setState({
+            index: 0,
+            length: data.length,
+            dataSource: [
+                { manual: data[0].manual },
+                { submanual: data[0].submanual },
+            ],
+            uri: data[0].uri,
+            item: data[0].item,
+        })
     }
     componentJSX() {
         if (this.state.length != 1 && this.state.index == 0) {
             return (
-                <View>
-                    <TouchableOpacity onPress={this.nextButton}>
-                        <Text>다음</Text>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity onPress={() => this.nextButton(this.state.rawData)} style={styles.buttonStyle}>
+                        <Text style={styles.buttonTxtStyle}>다음</Text>
                     </TouchableOpacity>
                 </View>
             )
         } else if (this.state.length != 1 && this.state.index == 1) {
-            <View>
-                <TouchableOpacity onPress={this.goBack}>
-                    <Text>이전</Text>
-                </TouchableOpacity>
-            </View>
+            return (
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity onPress={() => this.goBack(this.state.rawData)} style={styles.buttonStyle}>
+                        <Text style={styles.buttonTxtStyle}>이전</Text>
+                    </TouchableOpacity>
+                </View>
+            )
         } else {
-            <View>
+            return (
+                <View style={styles.buttonContainer}>
 
-            </View>
+                </View>
+            )
         }
     }
 
@@ -98,31 +153,24 @@ export default class Incomming1 extends React.Component {
                     //allowing light, but not detailed shapes
                     networkActivityIndicatorVisible={true}
                 />
-                <View style={styles.container} >
-                    <View style={styles.sliderContent}>
-                        <View style={styles.sliderTop}>
-                            <View style={styles.sliderImage}>
-                                <View style={styles.itemImages}>
-                                    <Image source={this.state.uri} style={{ flex: 1, aspectRatio: 1.2, resizeMode: 'contain' }} />
-                                </View>
-                            </View>
-                        </View>
-                        <View style={styles.sliderBottom}>
-                            <View style={styles.sliderName}>
-                                <View style={styles.members}>
-                                </View>
-                                <Text style={styles.text}>{this.state.item}</Text>
-                            </View>
-                            <View style={{ borderWidth: 0.8, borderColor: '#BFBFBF', width: width * 0.9, alignSelf: 'center' }} />
-                            <View>
-                                <FlatList
-                                    data={this.state.dataSource}
-                                    renderItem={item => this.renderItem(item)}
-                                    keyExtractor={item => item.code}
-                                />
-                            </View>
-                        </View>
+                <View style={styles.topContainer} >
+                    <View style={styles.imageContainer}>
+                        <Image source={this.state.uri} style={{ flex: 1, aspectRatio: 1.2, resizeMode: 'contain' }} />
                     </View>
+                </View>
+                <View style={styles.bottomContainer} >
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.titleTxt}>{this.state.item}</Text>
+                    </View>
+                    <View style={{ borderWidth: 0.8, borderColor: '#BFBFBF', width: width * 0.9, alignSelf: 'center' }} />
+                    <View style={styles.flatlistContainer}>
+                        <FlatList
+                            data={[this.state.dataSource]}
+                            renderItem={item => this.renderItem(item)}
+                            keyExtractor={item => item.manual}
+                        />
+                    </View>
+                    {this.componentJSX()}
                 </View>
             </View>
         );
@@ -133,53 +181,45 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FFFFFF',
-        marginTop: StatusBar.currentHeight,
     },
-    sliderContent: {
-        flex: 1,
-    },
-    slide: {
-        flex: 1,
-        justifyContent: 'center',
-        backgroundColor: 'transparent'
-    },
-    sliderTop: {
-        backgroundColor: '#F4F4F4',
-        flex: 1,
-    },
-    sliderBottom: {
-        backgroundColor: '#FFFFFF',
+    topContainer: {
         flex: 2,
     },
-    members: {
-        flexDirection: 'row'
-    },
-    mb: {
-        fontFamily: 'NanumSquareRoundB',
-        color: '#737373'
-    },
-    dc: {
-        fontFamily: 'NanumSquareRoundB',
-        color: '#FE7CAD'
-    },
-    sliderImage: {
-        flex: 8,
-        flexDirection: 'column',
-        alignItems: 'center',
+    imageContainer: {
+        flex: 1,
         justifyContent: 'center',
-    },
-    itemImages: {
-        width: width * 0.8,
-        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: '#F4F4F4'
     },
-    sliderName: {
+    bottomContainer: {
+        flex: 3,
+    },
+    titleContainer: {
+        flex: 1,
         padding: 20,
     },
-    image: {
-        width,
-        flex: 1
+    titleTxt: {
+        fontSize: width * 0.05,
+        fontFamily: 'NanumSquareRoundEB',
+        color: '#444444'
+    },
+    flatlistContainer : {
+        flex : 10,
+    },
+    buttonContainer : {
+        flex : 2
+    },
+    buttonStyle : {
+        flex : 1,
+        backgroundColor : '#FF7BAC',
+        justifyContent : 'center',
+        alignItems : 'center'
+    },
+    buttonTxtStyle : {
+        textAlign : 'center',
+        fontFamily: 'NanumSquareRoundEB',
+        fontSize : width * 0.04,
+        color : '#FFFFFF'
     },
     txtDesign: {
         padding: 20,
@@ -197,74 +237,11 @@ const styles = StyleSheet.create({
     },
     manualBorderTxt: {
         fontFamily: 'NanumSquareRoundB',
-        color: '#FE7CAD'
+        color: '#FE7CAD',
     },
     submanualTxt: {
         fontSize: width * 0.04,
-        lineHeight: 20
-    },
-    text: {
-        fontSize: width * 0.05,
-        fontFamily: 'NanumSquareRoundEB',
-        color: '#444444'
-    },
-    topContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        width: width,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    middleContainer: {
-        flex: 3,
-        width: width,
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    imageBox: {
-        flex: 1,
-        width: width * 0.8,
-        height: width * 0.7,
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    bottomContainer: {
-        flex: 2,
-        width: width,
-        alignItems: 'center',
-    },
-    icon: {
-        flex: 1,
-        resizeMode: 'contain',
-        width: width * 0.4,
-    },
-    pop1_BG: {
-        flex: 1,
-        resizeMode: 'contain',
-        width: width * 0.5
-    },
-    txtContent: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    mainTxt: {
-        color: '#044B77',
-        fontSize: width * 0.07,
-        fontFamily: 'NanumSquareRoundEB',
-    },
-    mainTxtB: {
-        color: '#044B77',
-        fontSize: width * 0.07,
-    },
-    subTxt: {
-        color: '#B7B7B7',
-        fontSize: width * 0.04,
-        fontFamily: 'NanumSquareRoundEB',
-    },
-    subTxtB: {
-        color: '#B7B7B7',
-        fontSize: width * 0.04,
+        lineHeight: 20,
+        textAlign: 'justify'
     },
 });

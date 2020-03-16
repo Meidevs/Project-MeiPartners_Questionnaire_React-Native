@@ -37,9 +37,6 @@ const DrawerStack = createDrawerNavigator(
     Graphs: {
       screen: GraphsScreen,
     },
-    Recommendation: {
-      screen: RecommendationScreen,
-    },
     cate0: {
       screen: cate0Screen,
     },
@@ -78,9 +75,9 @@ const DrawerNavigation = createStackNavigator(
   },
   {
     defaultNavigationOptions: ({ navigation }) => {
-      if (navigation.state.routeName == 'Graphs') {
+      if (navigation.state.routeName == 'DrawerStack') {
         return {
-          headerTitle: () => <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, flexDirection: 'row' }}><Text>설문 결과</Text></View>
+          headerTitle: () => <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, flexDirection: 'row' }}><Text style={{color : '#FF7BAC', fontSize : 20, fontWeight : '900'}}>SURVEY</Text></View>
         }
       } else {
         return {
@@ -92,7 +89,6 @@ const DrawerNavigation = createStackNavigator(
           )
         }
       }
-
     }
   }
 )
