@@ -34,10 +34,10 @@ import SideMenu from './components/SideMenu.js';
 
 const DrawerStack = createDrawerNavigator(
   {
-    Graphs : {
-      screen : GraphsScreen,
+    Graphs: {
+      screen: GraphsScreen,
     },
-        Recommendation: {
+    Recommendation: {
       screen: RecommendationScreen,
     },
     cate0: {
@@ -73,14 +73,14 @@ const DrawerStack = createDrawerNavigator(
 const DrawerNavigation = createStackNavigator(
   {
     DrawerStack: {
-      screen : DrawerStack
+      screen: DrawerStack
     }
   },
   {
     defaultNavigationOptions: ({ navigation }) => {
       if (navigation.state.routeName == 'Graphs') {
         return {
-          headerTitle : () => <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, flexDirection: 'row' }}><Text>설문 결과</Text></View>
+          headerTitle: () => <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, flexDirection: 'row' }}><Text>설문 결과</Text></View>
         }
       } else {
         return {

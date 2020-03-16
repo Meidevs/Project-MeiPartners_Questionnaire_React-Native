@@ -562,7 +562,7 @@ class SideMenu extends Component {
     for(var  i = 0; i < this.state.cateArray.length; i++) {
       for(var j = 0; j < exArray.length; j++) {
         if(this.state.cateArray[i].code == exArray[j].code) {
-          resultsArray.push({code : this.state.cateArray[i].code, name : this.state.cateArray[i].name, item : exArray[j].item, manual : exArray[j].manual, uri : exArray[j].uri});
+          resultsArray.push({code : this.state.cateArray[i].code, name : this.state.cateArray[i].name, item : exArray[j].item, manual : exArray[j].manual, submanual : exArray[j].submanual, uri : exArray[j].uri});
         }
       }
     }
@@ -570,7 +570,6 @@ class SideMenu extends Component {
       dataSource: allCate,
       resultsArray : resultsArray
     }
-    console.log(this.state.resultsArray)
   }
 
   render() {

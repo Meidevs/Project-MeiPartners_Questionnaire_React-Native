@@ -8,6 +8,7 @@ import {
     Dimensions,
     Image,
     StatusBar,
+    FlatList,
 } from 'react-native';
 import * as Font from 'expo-font';
 const { width, height } = Dimensions.get('window');
@@ -30,9 +31,16 @@ export default class Incomming1 extends React.Component {
     constructor(props) {
         super(props)
         console.log(this.props.navigation.getParam('data'))
-        console.log(this.props.navigation.getParam('code'))
+        var datas = this.props.navigation.getParam('data')
         this.state = {
-            // uri: this.props.navigation.getParam('data')[0].uri
+            index: 0,
+            length: datas.length,
+            dataSource: [
+                { manual: datas[0].manual },
+                { submanual: datas[0].submanual },
+            ],
+            uri: datas[0].uri,
+            item: datas[0].item,
         }
     }
 
@@ -44,41 +52,39 @@ export default class Incomming1 extends React.Component {
                     <Text style={styles.manualBorderTxt}>SOLUTION</Text>
                 </View>
                 <Text style={styles.submanualTxt}>{data.item.submanual}</Text>
+                {this.componentJSX()}
             </View>
         )
     }
+    nextButton() {
+
+    }
+    goBack() {
+
+    }
+    componentJSX() {
+        if (this.state.length != 1 && this.state.index == 0) {
+            return (
+                <View>
+                    <TouchableOpacity onPress={this.nextButton}>
+                        <Text>다음</Text>
+                    </TouchableOpacity>
+                </View>
+            )
+        } else if (this.state.length != 1 && this.state.index == 1) {
+            <View>
+                <TouchableOpacity onPress={this.goBack}>
+                    <Text>이전</Text>
+                </TouchableOpacity>
+            </View>
+        } else {
+            <View>
+
+            </View>
+        }
+    }
 
     render() {
-        const mapToExplanation = data => {
-            return data.map((data, i) => {
-                return (
-                    <View style={styles.sliderContent}>
-                        <View style={styles.sliderTop}>
-                            <View style={styles.sliderImage}>
-                                <View style={styles.itemImages}>
-                                    <Image source={data.uri} style={{ flex: 1, aspectRatio: 1.2, resizeMode: 'contain' }} />
-                                </View>
-                            </View>
-                        </View>
-                        <View style={styles.sliderBottom}>
-                            <View style={styles.sliderName}>
-                                <View style={styles.members}>
-                                </View>
-                                <Text style={styles.text}>{data.item}</Text>
-                            </View>
-                            <View style={{ borderWidth: 0.8, borderColor: '#BFBFBF', width: width * 0.9, alignSelf: 'center' }} />
-                            <View>
-                                <FlatList
-                                    data={[data]}
-                                    renderItem={item => this.renderItem(item)}
-                                    keyExtractor={item => item.cate}
-                                />
-                            </View>
-                        </View>
-                    </View>
-                )
-            })
-        }
         return (
             <View style={styles.container}>
                 <StatusBar
@@ -93,7 +99,30 @@ export default class Incomming1 extends React.Component {
                     networkActivityIndicatorVisible={true}
                 />
                 <View style={styles.container} >
-                    {mapToExplanation(this.state.dataSource)}
+                    <View style={styles.sliderContent}>
+                        <View style={styles.sliderTop}>
+                            <View style={styles.sliderImage}>
+                                <View style={styles.itemImages}>
+                                    <Image source={this.state.uri} style={{ flex: 1, aspectRatio: 1.2, resizeMode: 'contain' }} />
+                                </View>
+                            </View>
+                        </View>
+                        <View style={styles.sliderBottom}>
+                            <View style={styles.sliderName}>
+                                <View style={styles.members}>
+                                </View>
+                                <Text style={styles.text}>{this.state.item}</Text>
+                            </View>
+                            <View style={{ borderWidth: 0.8, borderColor: '#BFBFBF', width: width * 0.9, alignSelf: 'center' }} />
+                            <View>
+                                <FlatList
+                                    data={this.state.dataSource}
+                                    renderItem={item => this.renderItem(item)}
+                                    keyExtractor={item => item.code}
+                                />
+                            </View>
+                        </View>
+                    </View>
                 </View>
             </View>
         );

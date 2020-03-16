@@ -50,7 +50,7 @@ export default class Incomming1 extends React.Component {
                     networkActivityIndicatorVisible={true}
                 />
                 <View>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Recommendation', {cateSelectedCodes : this.state.cateSelectedCodes, resultsCodes : this.state.resultsCodes, codeAllCateArray : this.state.codeAllCateArray})}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate(this.state.cateSelectedCodes[0], {cateSelectedCodes : this.state.cateSelectedCodes, resultsCodes : this.state.resultsCodes, codeAllCateArray : this.state.codeAllCateArray})}>
                         <Text>다음</Text>
                     </TouchableOpacity>
                 </View>
