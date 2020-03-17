@@ -30,7 +30,6 @@ import cate6Screen from './screens/cate6.js';
 import cate7Screen from './screens/cate7.js';
 import SideMenu from './components/SideMenu.js';
 
-
 const DrawerStack = createDrawerNavigator(
   {
     cate0: {
@@ -59,7 +58,7 @@ const DrawerStack = createDrawerNavigator(
     },
   },
   {
-    contentComponent: props => (<SideMenu {...props} />),
+    contentComponent: navigation => (<SideMenu {...navigation} />),
   },
 )
 
@@ -67,6 +66,12 @@ const DrawerNavigation = createStackNavigator(
   {
     Graphs: {
       screen: GraphsScreen,
+      navigationOptions: () => {
+        return {
+          headerTitle: () => <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, flexDirection: 'row' }}><Text style={{ color: '#FF7BAC', fontSize: 20, fontWeight: '900' }}>SURVEY</Text></View>,
+          headerLeft : () => null,
+        }
+      }
     },
     DrawerStack: {
       screen: DrawerStack
@@ -74,18 +79,15 @@ const DrawerNavigation = createStackNavigator(
   },
   {
     defaultNavigationOptions: ({ navigation }) => {
-      if (navigation.state.routeName == 'Graphs') {
-        return {
-          headerTitle: () => <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, flexDirection: 'row' }}><Text style={{color : '#FF7BAC', fontSize : 20, fontWeight : '900'}}>SURVEY</Text></View>
-        }
-      } else {
-        return {
-          headerTitle: () => <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, flexDirection: 'row' }}><Text>추천 상품</Text></View>,
-          headerLeft: () => (
-            <TouchableOpacity style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} onPress={() => { navigation.dispatch(DrawerActions.toggleDrawer()) }}>
-              <Image source={require('./public/images/option.png')} style={{ width: width * 0.12, aspectRatio: 1 }} />
-            </TouchableOpacity>
-          )
+      return {
+        headerTitle: () => <View style={{flex: 1, flexDirection: 'row' }}><Image source={require('./public/images/text2.png')} style={{flex : 1, width : width * 0.4, aspectRatio : 6.76}}/></View>,
+        headerLeft: () => (
+          <TouchableOpacity style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} onPress={() => { navigation.dispatch(DrawerActions.toggleDrawer()) }}>
+            <Image source={require('./public/images/option.png')} style={{ width: width * 0.12, aspectRatio: 1 }} />
+          </TouchableOpacity>
+        ),
+        headerTitleStyle : {
+
         }
       }
     }

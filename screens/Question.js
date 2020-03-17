@@ -299,7 +299,7 @@ export default class Question extends React.Component {
             codeAllCateArray.push({ name: data.name, code: data.code })
         })
         //codeAllCateArray : Array of Cate Code Based On Questionnaire Result, cateSelectedCodes : Selected Cate Code (One of codeAllCateArray), resultsCodes : iIndicate Items List (After Complete the Questionnaire, Getting Items List ), SkinTypeScore : Total Score of Questions
-        this.props.navigation.navigate('Loading', { codeAllCateArray: codeAllCateArray, cateSelectedCodes: codeSelectedArray, resultsCodes: this.state.itemsCode, skinTypeScore: this.state.skinTypeScore });
+        this.props.navigation.navigate('Loading', { codeAllCateArray: codeAllCateArray, cateSelectedCodes: codeSelectedArray, resultsCodes: 1, skinTypeScore: this.state.skinTypeScore });
     }
 
     render() {

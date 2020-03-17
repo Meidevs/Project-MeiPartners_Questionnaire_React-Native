@@ -338,7 +338,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
     },
     contentBorder: {
         backgroundColor: '#FFF9FB',
@@ -394,12 +394,13 @@ const styles = StyleSheet.create({
         height: '65%',
     },
     button: {
-        width: width,
+        flex : 1,
         alignItems: 'center',
         backgroundColor: '#FF7BAC',
     },
     nextButton: {
         height: width * 0.15,
         aspectRatio: 6.252,
+        
     }
 });
