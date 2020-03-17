@@ -15,7 +15,6 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator, DrawerActions } from 'react-navigation-drawer';
 
 import QuestionContentScreen from './screens/QuestionContent.js';
-import RecommendationScreen from './screens/Recommendation.js';
 import Incomming1Screen from './screens/Incomming1.js';
 import Incomming2Screen from './screens/Incomming2.js';
 import LoadingScreen from './screens/Loading.js';
@@ -34,9 +33,6 @@ import SideMenu from './components/SideMenu.js';
 
 const DrawerStack = createDrawerNavigator(
   {
-    Graphs: {
-      screen: GraphsScreen,
-    },
     cate0: {
       screen: cate0Screen,
     },
@@ -69,13 +65,16 @@ const DrawerStack = createDrawerNavigator(
 
 const DrawerNavigation = createStackNavigator(
   {
+    Graphs: {
+      screen: GraphsScreen,
+    },
     DrawerStack: {
       screen: DrawerStack
     }
   },
   {
     defaultNavigationOptions: ({ navigation }) => {
-      if (navigation.state.routeName == 'DrawerStack') {
+      if (navigation.state.routeName == 'Graphs') {
         return {
           headerTitle: () => <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, flexDirection: 'row' }}><Text style={{color : '#FF7BAC', fontSize : 20, fontWeight : '900'}}>SURVEY</Text></View>
         }

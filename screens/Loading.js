@@ -50,7 +50,13 @@ export default class Incomming extends React.Component {
             this.setState({progressBar : progressBar });
             if (timer === 3) {
                 clearInterval(this.interval)
-                console.log(this.state.data)
+                
+                // this.state.data : 
+                // cateSelectedCodes -> Category Code that I selected
+                // codeAllCateArray -> After Answer the Questions, Response is Category Code & Category Name
+                // resultsCodes -> After Answer the Questions, Code of Category Code & Category Name Set
+                // skinTypeScore -> Score of the Answer
+                this.props.navigation.setParams({data : '1'})
                 this.props.navigation.navigate('Graphs', this.state.data)
             }
         }, 1000)

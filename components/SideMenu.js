@@ -8,10 +8,10 @@ const { width, height } = Dimensions.get('window');
 class SideMenu extends Component {
   constructor(props) {
     super(props)
-
-    var preData = this.props.navigation._childrenNavigation.Graphs.state.params.resultsCodes;
-    var allCate = this.props.navigation._childrenNavigation.Graphs.state.params.codeAllCateArray;
-    var cateData = this.props.navigation._childrenNavigation.Graphs.state.params.cateSelectedCodes;
+    console.log(this.props.navigation._childrenNavigation)
+    var preData = this.props.navigation._childrenNavigation.DrawerStack.state.params.resultsCodes;
+    var allCate = this.props.navigation._childrenNavigation.DrawerStack.state.params.codeAllCateArray;
+    var cateData = this.props.navigation._childrenNavigation.DrawerStack.state.params.cateSelectedCodes;
 
     this.state = {
       listsNum: preData,
@@ -603,6 +603,7 @@ class SideMenu extends Component {
     console.log(resultsArray);
     this.props.navigation.navigate(code, { code: code, data: resultsArray })
   }
+
   categoryStatus = index => {
     var data = this.state.dataSource;
     data[index].isSelected = !data[index].isSelected;
