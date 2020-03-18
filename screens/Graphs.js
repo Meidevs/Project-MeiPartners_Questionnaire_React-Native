@@ -46,7 +46,7 @@ export default class Incomming1 extends React.Component {
                 itemCode: 'a', code: 'cate0', item: '5.8 마일드 클렌저', manual: "피부가 가장 건강한 pH 5.3의 약산성 클렌저로 강한회복력을 지니고 있고 피부 진정에 뛰어난 효과를 지닌각종 천연 추출물과 세포재생인자에 있는 다수의 펩타이드 성분이 클렌징 시 노폐물을 확실하게 제거함과동시에 피부에 강한 활력을 주어 턴오버 주기를 당겨줍니다.", submanual: '적당량을 덜어 충분히 거품을 낸 뒤 마사지하듯이 문질러주며 미온수로 충분히 헹군 후 찬물로 마무리해줍니다.', uri: require('../public/itemimages/58mc.png')
             },
             {
-                itemCode: 'b', code: 'cate0', item: '펩타 버블 클렌저', manual: "천연추출물 약산성 클렌저로 피부 진정작용이 뛰어난 티트리 성분과 녹차추출물이 피부 장벽을 튼튼하게 보호하고 청량한 피부로 가꾸어 줍니다. 쿠퍼 트리펩타이드와 아세틸 헥사 펩타이드를 함유하여 피부의 탄력 및 피부 톤 개선에 도움을 줍니다.", submanual: '세안 후 얼굴에 적당량을 발라 10분 후 제품이 마르면 미온수로 세안하여 깨끗하게 닦아내어줍니다.', uri: require('../public/itemimages/58mc.png')
+                itemCode: 'b', code: 'cate0', item: '펩타 버블 클렌저', manual: "천연추출물 약산성 클렌저로 피부 진정작용이 뛰어난 티트리 성분과 녹차추출물이 피부 장벽을 튼튼하게 보호하고 청량한 피부로 가꾸어 줍니다. 쿠퍼 트리펩타이드와 아세틸 헥사 펩타이드를 함유하여 피부의 탄력 및 피부 톤 개선에 도움을 줍니다.", submanual: '세안 후 얼굴에 적당량을 발라 10분 후 제품이 마르면 미온수로 세안하여 깨끗하게 닦아내어줍니다.', uri: require('../public/itemimages/pbc.png')
             },
             {
                 itemCode: 'c', code: 'cate0', item: '화이트 폼 클렌징', manual: '크리미한 질감과 부드럽고 미세한 거품이 모공 속 노폐물까지 청결하게 해줍니다. EGF와 쌀 추출물 성분이 피부를 촉촉하고 탄력있게 가꿔줍니다.', submanual: '적당량을 덜어 충분히 거품을 낸 뒤 마사지하듯이 문질러주고 미온수로 충분히 헹군 후 찬물로 마무리 해줍니다.', uri: require('../public/itemimages/hfc.png')
@@ -73,7 +73,7 @@ export default class Incomming1 extends React.Component {
                 itemCode: 'j', code: 'cate4', item: 'R 크림', manual: '순도 99% 이상의 카퍼트라이펩타이드-1과 아세틸헥사펩타이드-8이 함유된 기능성 크림입니다. 강력한 이중 보습 성분들과 식약처에서 인증받은 주름개선기능성 성분인 아데노신이 함유되어있고, 부드러운 발림성으로 피부에 영양과 수분을 빠르게 공급하여 피부 속부터 채워지는 깊은 보습감과 탄력감을 느낄 수 있습니다. 일회용 포장제품은 위생적으로 사용할 수 있으며, 샘플용으로 활용하기에 매우 용이합니다.', submanual: '적당량을 덜어 얼굴 전체에 충분히 펴 발라 충분히 흡수시켜 줍니다.', uri: require('../public/itemimages/rc.png')
             },
             {
-                itemCode: 'k', code: 'cate4', item: '네오 아이 블러썸', manual: "c", submanual: 'c', uri: require('../public/itemimages/58mc.png')
+                itemCode: 'k', code: 'cate4', item: '네오 아이 블러썸', manual: "c", submanual: 'c', uri: require('../public/itemimages/neb.png')
             },
             {
                 itemCode: 'l', code: 'cate4', item: '377 화이트닝 크림', manual: "피부표면으로부터 수분의 증발을 지연시켜 빠른 속도로 깊숙히 침투해 유연함과 촉촉함을 주며, 피부에 수분 보유력을 증강시켜 줍니다. 또, 지친피부를 맑고 투명하게 개선해주며 더욱 생기있는 피부결로 가꾸어 드립니다.", submanual: '스킨케어의 마지막 단계에서 적당량을 취해 얼굴과 목부위에 골고루 펴 발라 줍니다.', uri: require('../public/itemimages/377wc.png')
@@ -285,7 +285,7 @@ export default class Incomming1 extends React.Component {
                     {
                         cate: 'cate4',
                         item: [
-                            'l',
+                            'j',
                             'k'
                         ]
                     },
@@ -581,7 +581,6 @@ export default class Incomming1 extends React.Component {
                 }
             }
         })
-        console.log('exArray', exArray)
         //exArray : {itemCode: 'a', code: 'cate0', item: '5.8 마일드 클렌저', manual: "피부가 가장 건강한 pH 5.3의 약산성 클렌저로 강한회복력을 지니고 있고 피부 진정에 뛰어난 효과를 지닌각종 천연 추출물과 세포재생인자에 있는 다수의 펩타이드 성분이 클렌징 시 노폐물을 확실하게 제거함과동시에 피부에 강한 활력을 주어 턴오버 주기를 당겨줍니다.", submanual: '적당량을 덜어 충분히 거품을 낸 뒤 마사지하듯이 문질러주며 미온수로 충분히 헹군 후 찬물로 마무리해줍니다.', uri: require('../public/itemimages/58mc.png')}, 
         var resultsArray = [];
         console.log(cateData[0])
@@ -590,7 +589,6 @@ export default class Incomming1 extends React.Component {
                 resultsArray.push({ code: cateData[0], item: exArray[j].item, manual: exArray[j].manual, submanual: exArray[j].submanual, uri: exArray[j].uri });
             }
         }
-        console.log(resultsArray)
         this.state = {
             skinTypeScore: skinScore,
         }
@@ -679,8 +677,10 @@ export default class Incomming1 extends React.Component {
                 </View>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity onPress={() => this.functions()} style={styles.button}>
-                        <Image source={require('../public/images/nxtsbt.png')} style={{height: width * 0.15,
-        aspectRatio: 6.252, }}/>
+                        <Image source={require('../public/images/nxtsbt.png')} style={{
+                            height: width * 0.15,
+                            aspectRatio: 6.252,
+                        }} />
                     </TouchableOpacity>
                 </View>
 
@@ -696,13 +696,13 @@ const styles = StyleSheet.create({
     },
     topContainer: {
         flex: 5,
-        alignItems : 'center'
+        alignItems: 'center'
     },
     topTitle: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
-        width : width * 0.90,
+        width: width * 0.90,
     },
     subTxt: {
         color: '#B5B5B5',
@@ -716,7 +716,7 @@ const styles = StyleSheet.create({
         flex: 4,
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent : 'center',
+        justifyContent: 'center',
     },
     statusBar: {
         paddingBottom: 15,
@@ -734,24 +734,24 @@ const styles = StyleSheet.create({
     bottomContainer: {
         flex: 6,
         alignItems: 'center',
-        justifyContent : 'center'
+        justifyContent: 'center'
     },
-    bottomTitle : {
+    bottomTitle: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
         width: width * 0.9,
     },
     bottomLine: {
-        height : height *0.04,
-        alignItems : 'center',
-        justifyContent : 'center',
+        height: height * 0.04,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     buttonContainer: {
         flex: 1,
     },
-    button : {
-        flex : 1,
+    button: {
+        flex: 1,
         alignItems: 'center',
         backgroundColor: '#FF7BAC',
     }

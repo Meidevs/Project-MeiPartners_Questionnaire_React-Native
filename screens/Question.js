@@ -15,6 +15,17 @@ const { width, height } = Dimensions.get('window');
 
 export default class Question extends React.Component {
 
+    async componentDidMount() {
+        await Font.loadAsync({
+            'NanumSquareRoundEB': require('../assets/fonts/NanumSquareRoundEB.ttf'),
+            'NanumSquareRoundB': require('../assets/fonts/NanumSquareRoundB.ttf'),
+            'NanumSquareRoundR': require('../assets/fonts/NanumSquareRoundR.ttf'),
+            'NanumSquareRoundL': require('../assets/fonts/NanumSquareRoundL.ttf')
+        })
+
+        this.setState({ fontLoaded: true })
+    }
+
     constructor(props) {
         super(props)
         var skinTypeScore = this.props.navigation.state.params.data.skinCode;
@@ -254,16 +265,7 @@ export default class Question extends React.Component {
             }
         }
     }
-    async componentDidMount() {
-        await Font.loadAsync({
-            'NanumSquareRoundEB': require('../assets/fonts/NanumSquareRoundEB.ttf'),
-            'NanumSquareRoundB': require('../assets/fonts/NanumSquareRoundB.ttf'),
-            'NanumSquareRoundR': require('../assets/fonts/NanumSquareRoundR.ttf'),
-            'NanumSquareRoundL': require('../assets/fonts/NanumSquareRoundL.ttf')
-        })
-
-        this.setState({ fontLoaded: true })
-    }
+    
     categoryItemPress = (index) => {
         var data = this.state.dataSource;
         data[index].isSelected = !data[index].isSelected;
@@ -288,18 +290,28 @@ export default class Question extends React.Component {
     }
 
     nextQuestion = data => {
-        var codeSelectedArray = new Array();
-        var codeAllCateArray = new Array();
-        data.map((data, i) => {
-            if (data.isSelected == true) {
-                codeSelectedArray.push(data.code)
+        var expArray = [];
+        for (var x = 0; x < data.length; x++) {
+            if (this.state.dataSource[x].isSelected == true) {
+                expArray.push(true)
             }
-        })
-        data.map((data, i) => {
-            codeAllCateArray.push({ name: data.name, code: data.code })
-        })
-        //codeAllCateArray : Array of Cate Code Based On Questionnaire Result, cateSelectedCodes : Selected Cate Code (One of codeAllCateArray), resultsCodes : iIndicate Items List (After Complete the Questionnaire, Getting Items List ), SkinTypeScore : Total Score of Questions
-        this.props.navigation.navigate('Loading', { codeAllCateArray: codeAllCateArray, cateSelectedCodes: codeSelectedArray, resultsCodes: 1, skinTypeScore: this.state.skinTypeScore });
+        }
+        if (expArray[0] == undefined) {
+            alert('카테고리를 선택해주세요')
+        } else {
+            var codeSelectedArray = new Array();
+            var codeAllCateArray = new Array();
+            data.map((data, i) => {
+                if (data.isSelected == true) {
+                    codeSelectedArray.push(data.code)
+                }
+            })
+            data.map((data, i) => {
+                codeAllCateArray.push({ name: data.name, code: data.code })
+            })
+            //codeAllCateArray : Array of Cate Code Based On Questionnaire Result, cateSelectedCodes : Selected Cate Code (One of codeAllCateArray), resultsCodes : Indicate Items List (After Complete the Questionnaire, Getting Items List ), SkinTypeScore : Total Score of Questions
+            this.props.navigation.navigate('Loading', { codeAllCateArray: codeAllCateArray, cateSelectedCodes: codeSelectedArray, resultsCodes: this.state.itemsCode, skinTypeScore: this.state.skinTypeScore });
+        }
     }
 
     render() {
@@ -318,7 +330,7 @@ export default class Question extends React.Component {
                             {data.name}
                         </Text>
                     </TouchableOpacity>
-                    )
+                )
             })
         }
         return (
