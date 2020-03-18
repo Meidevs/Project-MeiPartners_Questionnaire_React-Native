@@ -32,7 +32,6 @@ export default class Incomming1 extends React.Component {
 
     constructor(props) {
         super(props)
-
         // cateData -> Category Code that I selected
         // allCate -> After Answer the Questions, Response is Category Code & Category Name
         // preData -> After Answer the Questions, Code of Category Code & Category Name Set
@@ -583,7 +582,6 @@ export default class Incomming1 extends React.Component {
         })
         //exArray : {itemCode: 'a', code: 'cate0', item: '5.8 마일드 클렌저', manual: "피부가 가장 건강한 pH 5.3의 약산성 클렌저로 강한회복력을 지니고 있고 피부 진정에 뛰어난 효과를 지닌각종 천연 추출물과 세포재생인자에 있는 다수의 펩타이드 성분이 클렌징 시 노폐물을 확실하게 제거함과동시에 피부에 강한 활력을 주어 턴오버 주기를 당겨줍니다.", submanual: '적당량을 덜어 충분히 거품을 낸 뒤 마사지하듯이 문질러주며 미온수로 충분히 헹군 후 찬물로 마무리해줍니다.', uri: require('../public/itemimages/58mc.png')}, 
         var resultsArray = [];
-        console.log(cateData[0])
         for (var j = 0; j < exArray.length; j++) {
             if (cateData[0] == exArray[j].code) {
                 resultsArray.push({ code: cateData[0], item: exArray[j].item, manual: exArray[j].manual, submanual: exArray[j].submanual, uri: exArray[j].uri });
@@ -602,7 +600,6 @@ export default class Incomming1 extends React.Component {
         var cateData = this.props.navigation.getParam('cateData');
         var allCate = this.props.navigation.getParam('allCate');
 
-        console.log('sendData', sendData)
         this.props.navigation.navigate(sendRoute, { data: sendData, resultsCode: preData, cateSelectedCodes: cateData, codeAllCateArray: allCate })
     }
 
