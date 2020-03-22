@@ -57,7 +57,6 @@ export default class Incomming extends React.Component {
                 // codeAllCateArray -> After Answer the Questions, Response is Category Code & Category Name
                 // resultsCodes -> After Answer the Questions, Code of Category Code & Category Name Set
                 // skinTypeScore -> Score of the Answer
-                console.log('resultsCode', this.state.data.resultsCodes)
                 this.props.navigation.navigate('Graphs', this.state.data)
             }
         }, 1000)

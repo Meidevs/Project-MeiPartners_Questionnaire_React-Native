@@ -580,7 +580,6 @@ export default class Recommendation extends React.Component {
                 }
             }
         })
-        console.log(exArray)
         this.state = {
             dataSource: exArray
         }

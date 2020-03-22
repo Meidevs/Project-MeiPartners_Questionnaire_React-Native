@@ -31,7 +31,6 @@ export default class cate1 extends React.Component {
     constructor(props) {
         super(props)
         var datas = this.props.navigation.getParam('data')
-        console.log('datas', datas)
         this.state = {
             rawData: datas,
             index: 0,
