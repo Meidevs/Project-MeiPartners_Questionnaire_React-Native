@@ -694,8 +694,8 @@ export default class Incomming1 extends React.Component {
                         <Text style={styles.subTxt}>결과로 본</Text>
                         <Text style={styles.mainTxt}>내 피부상태</Text>
                     </View>
-                    <View style={styles.statusBarGroup}>
-                        <Text>{this.state.txtArray}</Text>
+                    <View style={styles.bottomTxt}>
+                        <Text style={styles.bottomRTxt}>{this.state.txtArray}</Text>
                     </View>
                 </View>
                 <View style={styles.buttonContainer}>
@@ -740,6 +740,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        width : width * 0.9,
     },
     statusBar: {
         paddingBottom: 15,
@@ -772,6 +773,18 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         flex: 1,
+    },
+    bottomTxt : {
+        flex: 4,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        width : width * 0.9,
+    },
+    bottomRTxt : {
+        color : '#676767',
+        fontFamily : 'NanumSquareRoundR',
+        lineHeight : 20,
     },
     button: {
         flex: 1,

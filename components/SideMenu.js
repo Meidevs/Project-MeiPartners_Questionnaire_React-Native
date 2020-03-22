@@ -666,8 +666,8 @@ class SideMenu extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.topContainer}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Graphs')}>
-            <Text>그래프</Text>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('Graphs')} >
+            <Text style={styles.resultButton}>SURVEY</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.middleContainer}>
@@ -739,6 +739,11 @@ const styles = StyleSheet.create({
     fontSize: width * 0.03,
     color: '#044B77'
   },
+  resultButton : {
+    color : '#FF7BAC',
+    fontSize : width * 0.05,
+    fontFamily: 'NanumSquareRoundB',
+  }
 });
 
 export default SideMenu;
