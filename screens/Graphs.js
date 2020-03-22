@@ -563,6 +563,25 @@ export default class Incomming1 extends React.Component {
                 ]
             },
         ];
+        var recommend = [
+            {resultsCode : '1', recommendTxt : '펩타이드 성분과 달팽이 점액추출물과 병풀추출물이 피부의 촉촉함을 유지하고 외부 자극으로부터 보호하여 피부 장벽을 강화시켜 수분의 증발을 억제하고 진정 효과와 탄력을 주고 손상된 조직의 빠른 재생을 유도하여 피부를 맑고 건강하게 해준다.'},
+            {resultsCode : '2', recommendTxt : '펩타이드 성분과 달팽이 점액추출물과 병풀추출물이 피부의 촉촉함을 유지하고 외부 자극으로부터 보호하여 피부 장벽을 강화시켜 수분의 증발을 억제하고 미백기능성 성분으로 피부를 맑고 건강하게 해준다.'},
+            {resultsCode : '3', recommendTxt : '펩타이드 성분과 달팽이 점액추출물과 병풀추출물이 피부의 촉촉함을 유지하고 외부 자극으로부터 보호하여 피부 장벽을 강화시켜 수분의 증발을 억제하고 안티에이징 효과로 피부재생 촉진과 진정, 탄력 효과를 준다.'},
+            {resultsCode : '4', recommendTxt : '펩타이드 성분과 달팽이 점액추출물과 병풀추출물이 피부의 촉촉함을 유지하고 외부 자극으로부터 보호하여 피부 장벽을 강화시켜 수분의 증발을 억제하고 피부 탄력과 진정 효과를 준다.'},
+            {resultsCode : '5', recommendTxt : '펩타이드 성분과 달팽이 점액추출물과 병풀추출물이 충분한 수분공급과 적당한 유분공급으로 피부가 촉촉하고 매끄러우며, 피부 보호막을 지켜 잔주름 예방 효과적이다.'},
+            {resultsCode : '6', recommendTxt : '펩타이드 성분과 달팽이 점액추출물과 병풀추출물이 충분한 수분공급과 적당한 유분공급으로 피부가 촉촉하고 매끄러우며, 피부 보호막을 지켜 잔주름 예방 효과적이며, 미백기능성 성분으로 피부를 맑고 환하게 만들어 준다.'},
+            {resultsCode : '7', recommendTxt : '펩타이드 성분과 달팽이 점액추출물과 병풀추출물이 충분한 수분공급과 적당한 유분공급으로 피부가 촉촉하고 매끄러우며, 주름 개선 기능성 성분으로 잔주름 예방 효과적이다.'},
+            {resultsCode : '8', recommendTxt : '펩타이드 성분과 달팽이 점액추출물과 병풀추출물이 충분한 수분공급과 적당한 유분공급으로 피부가 촉촉하고 매끄러우며, 피부 보호막을 지켜 잔주름 예방 효과적이다.'},
+            {resultsCode : '9', recommendTxt : '피지 막을 손상시키지 않고 천연 성분이 외부환경으로부터 피부를 보호, 진정, 트러블 완화에 도움을 주고, E.G.F 함유로 손상된 피부를 개선시켜준다.'},
+            {resultsCode : '10', recommendTxt : '피지 막을 손상시키지 않고 천연 성분이 외부환경으로부터 피부를 보호, 진정, 트러블 완화에 도움을 주고, E.G.F 함유로 손상된 피부를 개선시켜준다.'},
+            {resultsCode : '11', recommendTxt : '피지 막을 손상시키지 않고 천연 성분이 외부환경으로부터 피부를 보호, 진정, 트러블 완화에 도움을 주고, E.G.F 함유로 손상된 피부를 개선시켜'},
+            {resultsCode : '12', recommendTxt : '피지 막을 손상시키지 않고 천연 성분이 외부환경으로부터 피부를 보호, 진정, 트러블 완화에 도움을 주고, E.G.F 함유로 손상된 피부를 개선시켜준다.'},
+            {resultsCode : '13', recommendTxt : '피지 막을 손상시키지 않고 천연 성분이 외부환경으로부터 피부를 보호, 진정, 트러블 완화에 도움을 주고, E.G.F 함유로 손상된 피부를 개선시켜준다.'},
+            {resultsCode : '14', recommendTxt : '피지 막을 손상시키지 않고 천연 성분이 외부환경으로부터 피부를 보호, 진정, 트러블 완화에 도움을 주고, E.G.F 함유로 손상된 피부를 개선시켜준다.'},
+            {resultsCode : '15', recommendTxt : '피지 막을 손상시키지 않고 천연 성분이 외부환경으로부터 피부를 보호, 진정, 트러블 완화에 도움을 주고, E.G.F 함유로 손상된 피부를 개선시켜준다.'},
+            {resultsCode : '16', recommendTxt : '피지 막을 손상시키지 않고 천연 성분이 외부환경으로부터 피부를 보호, 진정, 트러블 완화에 도움을 주고, E.G.F 함유로 손상된 피부를 개선시켜준다.'},
+
+        ]
         var catArray = [];
         for (var i = 0; i < result.length; i++) {
             if (preData == result[i].resultsCode) {
@@ -587,8 +606,15 @@ export default class Incomming1 extends React.Component {
                 resultsArray.push({ code: cateData[0], item: exArray[j].item, manual: exArray[j].manual, submanual: exArray[j].submanual, uri: exArray[j].uri });
             }
         }
+        var txtArray = [];
+        recommend.map((data) => {
+            if(preData == data.resultsCode) {
+                txtArray.push(data.recommendTxt)
+            }
+        })
         this.state = {
             skinTypeScore: skinScore,
+            txtArray : txtArray[0],
         }
         this.props.navigation.setParams({ code: cateData[0], data: resultsArray, preData: preData, cateData: cateData, allCate: allCate })
     }
@@ -669,7 +695,7 @@ export default class Incomming1 extends React.Component {
                         <Text style={styles.mainTxt}>내 피부상태</Text>
                     </View>
                     <View style={styles.statusBarGroup}>
-
+                        <Text>{this.state.txtArray}</Text>
                     </View>
                 </View>
                 <View style={styles.buttonContainer}>
