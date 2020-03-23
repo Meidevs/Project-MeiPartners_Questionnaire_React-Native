@@ -48,7 +48,7 @@ export default class Question extends React.Component {
             if (skinTypeScore[1] > 50) {
                 if (skinTypeScore[2] > 50) {
                     if (skinTypeScore[3] > 50) {
-                        //건유,민유,색유,주유(100,100,100,100) a
+                        //건유,민유,색유,주유(100,100,100,100)
                         this.state = {
                             dataSource: [
                                 this.state.itemCategories[0],
@@ -60,7 +60,7 @@ export default class Question extends React.Component {
                             skinTypeScore: skinTypeScore
                         }
                     } else {
-                        //건유,민유,색유,주무(100,100,100,0) a
+                        //건유,민유,색유,주무(100,100,100,0)
                         this.state = {
                             dataSource: [
                                 this.state.itemCategories[0],
@@ -73,7 +73,7 @@ export default class Question extends React.Component {
                     }
                 } else {
                     if (skinTypeScore[3] > 50) {
-                        //건유,민유,색무,주유(100,100,0,100) a
+                        //건유,민유,색무,주유(100,100,0,100)
                         this.state = {
                             dataSource: [
                                 this.state.itemCategories[0],
@@ -85,7 +85,7 @@ export default class Question extends React.Component {
                             skinTypeScore: skinTypeScore
                         }
                     } else {
-                        //건유,민유,색무,주무(100,100,0,0) a 
+                        //건유,민유,색무,주무(100,100,0,0)  
                         this.state = {
                             dataSource: [
                                 this.state.itemCategories[0],
@@ -101,7 +101,7 @@ export default class Question extends React.Component {
             } else {
                 if (skinTypeScore[2] > 50) {
                     if (skinTypeScore[3] > 50) {
-                        //건유,민무,색유,주유(100,0,100,100) a
+                        //건유,민무,색유,주유(100,0,100,100)
                         this.state = {
                             dataSource: [
                                 this.state.itemCategories[0],
@@ -113,7 +113,7 @@ export default class Question extends React.Component {
                             skinTypeScore: skinTypeScore
                         }
                     } else {
-                        //건유,민무,색유,주무(100,0,100,0) a 
+                        //건유,민무,색유,주무(100,0,100,0)  
                         this.state = {
                             dataSource: [
                                 this.state.itemCategories[0],
@@ -127,7 +127,7 @@ export default class Question extends React.Component {
                     }
                 } else {
                     if (skinTypeScore[3] > 50) {
-                        //건유,민무,색무,주유(100,0,0,100) a
+                        //건유,민무,색무,주유(100,0,0,100)
                         this.state = {
                             dataSource: [
                                 this.state.itemCategories[0],
@@ -138,7 +138,7 @@ export default class Question extends React.Component {
                             skinTypeScore: skinTypeScore
                         }
                     } else {
-                        //건유,민무,색무,주무(100,0,0,0) a
+                        //건유,민무,색무,주무(100,0,0,0) 
                         this.state = {
                             dataSource: [
                                 this.state.itemCategories[0],
@@ -156,7 +156,7 @@ export default class Question extends React.Component {
             if (skinTypeScore[1] > 50) {
                 if (skinTypeScore[2] > 50) {
                     if (skinTypeScore[3] > 50) {
-                        //건무,민유,색유,주유(0,100,100,100) a
+                        //건무,민유,색유,주유(0,100,100,100)
                         this.state = {
                             dataSource: [
                                 this.state.itemCategories[0],
@@ -168,7 +168,7 @@ export default class Question extends React.Component {
                             skinTypeScore: skinTypeScore
                         }
                     } else {
-                        //건무,민유,색유,주무(0,100,100,0) a
+                        //건무,민유,색유,주무(0,100,100,0) 
                         this.state = {
                             dataSource: [
                                 this.state.itemCategories[0],
@@ -182,7 +182,7 @@ export default class Question extends React.Component {
                     }
                 } else {
                     if (skinTypeScore[3] > 50) {
-                        //건무,민유,색무,주유(0,100,0,100) a
+                        //건무,민유,색무,주유(0,100,0,100) 
                         this.state = {
                             dataSource: [
                                 this.state.itemCategories[0],
@@ -194,7 +194,7 @@ export default class Question extends React.Component {
                             skinTypeScore: skinTypeScore
                         }
                     } else {
-                        //건무,민유,색무,주무(0,100,0,0) ㅁ
+                        //건무,민유,색무,주무(0,100,0,0)
                         this.state = {
                             dataSource: [
                                 this.state.itemCategories[0],
@@ -210,7 +210,7 @@ export default class Question extends React.Component {
             } else {
                 if (skinTypeScore[2] > 50) {
                     if (skinTypeScore[3] > 50) {
-                        //건무,민무,색유,주유(0,0,100,100) ㅁ
+                        //건무,민무,색유,주유(0,0,100,100)
                         this.state = {
                             dataSource: [
                                 this.state.itemCategories[0],
@@ -223,7 +223,7 @@ export default class Question extends React.Component {
                             skinTypeScore: skinTypeScore
                         }
                     } else {
-                        //건무,민무,색유,주무(0,0,100,0) ㅁ
+                        //건무,민무,색유,주무(0,0,100,0)
                         this.state = {
                             dataSource: [
                                 this.state.itemCategories[0],
