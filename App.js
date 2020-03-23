@@ -86,9 +86,6 @@ const DrawerNavigation = createStackNavigator(
             <Image source={require('./public/images/option.png')} style={{ width: width * 0.12, aspectRatio: 1 }} />
           </TouchableOpacity>
         ),
-        headerTitleStyle : {
-
-        }
       }
     }
   }

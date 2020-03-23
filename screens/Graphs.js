@@ -81,7 +81,7 @@ export default class Incomming1 extends React.Component {
                 itemCode: 'm', code: 'cate4', item: '리뉴얼 콤플렉스 크림', manual: 'EGF와 폴리페놀성분이 수분과 영양이 필요한 피부에 충분한 활력 에너지를 제공하여 촉촉하고 탄력적인 피부로 가꾸어 줍니다. 알부틴의 기능성 성분이 피부미백에 더욱 증가된 효과를 더하여 줍니다.', submanual: '적당량을 펴 바른 후 충분히 두드려 흡수시켜줍니다.', uri: require('../public/itemimages/rcc.png')
             },
             {
-                itemCode: 'n', code: 'cate5', item: '이오 마스크', manual: "e", submanual: 'e', uri: require('../public/itemimages/58mc.png')
+                itemCode: 'n', code: 'cate5', item: '이오 마스크', manual: "아데노신이 함유되어 주름개선에 도움을 주며, 금사연둥지추출물과 울릉도에서 채취한 대황을 이오코리아만의 공법으로 농축하여 만들어 풍성한 보습력으로 피부를 촉촉하고 탱탱하게 가꾸는데 도움을 주는 마스크 시트입니다.", submanual: '세안 후 토너로 피부결을 정돈한 뒤 파우치에 든 마스크를 꺼내어 얼굴에 밀착되도록 부착시킵니다. 약 10~20분 휴식을 취한 뒤 마스크를 떼어 낸 후 피부에 남아있는 에센스를 가볍게 두드려 흡수시켜줍니다.', uri: require('../public/itemimages/em.png')
             },
             {
                 itemCode: 'o', code: 'cate5', item: '377 나노셀 페이스 마스크', manual: "고순도의 친환경 소재로 셀룰로오스 원단자체의 쿨링, 미백 효과가 탁월하며 보습성이 일반 부직포 마스크에 비해 20배 이상이므로 고농축 에센스를 피부에 충분히 공급합니다.", submanual: '1) 세안 후 스킨으로 피부를 정돈합니다. 2) 패치 양쪽의 부직포를 제거한 후 눈밑에 맞춰 고르게 밀착시킵니다. 3) 20~30분 후 패치를 데어내고 남은 내용물을 그대로 흡수시킵니다. 4) 가볍게 패팅하고, 에센스 및 평소에 사용하던 제품을 덧발라 마무리해 줍니다.', uri: require('../public/itemimages/377wm.png')
