@@ -5,9 +5,7 @@ import {
     TouchableOpacity,
     StyleSheet,
     Image,
-    FlatList,
     Dimensions,
-    NavigatorIOS,
 } from 'react-native';
 import * as Font from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -217,58 +215,58 @@ export default class QuestionContent extends React.Component {
     }
     componentJSX() {
         var data = this.props.navigation.getParam('increaseCount');
-        if (data <= 2) {
+        if (data <= 3) {
             return (
                 <View style={styles.topContainer}>
-                    <Image source={require('../public/images/backimage/1.jpg')} style={styles.backgroundImages} />
+                    <Image source={require('../public/images/backimage/1.png')} style={styles.backgroundImages} />
                 </View>
             )
-        } else if (data > 2 && data <= 4) {
+        } else if (data > 3 && data <= 5) {
             return (
                 <View style={styles.topContainer}>
-                    <Image source={require('../public/images/backimag/2.jpg')} style={styles.backgroundImages} />
+                    <Image source={require('../public/images/backimage/2.png')} style={styles.backgroundImages} />
                 </View>
             )
-        } else if (data > 4 && data <= 6) {
+        } else if (data > 5 && data <= 8) {
             return (
                 <View style={styles.topContainer}>
-                    <Image source={require('../public/images/backimag/3.jpg')} style={styles.backgroundImages} />
-                </View>
-            )
-        } else if (data > 6 && data <= 8) {
-            return (
-                <View style={styles.topContainer}>
-                    <Image source={require('../public/images/backimag/4.jpg')} style={styles.backgroundImages} />
+                    <Image source={require('../public/images/backimage/3.png')} style={styles.backgroundImages} />
                 </View>
             )
         } else if (data > 8 && data <= 10) {
             return (
                 <View style={styles.topContainer}>
-                    <Image source={require('../public/images/backimag/5.jpg')} style={styles.backgroundImages} />
+                    <Image source={require('../public/images/backimage/4.png')} style={styles.backgroundImages} />
                 </View>
             )
         } else if (data > 10 && data <= 12) {
             return (
                 <View style={styles.topContainer}>
-                    <Image source={require('../public/images/backimag/6.jpg')} style={styles.backgroundImages} />
+                    <Image source={require('../public/images/backimage/5.png')} style={styles.backgroundImages} />
                 </View>
             )
         } else if (data > 12 && data <= 14) {
             return (
                 <View style={styles.topContainer}>
-                    <Image source={require('../public/images/backimag/7.jpg')} style={styles.backgroundImages} />
+                    <Image source={require('../public/images/backimage/6.png')} style={styles.backgroundImages} />
                 </View>
             )
         } else if (data > 14 && data <= 16) {
             return (
                 <View style={styles.topContainer}>
-                    <Image source={require('../public/images/backimag/8.jpg')} style={styles.backgroundImages} />
+                    <Image source={require('../public/images/backimage/7.png')} style={styles.backgroundImages} />
+                </View>
+            )
+        } else if (data > 16 && data <= 18) {
+            return (
+                <View style={styles.topContainer}>
+                    <Image source={require('../public/images/backimage/8.png')} style={styles.backgroundImages} />
                 </View>
             )
         } else {
             return (
                 <View style={styles.topContainer}>
-                    <Image source={require('../public/images/backimag/9.jpg')} style={styles.backgroundImages} />
+                    <Image source={require('../public/images/backimage/9.png')} style={styles.backgroundImages} />
                 </View>
             )
         }
@@ -351,8 +349,10 @@ const styles = StyleSheet.create({
     },
     backgroundImages: {
         flex: 1,
-        width: width,
-        resizeMode: 'cover'
+        width : width,
+        // aspectRatio : 1.6,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     questionContainer: {
         flex: 1,
