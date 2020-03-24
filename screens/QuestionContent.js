@@ -217,22 +217,58 @@ export default class QuestionContent extends React.Component {
     }
     componentJSX() {
         var data = this.props.navigation.getParam('increaseCount');
-        if (data <= 6) {
+        if (data <= 2) {
             return (
                 <View style={styles.topContainer}>
-                    <Image source={require('../public/images/selection1.jpg')} style={styles.backgroundImages} />
+                    <Image source={require('../public/images/backimage/1.jpg')} style={styles.backgroundImages} />
                 </View>
             )
-        } else if (data > 6 && data <= 14) {
+        } else if (data > 2 && data <= 4) {
             return (
                 <View style={styles.topContainer}>
-                    <Image source={require('../public/images/selection2.jpg')} style={styles.backgroundImages} />
+                    <Image source={require('../public/images/backimag/2.jpg')} style={styles.backgroundImages} />
+                </View>
+            )
+        } else if (data > 4 && data <= 6) {
+            return (
+                <View style={styles.topContainer}>
+                    <Image source={require('../public/images/backimag/3.jpg')} style={styles.backgroundImages} />
+                </View>
+            )
+        } else if (data > 6 && data <= 8) {
+            return (
+                <View style={styles.topContainer}>
+                    <Image source={require('../public/images/backimag/4.jpg')} style={styles.backgroundImages} />
+                </View>
+            )
+        } else if (data > 8 && data <= 10) {
+            return (
+                <View style={styles.topContainer}>
+                    <Image source={require('../public/images/backimag/5.jpg')} style={styles.backgroundImages} />
+                </View>
+            )
+        } else if (data > 10 && data <= 12) {
+            return (
+                <View style={styles.topContainer}>
+                    <Image source={require('../public/images/backimag/6.jpg')} style={styles.backgroundImages} />
+                </View>
+            )
+        } else if (data > 12 && data <= 14) {
+            return (
+                <View style={styles.topContainer}>
+                    <Image source={require('../public/images/backimag/7.jpg')} style={styles.backgroundImages} />
+                </View>
+            )
+        } else if (data > 14 && data <= 16) {
+            return (
+                <View style={styles.topContainer}>
+                    <Image source={require('../public/images/backimag/8.jpg')} style={styles.backgroundImages} />
                 </View>
             )
         } else {
             return (
                 <View style={styles.topContainer}>
-                    <Image source={require('../public/images/selection3.jpg')} style={styles.backgroundImages} />
+                    <Image source={require('../public/images/backimag/9.jpg')} style={styles.backgroundImages} />
                 </View>
             )
         }

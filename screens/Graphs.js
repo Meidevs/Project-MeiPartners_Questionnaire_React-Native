@@ -651,7 +651,7 @@ export default class Incomming1 extends React.Component {
                     <View style={styles.statusBarGroup}>
                         <View style={styles.statusBar}>
                             <Text style={{ fontFamily: 'NanumSquareRoundB' }}>건조도</Text>
-                            <ImageBackground source={require('../public/images/watery.png')} style={{ height: 30, aspectRatio: 7.482 }}>
+                            <ImageBackground source={require('../public/images/watery.png')} style={{ height: height * 0.058, aspectRatio: 7.482 }}>
                                 <View style={styles.progressBar}>
                                     <Animated.View style={[StyleSheet.absoluteFill], { borderTopLeftRadius: 20, borderBottomLeftRadius: 20, backgroundColor: "#BDE0FE", width: width * 0.7 * 0.7 * this.state.skinTypeScore[0] / 100, justifyContent: 'center', alignItems: 'flex-start' }}><Text style={{ fontFamily: 'NanumSquareRoundB', color: '#FFFFFF', padding: 10, textAlign: 'center' }}>{this.state.skinTypeScore[0]} %</Text></Animated.View>
                                 </View>
@@ -659,7 +659,7 @@ export default class Incomming1 extends React.Component {
                         </View>
                         <View style={styles.statusBar}>
                             <Text style={{ fontFamily: 'NanumSquareRoundB' }}>민감도</Text>
-                            <ImageBackground source={require('../public/images/sensitivity.png')} style={{ height: 30, aspectRatio: 7.482 }}>
+                            <ImageBackground source={require('../public/images/sensitivity.png')} style={{ height: height * 0.058, aspectRatio: 7.482 }}>
                                 <View style={styles.progressBar}>
                                     <Animated.View style={[StyleSheet.absoluteFill], { borderTopLeftRadius: 20, borderBottomLeftRadius: 20, backgroundColor: "#FFA2B4", width: width * 0.7 * 0.7 * this.state.skinTypeScore[1] / 100, justifyContent: 'center', alignItems: 'flex-start' }}><Text style={{ fontFamily: 'NanumSquareRoundB', color: '#FFFFFF', padding: 10, textAlign: 'center' }}>{this.state.skinTypeScore[1]} %</Text>
                                     </Animated.View>
@@ -668,7 +668,7 @@ export default class Incomming1 extends React.Component {
                         </View>
                         <View style={styles.statusBar}>
                             <Text style={{ fontFamily: 'NanumSquareRoundB' }}>색   소</Text>
-                            <ImageBackground source={require('../public/images/coloring.png')} style={{ height: 30, aspectRatio: 7.482 }}>
+                            <ImageBackground source={require('../public/images/coloring.png')} style={{ height: height * 0.058, aspectRatio: 7.482 }}>
                                 <View style={styles.progressBar}>
                                     <Animated.View style={[StyleSheet.absoluteFill], { borderTopLeftRadius: 20, borderBottomLeftRadius: 20, backgroundColor: "#ACF0CB", width: width * 0.7 * 0.7 * this.state.skinTypeScore[2] / 100, justifyContent: 'center', alignItems: 'flex-start' }}><Text style={{ fontFamily: 'NanumSquareRoundB', color: '#FFFFFF', padding: 10, textAlign: 'center' }}>{this.state.skinTypeScore[2]} %</Text>
                                     </Animated.View>
@@ -677,7 +677,7 @@ export default class Incomming1 extends React.Component {
                         </View>
                         <View style={styles.statusBar}>
                             <Text style={{ fontFamily: 'NanumSquareRoundB' }}>탄   력</Text>
-                            <ImageBackground source={require('../public/images/elasticity.png')} style={{ height: 30, aspectRatio: 7.482 }}>
+                            <ImageBackground source={require('../public/images/elasticity.png')} style={{ height: height * 0.058, aspectRatio: 7.482 }}>
                                 <View style={styles.progressBar}>
                                     <Animated.View style={[StyleSheet.absoluteFill], { borderTopLeftRadius: 20, borderBottomLeftRadius: 20, backgroundColor: "#D27DFF", width: width * 0.7 * 0.7 * this.state.skinTypeScore[3] / 100, justifyContent: 'center', alignItems: 'flex-start' }}><Text style={{ fontFamily: 'NanumSquareRoundB', color: '#FFFFFF', padding: 10, textAlign: 'center' }}>{this.state.skinTypeScore[3]} %</Text>
                                     </Animated.View>
@@ -743,7 +743,7 @@ const styles = StyleSheet.create({
         width : width * 0.9,
     },
     statusBar: {
-        paddingBottom: 15,
+        paddingBottom: height * 0.02,
         width: width * 0.9,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -751,7 +751,7 @@ const styles = StyleSheet.create({
     },
     progressBar: {
         flexDirection: 'row',
-        height: 30,
+        height: height * 0.058,
         width: '100%',
         borderRadius: 20,
     },
