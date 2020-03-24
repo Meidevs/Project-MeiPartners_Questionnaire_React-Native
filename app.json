@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "LOVU",
-    "slug": "lovu02_2",
+    "slug": "lovu02_3",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -9,7 +9,7 @@
       "android",
       "web"
     ],
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -28,7 +28,7 @@
     },
     "android": {
       "package": "com.Meipartners.LOVU",
-      "versionCode": 3
+      "versionCode": 4
     },
     "description": ""
   }
