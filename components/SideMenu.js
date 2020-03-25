@@ -91,7 +91,7 @@ class SideMenu extends Component {
           itemCode: 'e', code: 'cate2', item: '리바이탈라이즈 세럼', manual: '외부 자극에 의해 손상받거나 민감해진 피부에 EGF와 폴리페놀 성분이 풍부한 영양과 활력을 제공하여 손상된 피부를 현저히 개선시키며 피부의 유연성을 증가시켜 건강하고 탄력적인 피부로 가꾸어 줍니다.', submanual: '적당량을 도포하여 발라주십시오.', rectxt: '번들거리거나 외부의 환경으로부터 피부 손상을 받은 피부의 유연성 증가에 도움을 주는 세럼입니다. EGF성분과 천연 성분의 함유로 피지 조절과  피부 보습 막을 강화하여 피부를 건강하게 만들어줍니다.', uri: require('../public/itemimages/rvs.png')
         },
         {
-          itemCode: 'f', code: 'cate2', item: 'AC 에센스', manual: '', submanual: '', rectxt: '피지선의 활동이 활발한 트러블 피부에 과도한 피지분비를 조절해 유.수분 밸런스를 맞추는데 도움을 주는 에센스입니다. 당사 특허 성분이 들어있는 인삼추출물이 여드름 균을 억제하고 피부를 진정시켜줍니다.', uri: require('../public/itemimages/ace.png')
+          itemCode: 'f', code: 'cate2', item: 'AC 에센스', manual: '레몬 오일의 함유로 과도한 피지분비를 막아주며 특허추출물인 인삼추출물 함유로 여드름균, 아토피원인의 균들의 활성을 막아주어 피부트러블의 원인을 억제시켜줍니다.', submanual: '적당량을 도포하여 발라줍니다.', rectxt: '피지선의 활동이 활발한 트러블 피부에 과도한 피지분비를 조절해 유.수분 밸런스를 맞추는데 도움을 주는 에센스입니다. 당사 특허 성분이 들어있는 인삼추출물이 여드름 균을 억제하고 피부를 진정시켜줍니다.', uri: require('../public/itemimages/ace.png')
         },
         {
           itemCode: 'g', code: 'cate3', item: 'R 크림', manual: '순도 99% 이상의 카퍼트라이펩타이드-1과 아세틸헥사펩타이드-8이 함유된 기능성 크림입니다. 강력한 이중 보습 성분들과 식약처에서 인증받은 주름개선기능성 성분인 아데노신이 함유되어있고, 부드러운 발림성으로 피부에 영양과 수분을 빠르게 공급하여 피부 속부터 채워지는 깊은 보습감과 탄력감을 느낄 수 있습니다. 일회용 포장제품은 위생적으로 사용할 수 있으며, 샘플용으로 활용하기에 매우 용이합니다.', submanual: '적당량을 덜어 얼굴 전체에 충분히 펴 발라 충분히 흡수시켜 줍니다.', rectxt: '유.수분밸런스가 깨져 푸석거리는 피부에 부족한 유분과 수분을 공급해주는 크림입니다. 다수의 펩타이드와 병풀추출물이 피부 표면에 손실되는 수분을 방어하고 외부로부터 유해 물질의 침투를 막아줘 피부에 보습을 공급하고 편안하게 진정시켜줍니다.', uri: require('../public/itemimages/rc.png')
@@ -100,13 +100,13 @@ class SideMenu extends Component {
           itemCode: 'h', code: 'cate3', item: '리뉴얼 콤플렉스 크림', manual: 'EGF와 폴리페놀성분이 수분과 영양이 필요한 피부에 충분한 활력 에너지를 제공하여 촉촉하고 탄력적인 피부로 가꾸어 줍니다. 알부틴의 기능성 성분이 피부미백에 더욱 증가된 효과를 더하여 줍니다.', submanual: '적당량을 펴 바른 후 충분히 두드려 흡수시켜줍니다.', rectxt: '번들거리거나 외부의 환경으로부터 피부 손상을 받은 피부의 유연성 증가에 도움을 주는 크림입니다. EGF와 폴리페놀 성분이 피부를 보호하고 재생시켜주고 병풀추출물과 달팽이점액 추출물이 편안하게 진정시켜줍니다.', uri: require('../public/itemimages/rcc.png')
         },
         {
-          itemCode: 'i', code: 'cate3', item: 'AC 크림', manual: 'EGF와 폴리페놀성분이 수분과 영양이 필요한 피부에 충분한 활력 에너지를 제공하여 촉촉하고 탄력적인 피부로 가꾸어 줍니다. 알부틴의 기능성 성분이 피부미백에 더욱 증가된 효과를 더하여 줍니다.', submanual: '적당량을 펴 바른 후 충분히 두드려 흡수시켜줍니다.', rectxt: '피지선의 활동이 활발한 트러블 피부에 과도한 피지분비를 조절해 유.수분 밸런스를 맞추는데 도움을 주는 에센스입니다. 당사 특허 성분이 들어있는 인삼추출물과 천연 추출물이 여드름 균을 억제하고 보습 막을 강화시키고 빠르게 피부를 진정시켜줍니다.', uri: require('../public/itemimages/acc.png')
+          itemCode: 'i', code: 'cate3', item: 'AC 크림', manual: '특허추출물인 인삼추출물 함유로 여드름균 등의 피부 트러블 원인의 활성을 막아주며 알로에베라 잎 추출물이 함유되어 피부에 대한 진정효과도 뛰어납니다. 또한 BHA(바하)성분의 함유로  모공 속 쌓인 각질 및 피지 등 노폐물을 분해시켜 피부를 맑게 해줍니다.', submanual: '적당량을 펴 바른 후 충분히 두드려 흡수시켜줍니다.', rectxt: '피지선의 활동이 활발한 트러블 피부에 과도한 피지분비를 조절해 유.수분 밸런스를 맞추는데 도움을 주는 에센스입니다. 당사 특허 성분이 들어있는 인삼추출물과 천연 추출물이 여드름 균을 억제하고 보습 막을 강화시키고 빠르게 피부를 진정시켜줍니다.', uri: require('../public/itemimages/acc.png')
         },
         {
           itemCode: 'j', code: 'cate4', item: 'DX에센스 & 파우더', manual: "다양한 천연 가루와 천연 추출물 성분을 함유하여 피부진정 및 쿨링, 피부결 개선, 피부 보습에 도움을 줍니다. 디엑스 파우더가 1회분씩 개별 포장되어 내용물의 변질을 막아주고 위생적이고 간편 하게 관리할 수 있는 One Day Use 제품입니다.", submanual: '에센스 10ml와 파우더 1개입을 용기에 부어 골고루 섞어줍니다. 눈가와 입가를 제외한 얼굴에 고르게 도포 해주고 10~20분 경과 후 물 세안으로 마무리해줍니다.', rectxt: '피부의 디톡스 관리가 이루어져 피부 내 염증으로 인한 예민함, 뾰루지, 붉음증 등의 다양한 피부문제들의 개선에 놀라운 효과가 있는 마스크입니다. 자연유래성분이 각질과 피지 등 각종 노폐물은 빼고, 영양은 채워 피부 면연력을 강화하고 독소를 배출 할 수 있는 항산화 케어로 누구나 안심하고 사용 가능합니다.', uri: require('../public/itemimages/dx.png')
         },
         {
-          itemCode: 'k', code: 'cate5', item: 'GNB9 화이트닝 펩타 미스트', manual: '미백,탄력,주름,보습 개선을 한번에 해결하는 집중케어 올인원 미스트형 앰플 펩타이드 6종이 다량 함유되어 피부에 깊은 영양감을 선사해주고 언제 어디서나 피부에 수분과 영양을 빠르고 간편하게 공급해줄 수 있습니다. 강력한 이중 기능성으로 거칠어지고 지친 피부를 케어하고 건강한 피부로 가꿔줍니다.', submanual: '세안 후 또는 건조함이 느껴질 때 눈을 감고 얼굴에서 20~30cm 거리를 두고 골고루 분사시켜 줍니다.', rectxt: '점점 탄력을 잃어가는 피부상태를 개선하고 새로운 피부로의 전환에 도움을 주는 미스트형 앰플입니다. 미백, 주름 기능성 성분과 순도 99% 고 함량의 6종 펩타이드가 콜라겐과 엘라스틴의 저하를 예방하여 피부의 탄력과 주름개선에 도움을 줍니다.', uri: require('../public/itemimages/gnb8.png')
+          itemCode: 'k', code: 'cate5', item: 'GNB8 화이트닝 펩타 미스트', manual: '미백,탄력,주름,보습 개선을 한번에 해결하는 집중케어 올인원 미스트형 앰플 펩타이드 6종이 다량 함유되어 피부에 깊은 영양감을 선사해주고 언제 어디서나 피부에 수분과 영양을 빠르고 간편하게 공급해줄 수 있습니다. 강력한 이중 기능성으로 거칠어지고 지친 피부를 케어하고 건강한 피부로 가꿔줍니다.', submanual: '세안 후 또는 건조함이 느껴질 때 눈을 감고 얼굴에서 20~30cm 거리를 두고 골고루 분사시켜 줍니다.', rectxt: '점점 탄력을 잃어가는 피부상태를 개선하고 새로운 피부로의 전환에 도움을 주는 미스트형 앰플입니다. 미백, 주름 기능성 성분과 순도 99% 고 함량의 6종 펩타이드가 콜라겐과 엘라스틴의 저하를 예방하여 피부의 탄력과 주름개선에 도움을 줍니다.', uri: require('../public/itemimages/gnb8.png')
         },
         {
           itemCode: 'l', code: 'cate6', item: '리페어 필링 겔', manual: '천연 셀룰로오스 성분이 모공에 남아있는 노폐물까지 자극없이 부드럽게 제거해주어 맑고 깨끗한 피부로 만들어 줍니다. 병풀 추출물이 피부를 진정시키고 EGF성분이 영양을 공급해줍니다.', submanual: '세안 후 물기를 깨끗이 닦아낸 후 적당량을 원하는 부위에 펴 바른 다음, 부드럽게 마사지하듯 문질러줍니다. 필링 겔과 함께 각질이 밀려나오면 물로 충분히 씻어냅니다.', rectxt: '과다한 피지분비가 이루어지는 피부에 부드러운 사용 감과 효과적인 필링의 고마쥬 타입의 필링겔입니다. EGF와 천연 셀룰로오스 성분이 피부에 부담없이 각질을 제거 하여 숨겨진 밝은 피부와 부드러운 피부 결을 찾아줍니다.', uri: require('../public/itemimages/rfg.png')
@@ -186,6 +186,7 @@ class SideMenu extends Component {
               cate: 'cate1',
               item: [
                 'c',
+                'd'
               ]
             },
             {
@@ -215,7 +216,6 @@ class SideMenu extends Component {
               cate: 'cate1',
               item: [
                 'c',
-                'd'
               ]
             },
             {
@@ -305,6 +305,7 @@ class SideMenu extends Component {
               cate: 'cate1',
               item: [
                 'c',
+                'd'
               ]
             },
             {
@@ -334,7 +335,6 @@ class SideMenu extends Component {
               cate: 'cate1',
               item: [
                 'c',
-                'd'
               ]
             },
             {
@@ -443,6 +443,12 @@ class SideMenu extends Component {
               ]
             },
             {
+              cate: 'cate1',
+              item: [
+                'd',
+              ]
+            },
+            {
               cate: 'cate2',
               item: [
                 'e',
@@ -475,12 +481,6 @@ class SideMenu extends Component {
               cate: 'cate0',
               item: [
                 'a',
-              ]
-            },
-            {
-              cate: 'cate1',
-              item: [
-                'd'
               ]
             },
             {
@@ -601,6 +601,12 @@ class SideMenu extends Component {
               ]
             },
             {
+              cate: 'cate1',
+              item: [
+                'd',
+              ]
+            },
+            {
               cate: 'cate2',
               item: [
                 'f',
@@ -633,12 +639,6 @@ class SideMenu extends Component {
               cate: 'cate0',
               item: [
                 'b',
-              ]
-            },
-            {
-              cate: 'cate1',
-              item: [
-                'd'
               ]
             },
             {
@@ -688,7 +688,7 @@ class SideMenu extends Component {
       var resultsArray = [];
       for (var j = 0; j < exArray.length; j++) {
         if (code == exArray[j].code) {
-          resultsArray.push({ code: code, item: exArray[j].item, manual: exArray[j].manual, submanual: exArray[j].submanual, rectxt : exArray[j].rectxt, uri: exArray[j].uri });
+          resultsArray.push({ code: code, item: exArray[j].item, manual: exArray[j].manual, submanual: exArray[j].submanual, rectxt: exArray[j].rectxt, uri: exArray[j].uri });
         }
       }
 

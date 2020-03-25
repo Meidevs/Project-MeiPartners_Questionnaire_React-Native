@@ -81,7 +81,7 @@ export default class Question extends React.Component {
                     }
                 } else {
                     if (skinTypeScore[3] > 50) {
-                        //건유,민유,색무,주유(100,100,0,100)
+                        //건유,민유,색무,주유(100,100,0,100)a
                         this.state = {
                             dataSource: [
                                 //클렌징
@@ -91,13 +91,13 @@ export default class Question extends React.Component {
                                 //크림
                                 this.state.itemCategories[3],
                                 //미스트
-                                this.state.itemCategories[4],
+                                this.state.itemCategories[5],
                             ],
                             itemsCode: '3',
                             skinTypeScore: skinTypeScore
                         }
                     } else {
-                        //건유,민유,색무,주무(100,100,0,0)  
+                        //건유,민유,색무,주무(100,100,0,0)  a
                         this.state = {
                             dataSource: [
                                 //클렌징
@@ -117,7 +117,7 @@ export default class Question extends React.Component {
             } else {
                 if (skinTypeScore[2] > 50) {
                     if (skinTypeScore[3] > 50) {
-                        //건유,민무,색유,주유(100,0,100,100)
+                        //건유,민무,색유,주유(100,0,100,100)a
                         this.state = {
                             dataSource: [
                                 //클렌징
@@ -133,7 +133,7 @@ export default class Question extends React.Component {
                             skinTypeScore: skinTypeScore
                         }
                     } else {
-                        //건유,민무,색유,주무(100,0,100,0)  
+                        //건유,민무,색유,주무(100,0,100,0)a  
                         this.state = {
                             dataSource: [
                                 //클렌징
@@ -151,7 +151,7 @@ export default class Question extends React.Component {
                     }
                 } else {
                     if (skinTypeScore[3] > 50) {
-                        //건유,민무,색무,주유(100,0,0,100)
+                        //건유,민무,색무,주유(100,0,0,100)a
                         this.state = {
                             dataSource: [
                                 //클렌징
@@ -167,7 +167,7 @@ export default class Question extends React.Component {
                             skinTypeScore: skinTypeScore
                         }
                     } else {
-                        //건유,민무,색무,주무(100,0,0,0) 
+                        //건유,민무,색무,주무(100,0,0,0) a
                         this.state = {
                             dataSource: [
                                 //클렌징
@@ -209,7 +209,7 @@ export default class Question extends React.Component {
                             skinTypeScore: skinTypeScore
                         }
                     } else {
-                        //건무,민유,색유,주무(0,100,100,0) 
+                        //건무,민유,색유,주무(0,100,100,0) a
                         this.state = {
                             dataSource: [
                                 //클렌징
@@ -231,7 +231,7 @@ export default class Question extends React.Component {
                     }
                 } else {
                     if (skinTypeScore[3] > 50) {
-                        //건무,민유,색무,주유(0,100,0,100) 
+                        //건무,민유,색무,주유(0,100,0,100) a
                         this.state = {
                             dataSource: [
                                 //클렌징
@@ -251,7 +251,7 @@ export default class Question extends React.Component {
                             skinTypeScore: skinTypeScore
                         }
                     } else {
-                        //건무,민유,색무,주무(0,100,0,0)
+                        //건무,민유,색무,주무(0,100,0,0)a
                         this.state = {
                             dataSource: [
                                 //클렌징
@@ -273,7 +273,7 @@ export default class Question extends React.Component {
             } else {
                 if (skinTypeScore[2] > 50) {
                     if (skinTypeScore[3] > 50) {
-                        //건무,민무,색유,주유(0,0,100,100)
+                        //건무,민무,색유,주유(0,0,100,100)a
                         this.state = {
                             dataSource: [
                                 //클렌징
@@ -293,7 +293,7 @@ export default class Question extends React.Component {
                             skinTypeScore: skinTypeScore
                         }
                     } else {
-                        //건무,민무,색유,주무(0,0,100,0)
+                        //건무,민무,색유,주무(0,0,100,0)a
                         this.state = {
                             dataSource: [
                                 //클렌징
@@ -316,7 +316,7 @@ export default class Question extends React.Component {
                     }
                 } else {
                     if (skinTypeScore[3] > 50) {
-                        //건무,민무,색무,주유(0,0,0,100)
+                        //건무,민무,색무,주유(0,0,0,100)a
                         this.state = {
                             dataSource: [
                                 //클렌징

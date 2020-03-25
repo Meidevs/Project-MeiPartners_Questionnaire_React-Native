@@ -1,0 +1,41 @@
+갤럭시 A30, 2Page Txt
+
+{ code: 'cate0', name: '클렌징', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cleansing.png'), uriSelected: require('../public/itemimages/cleansing_s.png') },
+            //     { code: 'cate1', name: '에센스', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/skin.png'), uriSelected: require('../public/itemimages/skin_s.png') },
+            //     { code: 'cate2', name: '앰플', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/ample.png'), uriSelected: require('../public/itemimages/ample_s.png') },
+            //     { code: 'cate3', name: '세럼', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/serum.png'), uriSelected: require('../public/itemimages/serum_s.png') },
+            //     { code: 'cate4', name: '크림', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cream.png'), uriSelected: require('../public/itemimages/cream_s.png') },
+            //     { code: 'cate5', name: '마스크', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/mask.png'), uriSelected: require('../public/itemimages/mask_s.png') },
+            //     { code: 'cate6', name: '미스트', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/mist.png'), uriSelected: require('../public/itemimages/mist_s.png') },
+            //     { code: 'cate7', name: '필링 겔', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/bb.png'), uriSelected: require('../public/itemimages/bb_s.png') },
+
+            itemCategories: [
+                { code: 'cate0', name: '클렌징', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cleansing.png'), uriSelected: require('../public/itemimages/cleansing_s.png') },
+                { code: 'cate1', name: '앰플', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/ample.png'), uriSelected: require('../public/itemimages/ample_s.png') },
+                { code: 'cate2', name: '에센스 & 세럼', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/serum.png'), uriSelected: require('../public/itemimages/serum_s.png') },
+                { code: 'cate3', name: '크림', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cream.png'), uriSelected: require('../public/itemimages/cream_s.png') },
+                { code: 'cate4', name: '마스크', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/mask.png'), uriSelected: require('../public/itemimages/mask_s.png') },
+                { code: 'cate5', name: '미스트', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/mist.png'), uriSelected: require('../public/itemimages/mist_s.png') },
+                { code: 'cate6', name: '필링 겔', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/bb.png'), uriSelected: require('../public/itemimages/bb_s.png') },
+            ],
+
+
+5.8마일드 클렌저
+화이트 폼 클렌징
+
+R앰플
+더 리프팅 R 프리미엄 앰플
+
+리바이탈라이즈 세럼
+AC에센스
+
+R크림
+리뉴얼 콤플렉스 크림
+AC크림
+
+DX에센스 & DX 파우더
+
+지앤비8 화이트닝 펩타 미스트
+
+리페어 필링 겔
+

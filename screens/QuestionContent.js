@@ -206,7 +206,7 @@ export default class QuestionContent extends React.Component {
             headerTitle: () => null,
             headerRight: () =>
                 <View style={styles.headerStyle}>
-                    <LinearGradient colors={['#FFADAC', '#FF7BAC']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: navigation.getParam('progressBar'), height: 15, borderRadius: 10, backgroundColor: '#000000' }} />
+                    <LinearGradient colors={['#FFADAC', '#FF7BAC']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: navigation.getParam('progressBar'), height: 23, borderRadius: 10, backgroundColor: '#000000' }} />
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
                         <Text style={{ fontSize: width * 0.03, color: '#707070', fontFamily: 'NanumSquareRoundB', marginRight : 7 }}>{navigation.getParam('increaseCount')} / 20 응답진행률</Text>
                     </View>
