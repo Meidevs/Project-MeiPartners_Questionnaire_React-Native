@@ -23,9 +23,8 @@ export default class Incomming extends React.Component {
         this.state = {
             timer: 0,
             data: this.props.navigation.state.params,
-            progressBar : 0,
+            progressBar: 0,
         }
-
     }
     state = {
         fontLoaded: false,
@@ -48,10 +47,10 @@ export default class Incomming extends React.Component {
                 }))
             }
             var progressBar = (width * 0.60 * this.state.timer) / (3);
-            this.setState({progressBar : progressBar });
+            this.setState({ progressBar: progressBar });
             if (timer === 3) {
                 clearInterval(this.interval)
-                
+
                 // this.state.data : 
                 // cateSelectedCodes -> Category Code that I selected
                 // codeAllCateArray -> After Answer the Questions, Response is Category Code & Category Name

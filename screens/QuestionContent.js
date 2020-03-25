@@ -74,7 +74,7 @@ export default class QuestionContent extends React.Component {
                     skinType: '탄력 주름 타입',
                     questions:
                         [
-                            { type: "skin4", subtxt: '항목을 선택하세요.', maintxt: 'Q. 자신은 얼마나 나이 들어 보이낟고 생각하나요??', question1: '5년 이상 늙어보인다', question2: '나이대로 보인다', question3: '1 - 5년 젊어보인다' },
+                            { type: "skin4", subtxt: '항목을 선택하세요.', maintxt: 'Q. 자신은 얼마나 나이 들어 보인다고 생각하나요??', question1: '5년 이상 늙어보인다', question2: '나이대로 보인다', question3: '1 - 5년 젊어보인다' },
                             { type: "skin4", subtxt: '항목을 선택하세요.', maintxt: 'Q. 예전과 비교해 피부가 얇아졌나요?', question1: '점점 더 얇아지는 것 같다', question2: '원래 얇다', question3: '거의 그대로다' },
                             { type: "skin4", subtxt: '항목을 선택하세요.', maintxt: 'Q. 얼굴을 손가락으로 눌렀을 때 피부 상태는 어떠한가요?', question1: '말랑말랑하다', question2: '보통이다', question3: '탱탱하다' },
                             { type: "skin4", subtxt: '항목을 선택하세요.', maintxt: 'Q. 눈가 혹은 팔자 주름의 깊이는 어떤가요?', question1: '둘 다 깊다', question2: '하나만 깊다', question3: '주름이 거의 없다' },

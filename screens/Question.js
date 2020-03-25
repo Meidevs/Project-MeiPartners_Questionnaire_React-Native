@@ -33,13 +33,12 @@ export default class Question extends React.Component {
             fontLoaded: false,
             itemCategories: [
                 { code: 'cate0', name: '클렌징', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cleansing.png'), uriSelected: require('../public/itemimages/cleansing_s.png') },
-                { code: 'cate1', name: '에센스', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/skin.png'), uriSelected: require('../public/itemimages/skin_s.png') },
-                { code: 'cate2', name: '앰플', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/ample.png'), uriSelected: require('../public/itemimages/ample_s.png') },
-                { code: 'cate3', name: '세럼', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/serum.png'), uriSelected: require('../public/itemimages/serum_s.png') },
-                { code: 'cate4', name: '크림', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cream.png'), uriSelected: require('../public/itemimages/cream_s.png') },
-                { code: 'cate5', name: '마스크', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/mask.png'), uriSelected: require('../public/itemimages/mask_s.png') },
-                { code: 'cate6', name: '미스트', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/mist.png'), uriSelected: require('../public/itemimages/mist_s.png') },
-                { code: 'cate7', name: '필링 겔', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/bb.png'), uriSelected: require('../public/itemimages/bb_s.png') },
+                { code: 'cate1', name: '앰플', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/ample.png'), uriSelected: require('../public/itemimages/ample_s.png') },
+                { code: 'cate2', name: '에센스 & 세럼', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/serum.png'), uriSelected: require('../public/itemimages/serum_s.png') },
+                { code: 'cate3', name: '크림', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/cream.png'), uriSelected: require('../public/itemimages/cream_s.png') },
+                { code: 'cate4', name: '마스크', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/mask.png'), uriSelected: require('../public/itemimages/mask_s.png') },
+                { code: 'cate5', name: '미스트', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/mist.png'), uriSelected: require('../public/itemimages/mist_s.png') },
+                { code: 'cate6', name: '필링 겔', txtSelection: styles.itemCategoriesTxt, uri: require('../public/itemimages/bb.png'), uriSelected: require('../public/itemimages/bb_s.png') },
             ],
         }
 
@@ -48,24 +47,33 @@ export default class Question extends React.Component {
             if (skinTypeScore[1] > 50) {
                 if (skinTypeScore[2] > 50) {
                     if (skinTypeScore[3] > 50) {
-                        //건유,민유,색유,주유(100,100,100,100)
+                        //건유,민유,색유,주유(100,100,100,100)a
                         this.state = {
                             dataSource: [
+                                //클렌징
                                 this.state.itemCategories[0],
-                                this.state.itemCategories[2],
-                                this.state.itemCategories[4],
+                                //앰플
+                                this.state.itemCategories[1],
+                                //크림
+                                this.state.itemCategories[3],
+                                //미스트
                                 this.state.itemCategories[5],
                             ],
                             itemsCode: '1',
                             skinTypeScore: skinTypeScore
                         }
                     } else {
-                        //건유,민유,색유,주무(100,100,100,0)
+                        //건유,민유,색유,주무(100,100,100,0)a
                         this.state = {
                             dataSource: [
+                                //클렌징
                                 this.state.itemCategories[0],
-                                this.state.itemCategories[2],
-                                this.state.itemCategories[6],
+                                //앰플
+                                this.state.itemCategories[1],
+                                //크림
+                                this.state.itemCategories[3],
+                                //미스트
+                                this.state.itemCategories[5],
                             ],
                             itemsCode: '2',
                             skinTypeScore: skinTypeScore
@@ -76,10 +84,14 @@ export default class Question extends React.Component {
                         //건유,민유,색무,주유(100,100,0,100)
                         this.state = {
                             dataSource: [
+                                //클렌징
                                 this.state.itemCategories[0],
+                                //앰플
                                 this.state.itemCategories[1],
+                                //크림
+                                this.state.itemCategories[3],
+                                //미스트
                                 this.state.itemCategories[4],
-                                this.state.itemCategories[5],
                             ],
                             itemsCode: '3',
                             skinTypeScore: skinTypeScore
@@ -88,10 +100,14 @@ export default class Question extends React.Component {
                         //건유,민유,색무,주무(100,100,0,0)  
                         this.state = {
                             dataSource: [
+                                //클렌징
                                 this.state.itemCategories[0],
+                                //앰플
                                 this.state.itemCategories[1],
-                                this.state.itemCategories[4],
-                                this.state.itemCategories[6],
+                                //크림
+                                this.state.itemCategories[3],
+                                //미스트
+                                this.state.itemCategories[5],
                             ],
                             itemsCode: '4',
                             skinTypeScore: skinTypeScore
@@ -104,9 +120,13 @@ export default class Question extends React.Component {
                         //건유,민무,색유,주유(100,0,100,100)
                         this.state = {
                             dataSource: [
+                                //클렌징
                                 this.state.itemCategories[0],
+                                //앰플
                                 this.state.itemCategories[1],
-                                this.state.itemCategories[4],
+                                //크림
+                                this.state.itemCategories[3],
+                                //미스트
                                 this.state.itemCategories[5],
                             ],
                             itemsCode: '5',
@@ -116,9 +136,13 @@ export default class Question extends React.Component {
                         //건유,민무,색유,주무(100,0,100,0)  
                         this.state = {
                             dataSource: [
+                                //클렌징
                                 this.state.itemCategories[0],
+                                //앰플
                                 this.state.itemCategories[1],
-                                this.state.itemCategories[4],
+                                //크림
+                                this.state.itemCategories[3],
+                                //미스트
                                 this.state.itemCategories[5],
                             ],
                             itemsCode: '6',
@@ -130,9 +154,14 @@ export default class Question extends React.Component {
                         //건유,민무,색무,주유(100,0,0,100)
                         this.state = {
                             dataSource: [
+                                //클렌징
                                 this.state.itemCategories[0],
-                                this.state.itemCategories[2],
-                                this.state.itemCategories[4],
+                                //앰플
+                                this.state.itemCategories[1],
+                                //크림
+                                this.state.itemCategories[3],
+                                //미스트
+                                this.state.itemCategories[5],
                             ],
                             itemsCode: '7',
                             skinTypeScore: skinTypeScore
@@ -141,10 +170,14 @@ export default class Question extends React.Component {
                         //건유,민무,색무,주무(100,0,0,0) 
                         this.state = {
                             dataSource: [
+                                //클렌징
                                 this.state.itemCategories[0],
+                                //앰플
                                 this.state.itemCategories[1],
-                                this.state.itemCategories[4],
-                                this.state.itemCategories[6],
+                                //크림
+                                this.state.itemCategories[3],
+                                //미스트
+                                this.state.itemCategories[5],
                             ],
                             itemsCode: '8',
                             skinTypeScore: skinTypeScore
@@ -159,9 +192,17 @@ export default class Question extends React.Component {
                         //건무,민유,색유,주유(0,100,100,100)
                         this.state = {
                             dataSource: [
+                                //클렌징
                                 this.state.itemCategories[0],
+                                //앰플
+                                this.state.itemCategories[1],
+                                //세럼 & 에센스
                                 this.state.itemCategories[2],
+                                //크림
+                                this.state.itemCategories[3],
+                                //마스크
                                 this.state.itemCategories[4],
+                                //미스트
                                 this.state.itemCategories[5],
                             ],
                             itemsCode: '9',
@@ -171,9 +212,17 @@ export default class Question extends React.Component {
                         //건무,민유,색유,주무(0,100,100,0) 
                         this.state = {
                             dataSource: [
+                                //클렌징
                                 this.state.itemCategories[0],
+                                //앰플
+                                this.state.itemCategories[1],
+                                //세럼 & 에센스
                                 this.state.itemCategories[2],
+                                //크림
                                 this.state.itemCategories[3],
+                                //마스크
+                                this.state.itemCategories[4],
+                                //미스트
                                 this.state.itemCategories[5],
                             ],
                             itemsCode: '10',
@@ -185,9 +234,17 @@ export default class Question extends React.Component {
                         //건무,민유,색무,주유(0,100,0,100) 
                         this.state = {
                             dataSource: [
+                                //클렌징
                                 this.state.itemCategories[0],
+                                //앰플
+                                this.state.itemCategories[1],
+                                //세럼 & 에센스
                                 this.state.itemCategories[2],
+                                //크림
+                                this.state.itemCategories[3],
+                                //마스크
                                 this.state.itemCategories[4],
+                                //미스트
                                 this.state.itemCategories[5],
                             ],
                             itemsCode: '11',
@@ -197,9 +254,15 @@ export default class Question extends React.Component {
                         //건무,민유,색무,주무(0,100,0,0)
                         this.state = {
                             dataSource: [
+                                //클렌징
                                 this.state.itemCategories[0],
+                                //세럼 & 에센스
+                                this.state.itemCategories[2],
+                                //크림
                                 this.state.itemCategories[3],
+                                //마스크
                                 this.state.itemCategories[4],
+                                //미스트
                                 this.state.itemCategories[5],
                             ],
                             itemsCode: '12',
@@ -213,11 +276,18 @@ export default class Question extends React.Component {
                         //건무,민무,색유,주유(0,0,100,100)
                         this.state = {
                             dataSource: [
+                                //클렌징
                                 this.state.itemCategories[0],
+                                //앰플
+                                this.state.itemCategories[1],
+                                //세럼 & 에센스
                                 this.state.itemCategories[2],
-                                this.state.itemCategories[4],
+                                //크림
+                                this.state.itemCategories[3],
+                                //미스트
                                 this.state.itemCategories[5],
-                                this.state.itemCategories[7],
+                                //필링 겔
+                                this.state.itemCategories[6],
                             ],
                             itemsCode: '13',
                             skinTypeScore: skinTypeScore
@@ -226,11 +296,19 @@ export default class Question extends React.Component {
                         //건무,민무,색유,주무(0,0,100,0)
                         this.state = {
                             dataSource: [
+                                //클렌징
                                 this.state.itemCategories[0],
+                                //앰플
+                                this.state.itemCategories[1],
+                                //세럼 & 에센스
+                                this.state.itemCategories[2],
+                                //크림
                                 this.state.itemCategories[3],
-                                this.state.itemCategories[4],
+                                //미스트
                                 this.state.itemCategories[5],
-                                this.state.itemCategories[7],
+                                //필링 겔
+                                this.state.itemCategories[6],
+
                             ],
                             itemsCode: '14',
                             skinTypeScore: skinTypeScore
@@ -241,10 +319,18 @@ export default class Question extends React.Component {
                         //건무,민무,색무,주유(0,0,0,100)
                         this.state = {
                             dataSource: [
+                                //클렌징
                                 this.state.itemCategories[0],
+                                //앰플
+                                this.state.itemCategories[1],
+                                //세럼 & 에센스
                                 this.state.itemCategories[2],
+                                //크림
+                                this.state.itemCategories[3],
+                                //미스트
                                 this.state.itemCategories[5],
-                                this.state.itemCategories[7],
+                                //필링 겔
+                                this.state.itemCategories[6],
                             ],
                             itemsCode: '15',
                             skinTypeScore: skinTypeScore
@@ -253,9 +339,16 @@ export default class Question extends React.Component {
                         //건무,민무,색무,주무(0,0,0,0)
                         this.state = {
                             dataSource: [
+                                //클렌징
                                 this.state.itemCategories[0],
+                                //세럼 & 에센스
+                                this.state.itemCategories[2],
+                                //크림
+                                this.state.itemCategories[3],
+                                //미스트
                                 this.state.itemCategories[5],
-                                this.state.itemCategories[7],
+                                //필링 겔
+                                this.state.itemCategories[6],
                             ],
                             itemsCode: '16',
                             skinTypeScore: skinTypeScore
@@ -265,7 +358,7 @@ export default class Question extends React.Component {
             }
         }
     }
-    
+
     categoryItemPress = (index) => {
         var data = this.state.dataSource;
         data[index].isSelected = !data[index].isSelected;

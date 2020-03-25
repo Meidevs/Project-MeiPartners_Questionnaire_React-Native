@@ -27,7 +27,6 @@ import cate3Screen from './screens/cate3.js';
 import cate4Screen from './screens/cate4.js';
 import cate5Screen from './screens/cate5.js';
 import cate6Screen from './screens/cate6.js';
-import cate7Screen from './screens/cate7.js';
 import SideMenu from './components/SideMenu.js';
 
 const DrawerStack = createDrawerNavigator(
@@ -52,9 +51,6 @@ const DrawerStack = createDrawerNavigator(
     },
     cate6: {
       screen: cate6Screen,
-    },
-    cate7: {
-      screen: cate7Screen,
     },
   },
   {
