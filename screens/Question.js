@@ -368,7 +368,6 @@ export default class Question extends React.Component {
             if (data[i].isSelected == true) {
                 data[i].isSelected = !data[i].isSelected;
                 data[i].txtSelection = data[i].isSelected ? styles.itemCategoriesTxtPress : styles.itemCategoriesTxt;
-
             }
         }
         for (var i = index + 1; i < data.length; i++) {

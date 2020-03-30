@@ -41,7 +41,7 @@ export default class cate1 extends React.Component {
             ],
             uri: datas[0].uri,
             item: datas[0].item,
-            // rectxt: datas[0].rectxt
+            rectxt: datas[0].rectxt
         }
     }
 
@@ -97,10 +97,12 @@ export default class cate1 extends React.Component {
             dataSource: [
                 { manual: data[1].manual },
                 { submanual: data[1].submanual },
+                { rectxt: data[1].rectxt },
+
             ],
             uri: data[1].uri,
             item: data[1].item,
-            // rectxt: data[1].rectxt
+            rectxt: data[1].rectxt
         })
     }
     goBack(data) {
@@ -113,7 +115,7 @@ export default class cate1 extends React.Component {
             ],
             uri: data[0].uri,
             item: data[0].item,
-            // rectxt: data[0].rectxt
+            rectxt: data[0].rectxt
         })
     }
     componentJSX() {
@@ -164,7 +166,7 @@ export default class cate1 extends React.Component {
                 <View style={styles.bottomContainer} >
                     <View style={styles.titleContainer}>
                         <Text style={styles.titleTxt}>{this.state.item}</Text>
-                        {/* <Text style={styles.recTxt}>{this.state.rectxt}</Text> */}
+                        <Text style={styles.recTxt}>{this.state.rectxt}</Text>
 
                     </View>
                     <View style={{ borderWidth: 0.8, borderColor: '#BFBFBF', width: width * 0.9, alignSelf: 'center' }} />
