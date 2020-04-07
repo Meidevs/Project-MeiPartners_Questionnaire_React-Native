@@ -10,7 +10,15 @@ import {
     StatusBar,
 } from 'react-native';
 import * as Font from 'expo-font';
-const { width, height } = Dimensions.get('window');
+const { 
+    width,
+    height 
+} = Dimensions.get('window');
+
+// const scale = width / 320;
+
+// console.log(width)
+
 
 export default class Incomming1 extends React.Component {
     state = {
@@ -127,6 +135,7 @@ const styles = StyleSheet.create({
     mainTxt: {
         color: '#044B77',
         fontSize: width * 0.07,
+        // fontSize : scale * 20,
         fontFamily: 'NanumSquareRoundEB',
     },
     mainTxtB: {
