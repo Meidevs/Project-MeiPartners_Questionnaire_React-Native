@@ -2,7 +2,7 @@
 문진 앱
 <img src="https://user-images.githubusercontent.com/52062612/80167248-e061d100-861a-11ea-951a-483d862a3448.png" title="Trucker" alt="Trucker-Title"></a>
 
-<a href="https://www.youtube.com/watch?v=MfQ8MxBY1Hc">***시연영상링크***</a>
+<a href="https://youtu.be/d7nVDz_dcJg">***시연영상링크***</a>
 
 # 러뷰 문진앱 : (주)닥터메이의 자가 문진을 통한 화장품 추천 어플리케이션 (2019/02/10 - 2019/03/15)
 
