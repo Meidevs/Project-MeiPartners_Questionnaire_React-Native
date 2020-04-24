@@ -1,6 +1,6 @@
 # Project-MeiPartners_Questionnaire_React-Native
 문진 앱
-<img src="https://user-images.githubusercontent.com/52062612/72335305-1c26f980-3702-11ea-8cef-8f6398922b85.png" title="Trucker" alt="Trucker-Title"></a>
+<img src="https://user-images.githubusercontent.com/52062612/80167248-e061d100-861a-11ea-951a-483d862a3448.png" title="Trucker" alt="Trucker-Title"></a>
 
 <a href="https://www.youtube.com/watch?v=MfQ8MxBY1Hc">***시연영상링크***</a>
 
