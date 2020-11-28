@@ -16,6 +16,7 @@ import { createDrawerNavigator, DrawerActions } from 'react-navigation-drawer';
 import QuestionContentScreen from './screens/QuestionContent.js';
 import Incomming1Screen from './screens/Incomming1.js';
 import Incomming2Screen from './screens/Incomming2.js';
+import JunctionScreen from './screens/Junction.js';
 import LoadingScreen from './screens/Loading.js';
 import QuestionScreen from './screens/Question.js';
 import GraphsScreen from './screens/Graphs.js';
@@ -156,6 +157,9 @@ const RootStack = createStackNavigator(
     },
     Incomming2: {
       screen: Incomming2Screen,
+    },
+    Junction : {
+      screen : JunctionScreen,
     },
     Main: {
       screen: QuestionStack

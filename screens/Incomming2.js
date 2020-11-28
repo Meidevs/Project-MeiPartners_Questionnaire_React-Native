@@ -73,7 +73,7 @@ export default class Incomming2 extends React.Component {
                             )
                     }
                     <View style={styles.buttonContent}>
-                        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('QuestionContent')}>
+                        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Junction')}>
                             <Image source={require('../public/images/skipbt.png')} style={styles.buttonImage} />
                         </TouchableOpacity>
                         <Image source={require('../public/images/pg_2.png')} style={styles.pgLink} />

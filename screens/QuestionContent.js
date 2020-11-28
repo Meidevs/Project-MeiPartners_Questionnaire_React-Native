@@ -25,7 +25,18 @@ export default class QuestionContent extends React.Component {
             'NanumSquareRoundR': require('../assets/fonts/NanumSquareRoundR.ttf'),
             'NanumSquareRoundL': require('../assets/fonts/NanumSquareRoundL.ttf')
         })
+        const response = await fetch('http://localhost:3000', {
+            method: 'GET',
+            credentials : 'include',
+            headers : {
+                'Content-Type' : 'application/json',
+            },
+        })
 
+        const json = await response.json();
+        if (response.ok) {
+            console.log(json)
+        }
         this.setState({ fontLoaded: true })
     }
     // In the constructor, increaseCount and progressBar parameter is set;
@@ -35,6 +46,7 @@ export default class QuestionContent extends React.Component {
         super(props)
         this.props.navigation.setParams({ increaseCount: 1 });
         this.props.navigation.setParams({ progressBar: 0 });
+
         var dataPackage = {
             package: [
                 {
@@ -358,8 +370,12 @@ const styles = StyleSheet.create({
     },
     backgroundImages: {
         flex: 1,
+<<<<<<< HEAD
         width: width,
         // aspectRatio : 1.6,
+=======
+        width : width,
+>>>>>>> 6c37c05b17bfa183878ac19a19b856aa7999406f
         justifyContent: 'center',
         alignItems: 'center',
     },
