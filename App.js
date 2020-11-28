@@ -28,6 +28,9 @@ import cate5Screen from './screens/cate5.js';
 import cate6Screen from './screens/cate6.js';
 import SideMenu from './components/SideMenu.js';
 
+// DrawerStack has defaultNavigationOptions header style and DrawerStack get navigation information's from navigation parameter through DrawerNavigation;
+// Each of cate0 - 6 Screens has specific view. Users move to different screen based on parameter from QuestionContent Result;
+// contentComponent display SideMenu Component which render Drawer Content;
 const DrawerStack = createDrawerNavigator(
   {
     cate0: {
@@ -57,6 +60,9 @@ const DrawerStack = createDrawerNavigator(
   },
 )
 
+// DrawerNavigation has Graphs & DrawerStack;
+// DrawerNavigation's Graphs Screen set own header style. But, DrawerStack has no information about header;
+// So, DrawerStack has defaultNavigationOptions header style;
 const DrawerNavigation = createStackNavigator(
   {
     Graphs: {
@@ -86,6 +92,10 @@ const DrawerNavigation = createStackNavigator(
   }
 )
 
+// WaitingStack has Waiting & DrawerStack;
+// Waiting Screen is view component which shows gif image during 3s. And Waiting Screen will be changed into DrawerNavigation's specific Screen;
+// Drawer uses drawerNavigator which is supported bylibrary of React-Native ;
+// headerMode : "None" means there is no Header;
 const WaitingStack = createStackNavigator(
   {
     Waiting: {
@@ -100,11 +110,16 @@ const WaitingStack = createStackNavigator(
   }
 )
 
+// QuestionStack has QuestionContent, Question & Loading;
+// QuestionContent Screen and Question Screen is view component which shows introduction of application;
+// QuestionContent Screen shows 20 questions to users;
+// Question Screen show type of cosmetics  to users based on what they answered;
+// Loading is Waiting Stack which has Loading Screen & Drawer;
+// navigationOptions parameter support specification of header in view;
 const QuestionStack = createStackNavigator(
   {
     QuestionContent: {
       screen: QuestionContentScreen,
-
     },
     Question: {
       screen: QuestionScreen,
@@ -130,6 +145,10 @@ const QuestionStack = createStackNavigator(
   },
 )
 
+// RootStack has Incomming1, Incomming2 & Main;
+// Incomming1 - 2 Screen is view component which shows introduction of application;
+// Main is QuestionStack which has other stacks;
+// headerMode : "None" means there is no Header;
 const RootStack = createStackNavigator(
   {
     Incomming1: {

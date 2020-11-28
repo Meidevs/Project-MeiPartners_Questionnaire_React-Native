@@ -38,6 +38,9 @@ export default class Incomming extends React.Component {
         })
         this.setState({ fontLoaded: true })
     }
+
+    // Loading Screen set timer to move next screen;
+    // After 3s timer is cleared, pass parameters into Graphs Screen;
     componentDidMount() {
         this.interval = setInterval(() => {
             const { timer } = this.state

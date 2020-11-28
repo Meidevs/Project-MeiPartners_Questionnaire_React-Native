@@ -13,7 +13,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 const { width, height } = Dimensions.get('window');
 
 export default class QuestionContent extends React.Component {
-
+    // While every element in the view is rendered, fontLoaded is false;
+    // After rendering is over, new font is applied to text element in the view;
     state = {
         fontLoaded: false,
     }
@@ -27,6 +28,9 @@ export default class QuestionContent extends React.Component {
 
         this.setState({ fontLoaded: true })
     }
+    // In the constructor, increaseCount and progressBar parameter is set;
+    // Both of parameter is to show question progress state;
+    // dataPackage is array of questions;
     constructor(props) {
         super(props)
         this.props.navigation.setParams({ increaseCount: 1 });
@@ -113,6 +117,8 @@ export default class QuestionContent extends React.Component {
 
     onPress = index => {
         //Element Design Change Based On isSelect value
+        // curData get all of questions from dataSource. And, onPress function check curData's isSelect variable is true or false;
+        // curData's style variable is changed based on isSelect variable; 
         let curData = this.state.dataSource;
         curData[index].isSelect = !curData[index].isSelect;
         curData[index].selectedBackground = curData[index].isSelect ?
@@ -136,7 +142,7 @@ export default class QuestionContent extends React.Component {
             }
         }
 
-        //Define Changes
+        //Set changes into the view
         this.setState({
             dataSource: curData,
         });
@@ -180,15 +186,17 @@ export default class QuestionContent extends React.Component {
                 { code: 'skin4', skin: this.state.skin4 },
             ]
         }
-
+        // If nextData reach to the 21, it means that user answered all of the questions;
         if (nextData == 21) {
             this.final(data);
             this.props.navigation.setParams({ increaseCount: 20 });
         } else {
-            //Define Changes
+            // If nextData isn't 21, it means that questions still remain;
             this.props.navigation.setParams({ increaseCount: nextData });
+            
+            // Set progressBarLength based on width of view and current question progress state;
             var progressBarLength = (width * 0.40 * nextCount) / (20);
-            this.props.navigation.setParams({ progressBar: progressBarLength })
+            this.props.navigation.setParams({ progressBar: progressBarLength });
             this.setState({
                 subTxt: arrayData[nextCount].subtxt,
                 mainTxt: arrayData[nextCount].maintxt,
@@ -208,11 +216,12 @@ export default class QuestionContent extends React.Component {
                 <View style={styles.headerStyle}>
                     <LinearGradient colors={['#FFADAC', '#FF7BAC']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: navigation.getParam('progressBar'), height: 23, borderRadius: 10, backgroundColor: '#000000' }} />
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
-                        <Text style={{ fontSize: width * 0.03, color: '#707070', fontFamily: 'NanumSquareRoundB', marginRight : 7 }}>{navigation.getParam('increaseCount')} / 20 응답진행률</Text>
+                        <Text style={{ fontSize: width * 0.03, color: '#707070', fontFamily: 'NanumSquareRoundB', marginRight: 7 }}>{navigation.getParam('increaseCount')} / 20 응답진행률</Text>
                     </View>
                 </View>,
         }
     }
+    // componentJSX is background images based on question progress state;
     componentJSX() {
         var data = this.props.navigation.getParam('increaseCount');
         if (data <= 3) {
@@ -314,7 +323,6 @@ export default class QuestionContent extends React.Component {
                 }
                 <View style={styles.selectionContainer}>
                     {mapToQuestions(this.state.dataSource)}
-
                 </View>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.button} onPress={this.nextPress}>
@@ -324,7 +332,8 @@ export default class QuestionContent extends React.Component {
             </View >
         );
     }
-
+    // If nextPress function's nextData is 21, nextPress function send parameter about skinCode which is defined in the nextPress function;
+    // final function send skinCode to Question Screen as a parameter;
     final = data => {
         var scoreArray = [];
         data.skinCode.map((data) => {
@@ -349,7 +358,7 @@ const styles = StyleSheet.create({
     },
     backgroundImages: {
         flex: 1,
-        width : width,
+        width: width,
         // aspectRatio : 1.6,
         justifyContent: 'center',
         alignItems: 'center',
@@ -430,13 +439,13 @@ const styles = StyleSheet.create({
         height: '65%',
     },
     button: {
-        flex : 1,
+        flex: 1,
         alignItems: 'center',
         backgroundColor: '#FF7BAC',
     },
     nextButton: {
         height: width * 0.15,
         aspectRatio: 6.252,
-        
+
     }
 });

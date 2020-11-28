@@ -26,6 +26,8 @@ export default class Question extends React.Component {
         this.setState({ fontLoaded: true })
     }
 
+    // constructor get parameter from previous screen;
+    // itemCategories is variables about cosmetics;
     constructor(props) {
         super(props)
         var skinTypeScore = this.props.navigation.state.params.data.skinCode;
@@ -358,12 +360,15 @@ export default class Question extends React.Component {
             }
         }
     }
-
+    
     categoryItemPress = (index) => {
+        // data array has isSelected variable which is to show selected category;
+        // Selected data shows diffrent text style and icons; 
         var data = this.state.dataSource;
         data[index].isSelected = !data[index].isSelected;
         data[index].txtSelection = data[index].isSelected ? styles.itemCategoriesTxtPress : styles.itemCategoriesTxt;
 
+        // For remove duplication;
         for (var i = 0; i < index; i++) {
             if (data[i].isSelected == true) {
                 data[i].isSelected = !data[i].isSelected;
@@ -380,7 +385,12 @@ export default class Question extends React.Component {
             dataSource: data,
         });
     }
-
+    
+    // nextQuestion check whether there are true or not in the dataSource's isSelected variable;
+    // If There is no true at the isSelected, it alert "카테고리를 선택해주세요";
+    // If There is true at the isSelected, it set codeSelectedArray & codeAllcateArray and maps data one by one for pushing code into codeSeletedArray;
+    // Also, it pushes name & code into codeAllCateArray;
+    // Pass parameters into Loading Screen;
     nextQuestion = data => {
         var expArray = [];
         for (var x = 0; x < data.length; x++) {

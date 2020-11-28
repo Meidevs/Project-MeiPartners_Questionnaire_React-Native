@@ -13,7 +13,8 @@ import * as Font from 'expo-font';
 const { width, height } = Dimensions.get('window');
 
 export default class Incomming2 extends React.Component {
-
+    // While every element in the view is rendered, fontLoaded is false;
+    // After rendering is over, new font is applied to text element in the view;
     state = {
         fontLoaded: false,
     }

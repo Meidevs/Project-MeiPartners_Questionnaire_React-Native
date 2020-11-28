@@ -13,6 +13,8 @@ import * as Font from 'expo-font';
 const { width, height } = Dimensions.get('window');
 
 export default class Incomming1 extends React.Component {
+    // While every element in the view is rendered, fontLoaded is false;
+    // After rendering is over, new font is applied to text element in the view;
     state = {
         fontLoaded: false,
     }
@@ -23,7 +25,6 @@ export default class Incomming1 extends React.Component {
             'NanumSquareRoundR': require('../assets/fonts/NanumSquareRoundR.ttf'),
             'NanumSquareRoundL': require('../assets/fonts/NanumSquareRoundL.ttf')
         })
-
         this.setState({ fontLoaded: true })
     }
     render() {
